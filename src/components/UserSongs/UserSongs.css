@@ -1,0 +1,26 @@
+.section-title {
+  font-size: 34px;
+  font-weight: 800;
+  padding: 20px 0;
+}
+
+.user-song-item {
+  list-style-type: none;
+  border-bottom: 1px solid #666;
+  display: flex;
+  line-height: 40px;
+}
+
+.song-title,
+.song-artist,
+.song-album {
+  width: 250px;
+}
+
+.song-title p,
+.song-artist p,
+.song-album p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

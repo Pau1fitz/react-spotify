@@ -1,15 +1,21 @@
-export const fetchPlaylistSuccess = (playlist) => {
+export const fetchPlaylistPending = () => {
+  return {
+    type: 'FETCH_PLAYLIST_PENDING'
+  }
+};
+
+export const fetchPlaylistSuccess = (playlists) => {
   return {
     type: 'FETCH_PLAYLIST_SUCCESS',
-    playlist
+    playlists
   }
-}
+};
 
 export const fetchPlaylistError = () => {
   return {
     type: 'FETCH_PLAYLIST_ERROR'
   }
-}
+};
 
 export const fetchPlaylists = (userId, accessToken) => {
   return dispatch => {
@@ -19,13 +25,14 @@ export const fetchPlaylists = (userId, accessToken) => {
       })
     });
 
+    dispatch(fetchPlaylistPending());
+
     fetch(request).then(res => {
       return res.json();
     }).then(res => {
-      console.log(res)
-      dispatch(fetchPlaylistSuccess(res));
+      dispatch(fetchPlaylistSuccess(res.items));
     }).catch(err => {
       dispatch(fetchPlaylistError());
     });
   }
-}
+};

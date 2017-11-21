@@ -1,16 +1,25 @@
-export const userReducer = (state = {}, action) => {
+export const playlistReducer = (state = {}, action) => {
 
 	switch (action.type) {
+
+		case "FETCH_PLAYLIST_PENDING":
+			return {
+				...state,
+				fetchPlaylistPending: true
+			}
+
 		case "FETCH_PLAYLIST_SUCCESS":
 			return {
-				user: action.playlist,
+				playlists: action.playlists,
         fetchPlaylistError: false,
+				fetchPlaylistPending: false,
 				...state
 			};
 
 		case "FETCH_PLAYLIST_ERROR":
       return {
         fetchPlaylistError: true,
+				fetchPlaylistPending: false,
         ...state
       };
 
@@ -20,4 +29,4 @@ export const userReducer = (state = {}, action) => {
 
 };
 
-export default userReducer;
+export default playlistReducer;

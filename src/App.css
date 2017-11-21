@@ -1,3 +1,25 @@
+body,
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
 body {
     font-family: 'Proxima Nova', Georgia, sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+}
+
+.app-container {
+  display: flex;
+  position: relative;
+  top: 80px;
 }

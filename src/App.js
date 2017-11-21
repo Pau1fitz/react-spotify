@@ -5,8 +5,9 @@ import { fetchUser } from './actions/userActions';
 import { setToken } from './actions/tokenActions';
 import './App.css';
 
-import UserDetails from './components/UserDetails'
-import UserPlaylists from './components/UserPlaylists'
+import UserDetails from './components/UserDetails';
+import UserPlaylists from './components/UserPlaylists';
+import UserSongs from './components/UserSongs';
 
 class App extends Component {
 
@@ -20,7 +21,7 @@ class App extends Component {
     }
 
     if(!hashParams.access_token) {
-        window.location.href = 'https://accounts.spotify.com/authorize?client_id=230be2f46909426b8b80cac36446b52a&response_type=token&redirect_uri=http://localhost:3000/callback';
+        window.location.href = 'https://accounts.spotify.com/authorize?client_id=230be2f46909426b8b80cac36446b52a&scope=user-read-private%20user-read-email%20playlist-read-private%20user-library-read%20user-library-modify%20user-follow-read&response_type=token&redirect_uri=http://localhost:3000/callback';
     } else {
       this.props.setToken(hashParams.access_token);
     }
@@ -37,7 +38,17 @@ class App extends Component {
         <p onClick={this.showProfile}>
           Click here to load profile
         </p>
-        <UserDetails />
+        <div className='header'>
+          <UserDetails />
+        </div>
+        <div className='app-container'>
+          <div className='left-side-section'>
+            <UserPlaylists />
+          </div>
+          <div className='main-section'>
+            <UserSongs />
+          </div>
+        </div>
       </div>
     );
   }

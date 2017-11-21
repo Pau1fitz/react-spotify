@@ -1,0 +1,23 @@
+.user-playlist-container {
+  padding: 20px;
+  color: #eee;
+}
+
+.user-playlist-header {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-family: 'Proxima Thin', Georgia, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.user-playlist-item {
+  list-style-type: none;
+  line-height: 25px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 140px;
+}

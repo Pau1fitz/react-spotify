@@ -7,3 +7,13 @@
     font-weight: normal;
     font-style: normal;
 }
+
+/** Proxima Nova Thin **/
+@font-face {
+    font-family: 'Proxima Thin';
+    src: url('proxthin.eot');
+    src: url('proxthin.woff') format('woff'),
+         url('proxthin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

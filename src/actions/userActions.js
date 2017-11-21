@@ -24,7 +24,6 @@ export const fetchUser = (accessToken) => {
     fetch(request).then(res => {
       return res.json();
     }).then(res => {
-      console.log(res)
       dispatch(fetchUserSuccess(res));
     }).catch(err => {
       dispatch(fetchUserError());
