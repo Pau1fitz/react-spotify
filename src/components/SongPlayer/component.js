@@ -14,13 +14,27 @@ class SongPlayer extends Component {
   }
 
   calculateTime() {
-    setInterval(() => {
-      this.setState((prevState) => {
-        return {
-          timeElapsed: prevState.timeElapsed + 1
-        }
-      });
-    }, 1000)
+    
+    const intervalId  = setInterval(() => {
+      if(this.state.timeElapsed === 30) {
+         clearInterval(this.state.intervalId);
+         this.props.stopSong();
+         this.setState({
+           timeElapsed: 0
+         });
+      } else {
+        this.setState((prevState) => {
+          return {
+            timeElapsed: prevState.timeElapsed + 1
+          }
+        });
+      }
+    }, 1000);
+
+    this.setState({
+      intervalId: intervalId
+    });
+
   }
 
   render() {
