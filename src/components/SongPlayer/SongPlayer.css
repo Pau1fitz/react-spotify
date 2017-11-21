@@ -11,9 +11,9 @@
 }
 
 .song-details .artist-name {
-    font-family: 'Proxima Thin', Georgia, sans-serif;
-    color: #aaa;
-    font-size: 12px;
+  font-family: 'Proxima Thin', Georgia, sans-serif;
+  color: #aaa;
+  font-size: 12px;
 }
 
 .song-controls {
@@ -25,14 +25,24 @@
 .forward,
 .reverse,
 .play-btn {
-  font-size: 24px;
   padding: 0 5px;
   color: #bbb;
   cursor: pointer;
 }
 
+.reverse,
+.forward {
+  font-size: 16px;
+}
+
+.play-btn {
+  position: relative;
+  top: -4px;
+  font-size: 30px;
+}
+
 .song-progress-container {
-  margin-top: 15px;
+  margin-top: 5px;
   display: flex;
   justify-content: center;
 }
