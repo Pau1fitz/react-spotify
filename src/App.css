@@ -32,6 +32,12 @@ body {
   position: relative;
 }
 
+.left-side-section {
+  position: fixed;
+}
+
 .main-section {
   width: 840px;
+  position: relative;
+  left: 200px;
 }

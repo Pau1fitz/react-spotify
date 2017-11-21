@@ -1,5 +1,6 @@
 export const songsReducer = (state = {
-	fetchSongsPending: true
+	fetchSongsPending: true,
+	songPlaying: false
 }, action) => {
 
 	switch (action.type) {

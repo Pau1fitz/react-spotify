@@ -16,7 +16,6 @@ class UserSongs extends Component {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
   }
 
-
   renderSongs() {
 
     return this.props.songs.map(song => {
@@ -24,7 +23,7 @@ class UserSongs extends Component {
       const playSong = () => {
         if(song.track.preview_url) {
           this.props.playSong(song.track);
-          const audio = new Audio(song.track.preview_url);
+          var audio = new Audio(song.track.preview_url);
           audio.play();
         }
       };

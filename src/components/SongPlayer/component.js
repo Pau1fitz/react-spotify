@@ -3,7 +3,29 @@ import './SongPlayer.css';
 
 class SongPlayer extends Component {
 
+  state = {
+    timeElapsed: 0
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.songPlaying) {
+      this.calculateTime();
+    }
+  }
+
+  calculateTime() {
+    setInterval(() => {
+      this.setState((prevState) => {
+        return {
+          timeElapsed: prevState.timeElapsed + 1
+        }
+      });
+    }, 1000)
+  }
+
   render() {
+
+    const showPlay = !this.props.songPlaying ? ' fa-play-circle-o ' : ' fa-pause-circle-o ';
 
     return (
       <div className='song-player-container'>
@@ -20,7 +42,7 @@ class SongPlayer extends Component {
           </div>
 
           <div className='play-btn'>
-            <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
+            <i className={"fa play-btn" + showPlay} aria-hidden="true"></i>
           </div>
 
           <div className='next-song'>
@@ -30,9 +52,11 @@ class SongPlayer extends Component {
         </div>
 
         <div className='song-progress-container'>
+          <p className='timer-start'>{ this.state.timeElapsed }</p>
           <div className='song-progress'>
-            <div className='song-expired'></div>
+            <div style={{ width: this.state.timeElapsed * 16.5 }} className='song-expired'></div>
           </div>
+          <p className='timer-end'>{ 30 - this.state.timeElapsed }</p>
         </div>
 
       </div>
