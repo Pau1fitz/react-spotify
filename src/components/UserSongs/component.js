@@ -16,11 +16,20 @@ class UserSongs extends Component {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
   }
 
+
   renderSongs() {
+
     return this.props.songs.map(song => {
 
+      const playSong = () => {
+        if(song.track.preview_url) {
+          const audio = new Audio(song.track.preview_url);
+          audio.play();
+        }
+      };
+
       return (
-        <li className='user-song-item' key={ song.track.name }>
+        <li onClick={ playSong } className='user-song-item' key={ song.track.name }>
           <div className='play-song'>
             <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
           </div>
@@ -53,7 +62,10 @@ class UserSongs extends Component {
 
         <h2 className='section-title'>Songs</h2>
 
+        <button className='main-pause-play-btn'>PLAY</button>
+
         <div className='song-header-container'>
+
           <div className='song-title-header'>
             <p>Title</p>
           </div>

@@ -19,6 +19,14 @@ body {
   z-index: 1000;
 }
 
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: #eee;
+  height: 80px;
+}
+
 .app-container {
   display: flex;
   position: relative;

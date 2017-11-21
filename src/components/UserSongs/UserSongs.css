@@ -10,6 +10,18 @@
   font-family: 'Proxima Bold', Georgia, sans-serif;
 }
 
+.main-pause-play-btn {
+  background: #1db954;
+  font-family: 'Proxima Nova', Georgia, sans-serif;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  width: 100px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
 .user-song-item {
   list-style-type: none;
   border-bottom: 1px solid #666;
@@ -88,4 +100,5 @@
   display: flex;
   border-bottom: 1px solid #666;
   padding-bottom: 6px;
+  margin-top: 20px;
 }

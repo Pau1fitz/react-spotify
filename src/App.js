@@ -8,6 +8,7 @@ import './App.css';
 import UserDetails from './components/UserDetails';
 import UserPlaylists from './components/UserPlaylists';
 import UserSongs from './components/UserSongs';
+import SongPlayer from './components/SongPlayer';
 
 class App extends Component {
 
@@ -51,6 +52,9 @@ class App extends Component {
             <UserSongs />
           </div>
 
+          <div className='footer'>
+            <SongPlayer />
+          </div>
         </div>
       </div>
     );
