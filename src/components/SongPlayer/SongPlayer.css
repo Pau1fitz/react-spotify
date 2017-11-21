@@ -1,3 +1,26 @@
-.song-player-container {
+.song-controls {
+  justify-content: center;
+  display: flex;
+  margin-top: 15px;
+}
 
+.forward,
+.reverse,
+.play-btn {
+  font-size: 24px;
+  padding: 0 5px;
+  color: #bbb;
+  cursor: pointer;
+}
+
+.song-progress-container {
+    margin-top: 15px;
+}
+
+.song-progress {
+  width: 500px;
+  height: 6px;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 4px;
 }
