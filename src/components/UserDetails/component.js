@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './UserDetails.css';
 
-const UserDetails = ({displayName, userImage}) => {
-  return (
-    <div className='user-details-container'>
-        <img className='user-image' src={userImage} />
-        <p className='user-name'>{displayName}</p>
-    </div>
+class UserDetails extends Component {
 
-  )
+
+  render() {
+
+    return (
+      <div className='user-details-container'>
+          <img className='user-image' src={this.props.userImage} />
+          <p className='user-name'>{this.props.displayName}</p>
+      </div>
+    )
+
+  }
 }
 
 export default UserDetails;

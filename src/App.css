@@ -15,11 +15,15 @@ body {
 
 .header {
   position: fixed;
-  width: 100%;
+  width: 840px;
+  z-index: 1000;
 }
 
 .app-container {
   display: flex;
   position: relative;
-  top: 80px;
+}
+
+.main-section {
+  width: 840px;
 }

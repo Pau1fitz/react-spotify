@@ -1,6 +1,6 @@
 .user-playlist-container {
   padding: 20px;
-  color: #eee;
+  color: #ccc;
 }
 
 .user-playlist-header {
@@ -20,4 +20,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 140px;
+  cursor: pointer;
+}
+
+.user-playlist-item:hover {
+  color: #fff;
 }
