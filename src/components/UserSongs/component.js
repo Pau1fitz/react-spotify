@@ -21,7 +21,7 @@ class UserSongs extends Component {
       return (
         <li className='user-song-item' key={ song.track.id }>
           <div className='play-song'>
-            <i class="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
+            <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
           </div>
 
           <div className='song-title'>
@@ -66,7 +66,7 @@ class UserSongs extends Component {
           </div>
 
           <div className='song-length-header'>
-            <p><i class="fa fa-clock-o" aria-hidden="true"></i></p>
+            <p><i className="fa fa-clock-o" aria-hidden="true"></i></p>
           </div>
         </div>
 

@@ -12,8 +12,13 @@ class UserPlaylists extends Component {
 
   renderPlaylists() {
     return this.props.playlists.map(playlist => {
+
+      const getPlaylistSongs = () => {
+        this.props.fetchPlaylistSongs(this.props.userId, playlist.id, this.props.token);
+      }
+
       return (
-        <li className='user-playlist-item' key={ playlist.id }>
+        <li onClick={ getPlaylistSongs } className='user-playlist-item' key={ playlist.id }>
           { playlist.name }
         </li>
       );
