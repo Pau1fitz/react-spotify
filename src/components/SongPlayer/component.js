@@ -24,7 +24,9 @@ class SongPlayer extends Component {
         </div>
 
         <div className='song-progress-container'>
-          <div className='song-progress'></div>
+          <div className='song-progress'>
+            <div className='song-expired'></div>
+          </div>
         </div>
 
       </div>

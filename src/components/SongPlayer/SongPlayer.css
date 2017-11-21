@@ -19,8 +19,16 @@
 
 .song-progress {
   width: 500px;
-  height: 6px;
-  background: #fff;
+  height: 4px;
+  background: #aaa;
   margin: 0 auto;
+  border-radius: 4px;
+}
+
+.song-expired {
+  margin: 0;
+  width: 100px;
+  height: 4px;
+  background: #eee;
   border-radius: 4px;
 }
