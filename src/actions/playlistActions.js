@@ -13,7 +13,7 @@ export const fetchPlaylistError = () => {
 
 export const fetchPlaylists = (userId, accessToken) => {
   return dispatch => {
-    const request = new Request(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
+    const request = new Request(`https://api.spotify.com/v1/users/${userId}/playlists`, {
     	headers: new Headers({
     	 'Authorization': 'Bearer ' + accessToken
       })
@@ -23,9 +23,9 @@ export const fetchPlaylists = (userId, accessToken) => {
       return res.json();
     }).then(res => {
       console.log(res)
-      dispatch(fetchPlaylistsSuccess(res));
+      dispatch(fetchPlaylistSuccess(res));
     }).catch(err => {
-      dispatch(fetchPlaylistsError());
+      dispatch(fetchPlaylistError());
     });
   }
 }

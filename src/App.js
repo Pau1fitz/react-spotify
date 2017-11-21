@@ -3,10 +3,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/userActions';
 import { setToken } from './actions/tokenActions';
-import logo from './logo.svg';
 import './App.css';
 
 import UserDetails from './components/UserDetails'
+import UserPlaylists from './components/UserPlaylists'
 
 class App extends Component {
 
