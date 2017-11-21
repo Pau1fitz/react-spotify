@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import './SongPlayer.css';
 
 class SongPlayer extends Component {
@@ -14,7 +15,7 @@ class SongPlayer extends Component {
   }
 
   calculateTime() {
-    
+
     const intervalId  = setInterval(() => {
       if(this.state.timeElapsed === 30) {
          clearInterval(this.state.intervalId);
@@ -24,8 +25,9 @@ class SongPlayer extends Component {
          });
       } else {
         this.setState((prevState) => {
+
           return {
-            timeElapsed: prevState.timeElapsed + 1
+            timeElapsed: prevState.timeElapsed + 1,
           }
         });
       }
@@ -66,11 +68,11 @@ class SongPlayer extends Component {
         </div>
 
         <div className='song-progress-container'>
-          <p className='timer-start'>{ this.state.timeElapsed }</p>
+          <p className='timer-start'>{ moment().minutes(0).second(this.state.timeElapsed).format('m:ss') }</p>
           <div className='song-progress'>
             <div style={{ width: this.state.timeElapsed * 16.5 }} className='song-expired'></div>
           </div>
-          <p className='timer-end'>{ 30 - this.state.timeElapsed }</p>
+          <p className='timer-end'>{ moment().minutes(0).second(30 - this.state.timeElapsed).format('m:ss') }</p>
         </div>
 
       </div>

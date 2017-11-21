@@ -5,6 +5,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
+    "moment": "^2.19.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
