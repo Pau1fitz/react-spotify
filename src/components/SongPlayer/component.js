@@ -4,13 +4,19 @@ import './SongPlayer.css';
 class SongPlayer extends Component {
 
   render() {
+
     return (
       <div className='song-player-container'>
+
+        <div className='song-details'>
+          <p className='song-name'>{ this.props.songName }</p>
+          <p className='artist-name'>{ this.props.artistName }</p>
+        </div>
 
         <div className='song-controls'>
 
           <div className='reverse-song'>
-            <i class="fa fa-step-backward reverse" aria-hidden="true"></i>
+            <i className="fa fa-step-backward reverse" aria-hidden="true"></i>
           </div>
 
           <div className='play-btn'>
@@ -18,7 +24,7 @@ class SongPlayer extends Component {
           </div>
 
           <div className='next-song'>
-            <i class="fa fa-step-forward forward" aria-hidden="true"></i>
+            <i className="fa fa-step-forward forward" aria-hidden="true"></i>
           </div>
 
         </div>

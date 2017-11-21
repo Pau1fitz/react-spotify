@@ -23,6 +23,7 @@ class UserSongs extends Component {
 
       const playSong = () => {
         if(song.track.preview_url) {
+          this.props.playSong(song.track);
           const audio = new Audio(song.track.preview_url);
           audio.play();
         }

@@ -1,3 +1,19 @@
+.song-details {
+    font-family: 'Proxima Thin', Georgia, sans-serif;
+    position: absolute;
+    left: 20px;
+}
+
+.song-details .song-name {
+  color: #fff;
+  font-size: 14px;
+}
+
+.song-details .artist-name {
+    color: #aaa;
+    font-size: 12px;
+}
+
 .song-controls {
   justify-content: center;
   display: flex;

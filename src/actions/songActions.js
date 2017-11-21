@@ -36,3 +36,16 @@ export const fetchSongs = (accessToken) => {
     });
   }
 };
+
+export const playSong = (song) => {
+  return {
+    type: 'PLAY_SONG',
+    song
+  }
+};
+
+export const stopSong = () => {
+  return {
+    type: 'STOP_SONG'
+  }
+};

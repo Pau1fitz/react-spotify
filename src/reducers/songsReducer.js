@@ -46,6 +46,20 @@ export const songsReducer = (state = {
 				fetchPlaylistSongsPending: false
 			};
 
+		case "PLAY_SONG":
+				return {
+					...state,
+					songPlaying: true,
+					songDetails: action.song
+				}
+
+		case "STOP_SONG":
+				return {
+					...state,
+					songPlaying: false,
+					songDetails: null
+				}
+
 		default:
 			return state;
 	}

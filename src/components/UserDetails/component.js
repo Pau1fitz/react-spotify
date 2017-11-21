@@ -8,7 +8,7 @@ class UserDetails extends Component {
 
     return (
       <div className='user-details-container'>
-          <img className='user-image' src={this.props.userImage} />
+          <img alt='user' className='user-image' src={this.props.userImage} />
           <p className='user-name'>{this.props.displayName}</p>
       </div>
     )
