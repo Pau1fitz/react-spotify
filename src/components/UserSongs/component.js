@@ -5,7 +5,7 @@ class UserSongs extends Component {
 
   componentWillReceiveProps (nextProps) {
 
-    if(nextProps.token !== '') {
+    if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending) {
         this.props.fetchSongs(nextProps.token);
     }
   }
@@ -18,8 +18,9 @@ class UserSongs extends Component {
 
   renderSongs() {
     return this.props.songs.map(song => {
+
       return (
-        <li className='user-song-item' key={ song.track.id }>
+        <li className='user-song-item' key={ song.track.name }>
           <div className='play-song'>
             <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
           </div>

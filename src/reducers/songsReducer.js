@@ -1,4 +1,6 @@
-export const songsReducer = (state = {}, action) => {
+export const songsReducer = (state = {
+	fetchSongsPending: true
+}, action) => {
 
 	switch (action.type) {
 
@@ -20,28 +22,28 @@ export const songsReducer = (state = {}, action) => {
       return {
         ...state,
         fetchSongsError: true,
-				fetchPSongsPending: false
+				fetchPlaylistSongsPending: false
       };
 
 	case "FETCH_PLAYLIST_SONGS_PENDING":
 			return {
 				...state,
-				fetchSongsPending: true
+				fetchPlaylistSongsPending: true
 			}
 
 		case "FETCH_PLAYLIST_SONGS_SUCCESS":
 			return {
 				...state,
 				songs: action.songs,
-				fetchSongsError: false,
-				fetchSongsPending: false
+				fetchPlaylistSongsError: false,
+				fetchPlaylistSongsPending: false
 			};
 
 		case "FETCH_PLAYLIST_SONGS_ERROR":
 			return {
-				fetchSongsError: true,
-				fetchPSongsPending: false,
-				...state
+				...state,
+				fetchPlaylistError: true,
+				fetchPlaylistSongsPending: false
 			};
 
 		default:
