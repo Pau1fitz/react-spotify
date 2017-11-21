@@ -41,6 +41,10 @@
   font-size: 30px;
 }
 
+.play-btn .fa {
+  -webkit-text-stroke: 2px #222;
+}
+
 .song-progress-container {
   margin-top: 5px;
   display: flex;

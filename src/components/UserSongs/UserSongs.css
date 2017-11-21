@@ -68,6 +68,7 @@
   top: 5px;
   color: #ccc;
   cursor: pointer;
+  -webkit-text-stroke: 2px #000;
 }
 
 .play-song .fa:hover {
@@ -104,7 +105,6 @@
   width: 80px;
   color: #ccc;
 }
-
 
 .song-header-container {
   display: flex;
