@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getUser } from './actions/userActions';
+import { fetchUser } from './actions/userActions';
 import { setToken } from './actions/tokenActions';
 import logo from './logo.svg';
 import './App.css';
@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   showProfile = () => {
-    this.props.getUser(this.props.token);
+    this.props.fetchUser(this.props.token);
   }
 
   render() {
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
 
 	return bindActionCreators({
-    getUser,
+    fetchUser,
     setToken
   },dispatch);
 

@@ -1,17 +1,17 @@
-export const getUserSuccess = (user) => {
+export const fetchUserSuccess = (user) => {
   return {
-    type: 'GET_USER_SUCCESS',
+    type: 'FETCH_USER_SUCCESS',
     user
   }
 }
 
-export const getUserError = () => {
+export const fetchUserError = () => {
   return {
-    type: 'GET_USER_ERROR'
+    type: 'FETCH_USER_ERROR'
   }
 }
 
-export const getUser = (accessToken) => {
+export const fetchUser = (accessToken) => {
 
   return dispatch => {
 
@@ -25,9 +25,9 @@ export const getUser = (accessToken) => {
       return res.json();
     }).then(res => {
       console.log(res)
-      dispatch(getUserSuccess(res));
+      dispatch(fetchUserSuccess(res));
     }).catch(err => {
-      dispatch(getUserError());
+      dispatch(fetchUserError());
     });
   }
 

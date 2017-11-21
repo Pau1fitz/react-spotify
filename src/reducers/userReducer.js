@@ -4,11 +4,15 @@ export const userReducer = (state = {}, action) => {
 		case "GET_USER_SUCCESS":
 			return {
 				user: action.user,
+				fetchUserError: false,
 				...state
 			};
 
 		case "GET_USER_ERROR":
-			return state;
+			return {
+				fetchUserError: true,
+				...state
+			};
 
 		default:
 			return state;
