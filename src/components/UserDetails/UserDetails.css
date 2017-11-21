@@ -12,5 +12,7 @@
 
 .user-name {
   color: #fff;
-  margin-left: 10px;
+  position: relative;
+  left: 10px;
+  top: 15px;
 }

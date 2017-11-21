@@ -3,10 +3,14 @@ import userReducer from './userReducer';
 import tokenReducer from './tokenReducer';
 import playlistReducer from './playlistReducer';
 import songsReducer from './songsReducer';
+import albumsReducer from './albumsReducer';
+import artistsReducer from './artistsReducer';
 
 export default combineReducers({
 	userReducer,
   tokenReducer,
 	playlistReducer,
-	songsReducer
+	songsReducer,
+	albumsReducer,
+	artistsReducer
 });

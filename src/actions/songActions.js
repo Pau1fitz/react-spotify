@@ -37,6 +37,45 @@ export const fetchSongs = (accessToken) => {
   }
 };
 
+export const fetchRecentlyPlayedPending = () => {
+  return {
+    type: 'FETCH_RECENTLY_PLAYED_PENDING'
+  }
+};
+
+export const fetchRecentlyPlayedSuccess = (songs) => {
+  return {
+    type: 'FETCH_RECENTLY_PLAYED_SUCCESS',
+    songs
+  }
+};
+
+export const fetchRecentlyPlayedError = () => {
+  return {
+    type: 'FETCH_RECENTLY_PLAYED_ERROR'
+  }
+};
+
+export const fetchRecentlyPlayed = (accessToken) => {
+  return dispatch => {
+    const request = new Request(`https://api.spotify.com/v1/me/player/recently-played`, {
+    	headers: new Headers({
+    	 'Authorization': 'Bearer ' + accessToken
+      })
+    });
+
+    dispatch(fetchRecentlyPlayedPending());
+
+    fetch(request).then(res => {
+      return res.json();
+    }).then(res => {
+      dispatch(fetchRecentlyPlayedSuccess(res.items));
+    }).catch(err => {
+      dispatch(fetchRecentlyPlayedError());
+    });
+  }
+};
+
 export const playSong = (song) => {
   return {
     type: 'PLAY_SONG',

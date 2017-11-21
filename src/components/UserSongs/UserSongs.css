@@ -48,6 +48,10 @@
   width: 250px;
 }
 
+.song-added {
+  width: 80px;
+}
+
 .song-title-header {
   margin-left: 40px;
 }
@@ -67,13 +71,13 @@
 }
 
 .play-song .fa:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .song-title p,
 .song-artist p,
 .song-album p,
-.song-length p  {
+.song-length p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -92,9 +96,15 @@
 }
 
 .song-length-header .fa-clock-o {
-    font-size: 15px;
-    color: #eee;
+  font-size: 15px;
+  color: #ccc;
 }
+
+.song-added-header {
+  width: 80px;
+  color: #ccc;
+}
+
 
 .song-header-container {
   display: flex;

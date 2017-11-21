@@ -15,7 +15,7 @@ body {
 
 .header {
   position: fixed;
-  width: 840px;
+  width: 940px;
   z-index: 1000;
 }
 
@@ -37,7 +37,7 @@ body {
 }
 
 .main-section {
-  width: 840px;
+  width: 940px;
   position: relative;
   left: 200px;
 }

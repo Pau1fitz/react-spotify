@@ -1,0 +1,16 @@
+.side-menu-container {
+  padding: 20px;
+  color: #ccc;
+}
+
+.side-menu-item {
+  list-style-type: none;
+  line-height: 25px;
+  font-size: 14px;
+  width: 140px;
+  cursor: pointer;
+}
+
+.side-menu-item:hover {
+  color: #fff;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import './UserSongs.css';
 
 class UserSongs extends Component {
@@ -18,7 +19,7 @@ class UserSongs extends Component {
 
   renderSongs() {
 
-    return this.props.songs.map(song => {
+    return this.props.songs.map((song, i) => {
 
       const playSong = () => {
         if(song.track.preview_url) {
@@ -29,7 +30,7 @@ class UserSongs extends Component {
       };
 
       return (
-        <li onClick={ playSong } className='user-song-item' key={ song.track.name }>
+        <li onClick={ playSong } className='user-song-item' key={ i }>
           <div className='play-song'>
             <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
           </div>
@@ -44,6 +45,10 @@ class UserSongs extends Component {
 
           <div className='song-album'>
             <p>{ song.track.album.name }</p>
+          </div>
+
+          <div className='song-added'>
+            <p>{ moment(song.added_at).format('YYYY-MM-DD')}</p>
           </div>
 
           <div className='song-length'>
@@ -62,7 +67,7 @@ class UserSongs extends Component {
 
         <h2 className='section-title'>Songs</h2>
 
-        <button className='main-pause-play-btn'>PLAY</button>
+        <button className='main-pause-play-btn'>{!this.props.songPlaying ? 'PLAY' : 'PAUSE'}</button>
 
         <div className='song-header-container'>
 
@@ -78,15 +83,19 @@ class UserSongs extends Component {
             <p>Album</p>
           </div>
 
+          <div className='song-added-header'>
+            <i className="fa fa-calendar-plus-o" aria-hidden="true"></i>
+          </div>
+
           <div className='song-length-header'>
             <p><i className="fa fa-clock-o" aria-hidden="true"></i></p>
           </div>
+
         </div>
 
         {
           this.props.songs && this.renderSongs()
         }
-
 
       </div>
     );

@@ -11,6 +11,8 @@ import UserSongs from './components/UserSongs';
 import SongPlayer from './components/SongPlayer';
 import ArtWork from './components/ArtWork';
 
+import SideMenu from './components/SideMenu';
+
 class App extends Component {
 
   componentWillReceiveProps(nextProps) {
@@ -43,6 +45,7 @@ class App extends Component {
         <div className='app-container'>
 
           <div className='left-side-section'>
+            <SideMenu />
             <UserPlaylists />
             <ArtWork />
           </div>
