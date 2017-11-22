@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   fetchSongs,
-  playSong
+  playSong,
+  stopSong
  } from '../../actions/songActions';
 
 const mapStateToProps = (state) => {
@@ -22,7 +23,8 @@ const mapDispatchToProps = (dispatch) => {
 
 	return bindActionCreators({
     fetchSongs,
-    playSong
+    playSong,
+    stopSong
   }, dispatch);
 
 };

@@ -1,4 +1,4 @@
-import SongPlayer from "./component";
+import SongControls from "./component";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -11,4 +11,4 @@ const mapStateToProps = (state) => {
 
 };
 
-export default connect(mapStateToProps)(SongPlayer);
+export default connect(mapStateToProps)(SongControls);

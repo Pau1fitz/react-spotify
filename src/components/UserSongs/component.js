@@ -6,11 +6,6 @@ class UserSongs extends Component {
 
   static audio;
 
-  // constructor(props){
-  //   super(props);
-  //   this.audio;
-  // }
-
   componentWillReceiveProps (nextProps) {
 
     if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending) {
@@ -36,6 +31,7 @@ class UserSongs extends Component {
               this.audio = new Audio(song.track.preview_url);
               this.audio.play();
           } else {
+              this.props.stopSong();
               this.audio.pause();
               this.props.playSong(song.track);
               this.audio = new Audio(song.track.preview_url);

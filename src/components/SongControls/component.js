@@ -1,35 +1,34 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import './SongPlayer.css';
+import './SongControls.css';
 
-class SongPlayer extends Component {
+class SongControls extends Component {
 
   state = {
-    timeElapsed: 0
+    timeElapsed: this.props.timeElapsed
   };
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.songPlaying) {
+
+    if(nextProps.songPlaying && nextProps.timeElapsed == 0) {
+      clearInterval(this.state.intervalId);
       this.calculateTime();
     }
+
+    this.setState({
+      timeElapsed: nextProps.timeElapsed
+    });
+
   }
 
   calculateTime() {
 
     const intervalId  = setInterval(() => {
       if(this.state.timeElapsed === 30) {
-         clearInterval(this.state.intervalId);
-         this.props.stopSong();
-         this.setState({
-           timeElapsed: 0
-         });
+        clearInterval(this.state.intervalId);
+        this.props.stopSong();
       } else {
-        this.setState((prevState) => {
-
-          return {
-            timeElapsed: prevState.timeElapsed + 1,
-          }
-        });
+        this.props.increaseSongTime(this.state.timeElapsed + 1)
       }
     }, 1000);
 
@@ -80,4 +79,4 @@ class SongPlayer extends Component {
   }
 }
 
-export default SongPlayer;
+export default SongControls;

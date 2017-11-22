@@ -8,7 +8,7 @@ import './App.css';
 import UserDetails from './components/UserDetails';
 import UserPlaylists from './components/UserPlaylists';
 import UserSongs from './components/UserSongs';
-import SongPlayer from './components/SongPlayer';
+import SongControls from './components/SongControls';
 import ArtWork from './components/ArtWork';
 
 import SideMenu from './components/SideMenu';
@@ -58,7 +58,7 @@ class App extends Component {
           </div>
 
           <div className='footer'>
-            <SongPlayer />
+            <SongControls />
           </div>
         </div>
       </div>
