@@ -37,6 +37,10 @@
   background: #202020;
 }
 
+.active.user-song-item {
+  color: #1db954;
+}
+
 .user-song-item:hover > .play-song {
   opacity: 1;
 }

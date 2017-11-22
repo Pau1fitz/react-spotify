@@ -79,11 +79,14 @@ class App extends Component {
             <div className='header'>
               <UserDetails />
             </div>
-            <UserSongs audioControl={ this.audioControl } />
+            <UserSongs
+              audioControl={ this.audioControl }
+              stopSong={ this.stopSong }
+            />
           </div>
 
           <div className='footer'>
-            <SongControls stopSong={ this.stopSong }/>
+            <SongControls stopSong={ this.stopSong } />
           </div>
         </div>
       </div>

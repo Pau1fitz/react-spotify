@@ -1,7 +1,8 @@
 export const songsReducer = (state = {
 	fetchSongsPending: true,
 	songPlaying: false,
-	timeElapsed: 0
+	timeElapsed: 0,
+	songId: 0
 }, action) => {
 
 	switch (action.type) {
@@ -74,6 +75,7 @@ export const songsReducer = (state = {
 					...state,
 					songPlaying: true,
 					songDetails: action.song,
+					songId: action.song.id,
 					timeElapsed: 0
 				}
 

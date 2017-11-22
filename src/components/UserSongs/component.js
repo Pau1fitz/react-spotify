@@ -9,6 +9,7 @@ class UserSongs extends Component {
     if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending) {
         this.props.fetchSongs(nextProps.token);
     }
+
   }
 
   msToMinutesAndSeconds(ms) {
@@ -23,7 +24,7 @@ class UserSongs extends Component {
     return this.props.songs.map((song, i) => {
 
       return (
-        <li onClick={() => { this.props.audioControl(song) } } className='user-song-item' key={ i }>
+        <li onClick={() => { this.props.audioControl(song) } } className={song.track.id === this.props.songId ? 'active user-song-item' : 'user-song-item'} key={ i }>
           <div className='play-song'>
             <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
           </div>
