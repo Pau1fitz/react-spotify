@@ -15,6 +15,7 @@ class UserPlaylists extends Component {
 
       const getPlaylistSongs = () => {
         this.props.fetchPlaylistSongs(this.props.userId, playlist.id, this.props.token);
+        this.props.updateHeaderTitle(playlist.name);
       }
 
       return (

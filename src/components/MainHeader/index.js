@@ -5,6 +5,7 @@ const mapStateToProps = (state) => {
 
   return {
     songPlaying: state.songsReducer.songPlaying,
+    headerTitle: state.uiReducer.title
   }
 
 };

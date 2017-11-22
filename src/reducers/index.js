@@ -5,6 +5,7 @@ import playlistReducer from './playlistReducer';
 import songsReducer from './songsReducer';
 import albumsReducer from './albumsReducer';
 import artistsReducer from './artistsReducer';
+import uiReducer from './uiReducer';
 
 export default combineReducers({
 	userReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
 	playlistReducer,
 	songsReducer,
 	albumsReducer,
-	artistsReducer
+	artistsReducer,
+	uiReducer
 });
