@@ -61,7 +61,7 @@ class SongControls extends Component {
           </div>
 
           <div className='play-btn'>
-            <i onClick={this.props.songPlaying ? this.props.stopSong : ''} className={"fa play-btn" + showPlay} aria-hidden="true"></i>
+            <i onClick={this.props.songPlaying ? this.props.stopSong : null} className={"fa play-btn" + showPlay} aria-hidden="true"></i>
           </div>
 
           <div className='next-song'>
