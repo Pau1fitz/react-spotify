@@ -4,8 +4,6 @@ import './UserSongs.css';
 
 class UserSongs extends Component {
 
-  static audio;
-
   componentWillReceiveProps (nextProps) {
 
     if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending) {
@@ -24,23 +22,8 @@ class UserSongs extends Component {
 
     return this.props.songs.map((song, i) => {
 
-      const playSong = () => {
-
-          if(this.audio === undefined){
-              this.props.playSong(song.track);
-              this.audio = new Audio(song.track.preview_url);
-              this.audio.play();
-          } else {
-              this.props.stopSong();
-              this.audio.pause();
-              this.props.playSong(song.track);
-              this.audio = new Audio(song.track.preview_url);
-              this.audio.play();
-          }
-      }
-
       return (
-        <li onClick={ playSong } className='user-song-item' key={ i }>
+        <li onClick={() => { this.props.audioControl(song) } } className='user-song-item' key={ i }>
           <div className='play-song'>
             <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
           </div>

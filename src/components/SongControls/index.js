@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   playSong,
-  stopSong,
   increaseSongTime
 } from '../../actions/songActions';
 
@@ -22,8 +21,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return bindActionCreators({
-    playSong,
-    stopSong,
     increaseSongTime
   }, dispatch);
 
