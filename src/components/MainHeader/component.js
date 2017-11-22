@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 import './MainHeader.css';
 
-class MainHeader extends Component {
+const MainHeader = ({pauseSong, songPlaying}) => {
 
-  render() {
+  return (
+    <div>
+      <h2 className='section-title'>Songs</h2>
+      <button
+        onClick={pauseSong}
+        className='main-pause-play-btn'>
+        {!songPlaying ? 'PLAY' : 'PAUSE'}
+      </button>
+    </div>
+  );
 
-    return (
-      <div>
-
-        <h2 className='section-title'>Songs</h2>
-        <button
-          onClick={this.props.pauseSong}
-          className='main-pause-play-btn'>
-          {!this.props.songPlaying ? 'PLAY' : 'PAUSE'}
-        </button>
-
-      </div>
-    );
-  }
 }
 
 export default MainHeader;
