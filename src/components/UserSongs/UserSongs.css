@@ -89,6 +89,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 8px;
+  line-height: 42px;
 }
 
 .song-title-header p,
