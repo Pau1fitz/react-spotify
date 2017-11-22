@@ -77,7 +77,7 @@ class UserSongs extends Component {
 
         <h2 className='section-title'>Songs</h2>
 
-        <button className='main-pause-play-btn'>{!this.props.songPlaying ? 'PLAY' : 'PAUSE'}</button>
+        <button onClick={this.props.stopSong} className='main-pause-play-btn'>{!this.props.songPlaying ? 'PLAY' : 'PAUSE'}</button>
 
         <div className='song-header-container'>
 

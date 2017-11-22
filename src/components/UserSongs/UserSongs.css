@@ -20,6 +20,8 @@
   width: 100px;
   font-size: 14px;
   letter-spacing: 1px;
+  cursor: pointer;
+  outline: none;
 }
 
 .user-song-item {
