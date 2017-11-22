@@ -9,8 +9,6 @@ const MainHeader = ({pauseSong, songPlaying, headerTitle, viewType, playlists}) 
     currentPlaylist = playlists.filter(playlist => {
       return playlist.name === headerTitle
     })[0];
-
-    console.log(currentPlaylist)
   }
 
   return (

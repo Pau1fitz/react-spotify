@@ -13,8 +13,10 @@ class UserPlaylists extends Component {
   renderPlaylists() {
     return this.props.playlists.map(playlist => {
 
+      console.log(playlist)
+
       const getPlaylistSongs = () => {
-        this.props.fetchPlaylistSongs(this.props.userId, playlist.id, this.props.token);
+        this.props.fetchPlaylistSongs(playlist.owner.id, playlist.id, this.props.token);
         this.props.updateHeaderTitle(playlist.name);
       }
 
