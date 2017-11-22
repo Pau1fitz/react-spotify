@@ -3,6 +3,11 @@ import './SideMenu.css';
 
 class SideMenu extends Component {
 
+  handleClick = (name)  => {
+    this.props.updateHeaderTitle(name);
+    this.props.updateViewType(name);
+  }
+
   renderSideMenu() {
     const menu = [
       {
@@ -24,7 +29,7 @@ class SideMenu extends Component {
     ];
 
     return menu.map(item => {
-      return <li key={ item.name } className='side-menu-item' onClick={() => {item.action(this.props.token) }}>{ item.name }</li>
+      return <li key={ item.name } className='side-menu-item' onClick={() => {item.action(this.props.token); this.handleClick(item.name) }}>{ item.name }</li>
     })
   }
 

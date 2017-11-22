@@ -125,3 +125,39 @@
   padding-bottom: 6px;
   margin-top: 20px;
 }
+
+.playlist-image {
+  width: 200px;
+}
+
+.playlist-title-container {
+  display: flex;
+}
+
+.playlist-info-container {
+  padding-left: 20px;
+  position: relative;
+  top: 50px;
+}
+
+.created-by {
+  font-size: 13px;
+  font-family: 'Proxima Thin', Georgia, sans-serif;
+  color: #aaa;
+  padding: 8px 0;
+}
+
+.lighter-text {
+  color: #fff;
+}
+
+.playlist-text {
+  letter-spacing: 1px;
+  font-size: 12px;
+  font-family: 'Proxima Thin', Georgia, sans-serif;
+}
+
+.header-title {
+  font-size: 48px;
+  padding: 3px 0 5px 0;
+}
