@@ -7,14 +7,15 @@
   font-weight: 300;
   text-transform: uppercase;
   font-family: 'Proxima Thin', Georgia, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 5px 0;
+  letter-spacing: 1px;
 }
 
 .user-playlist-item {
   list-style-type: none;
-  line-height: 25px;
+  line-height: 28px;
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;

@@ -3,9 +3,19 @@
   color: #ccc;
 }
 
+.user-library-header {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-family: 'Proxima Thin', Georgia, sans-serif;
+  font-size: 13px;
+  margin: 0;
+  padding: 0 0 5px 0;
+  letter-spacing: 1px;
+}
+
 .side-menu-item {
   list-style-type: none;
-  line-height: 25px;
+  line-height: 28px;
   font-size: 14px;
   width: 140px;
   cursor: pointer;

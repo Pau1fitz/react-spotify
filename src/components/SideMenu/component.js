@@ -34,6 +34,7 @@ class SideMenu extends Component {
 
     return (
       <ul className='side-menu-container'>
+        <h3 className='user-library-header'>Your Library</h3>
         {
           this.renderSideMenu()
         }

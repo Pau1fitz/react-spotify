@@ -27,7 +27,7 @@
   border-bottom: 1px solid #666;
   display: flex;
   line-height: 40px;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -40,12 +40,18 @@
 }
 
 .song-title,
-.song-artist,
+.song-title-header {
+  width: 300px;
+}
+
 .song-album,
-.song-title-header,
-.song-artist-header,
 .song-album-header {
   width: 250px;
+}
+
+.song-artist,
+.song-artist-header {
+  width: 200px;
 }
 
 .song-added {
