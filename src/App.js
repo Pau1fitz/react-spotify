@@ -14,6 +14,7 @@ import UserPlaylists from './components/UserPlaylists';
 import UserSongs from './components/UserSongs';
 import SongControls from './components/SongControls';
 import ArtWork from './components/ArtWork';
+import MainHeader from './components/MainHeader';
 
 import SideMenu from './components/SideMenu';
 
@@ -79,10 +80,14 @@ class App extends Component {
             <div className='header'>
               <UserDetails />
             </div>
-            <UserSongs
-              audioControl={ this.audioControl }
-              stopSong={ this.stopSong }
-            />
+            <div className='user-songs-container'>
+              <MainHeader
+                pauseSong={ this.stopSong }
+              />
+              <UserSongs
+                audioControl={ this.audioControl }
+              />
+            </div>
           </div>
 
           <div className='footer'>
