@@ -10,7 +10,9 @@ const MainView = ({ headerTitle, audioControl }) => {
     <div>
       {headerTitle === 'Albums' ?
         (
-          <AlbumList />
+          <AlbumList
+            audioControl={ audioControl }
+          />
         ) :
         (
           <SongList

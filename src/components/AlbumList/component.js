@@ -9,7 +9,7 @@ class AlbumList extends Component {
     return this.props.songs.map((song, i) => {
 
       return (
-        <li className='album-item' key={ i }>
+        <li onClick={() => { this.props.audioControl(song) } } className='album-item' key={ i }>
           <div>
             <div className='album-image'>
               <img src={song.track.album.images[0].url} />
@@ -28,13 +28,10 @@ class AlbumList extends Component {
 
   render() {
 
-    console.log(this.props)
-
     return (
 
       <ul className='album-view-container'>
         {this.renderAlbums()}
-
       </ul>
     );
   }

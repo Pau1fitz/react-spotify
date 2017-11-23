@@ -1,11 +1,7 @@
 import SongList from "./component";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  fetchSongs,
-  playSong,
-  stopSong
- } from '../../actions/songActions';
+import { fetchSongs } from '../../actions/songActions';
 
 const mapStateToProps = (state) => {
 
@@ -23,9 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return bindActionCreators({
-    fetchSongs,
-    playSong,
-    stopSong
+    fetchSongs
   }, dispatch);
 
 };
