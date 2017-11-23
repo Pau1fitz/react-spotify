@@ -14,7 +14,7 @@ class SongControls extends Component {
       clearInterval(this.state.intervalId);
     }
 
-    if(nextProps.songPlaying && nextProps.timeElapsed == 0) {
+    if(nextProps.songPlaying && nextProps.timeElapsed === 0) {
       clearInterval(this.state.intervalId);
       this.calculateTime();
     }

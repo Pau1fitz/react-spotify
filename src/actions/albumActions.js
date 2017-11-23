@@ -5,8 +5,6 @@ export const fetchAlbumsPending = () => {
 };
 
 export const fetchAlbumsSuccess = (albums) => {
-
-  console.log(albums)
   return {
     type: 'FETCH_ALBUMS_SUCCESS',
     albums

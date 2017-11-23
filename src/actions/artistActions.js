@@ -5,8 +5,6 @@ export const fetchArtistsPending = () => {
 };
 
 export const fetchArtistsSuccess = (artists) => {
-
-  console.log(artists)
   return {
     type: 'FETCH_ARTISTS_SUCCESS',
     artists

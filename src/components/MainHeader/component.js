@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './MainHeader.css';
 
 const MainHeader = ({pauseSong, songPlaying, headerTitle, viewType, playlists}) => {
