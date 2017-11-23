@@ -1,4 +1,4 @@
-import UserSongs from "./component";
+import SongList from "./component";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -29,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 
 };
-export default connect(mapStateToProps, mapDispatchToProps)(UserSongs);
+export default connect(mapStateToProps, mapDispatchToProps)(SongList);

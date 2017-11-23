@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import './UserSongs.css';
+import './SongList.css';
 
-class UserSongs extends Component {
+class SongList extends Component {
 
   componentWillReceiveProps (nextProps) {
 
@@ -93,4 +93,4 @@ class UserSongs extends Component {
   }
 }
 
-export default UserSongs;
+export default SongList;

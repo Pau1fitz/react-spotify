@@ -13,7 +13,7 @@ import './App.css';
 
 import UserDetails from './components/UserDetails';
 import UserPlaylists from './components/UserPlaylists';
-import UserSongs from './components/UserSongs';
+import MainView from './components/MainView';
 import SongControls from './components/SongControls';
 import ArtWork from './components/ArtWork';
 import MainHeader from './components/MainHeader';
@@ -97,7 +97,7 @@ class App extends Component {
                 pauseSong={ this.pauseSong }
                 resumeSong={ this.resumeSong }
               />
-              <UserSongs
+              <MainView
                 audioControl={ this.audioControl }
               />
             </div>
