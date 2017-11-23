@@ -38,7 +38,7 @@ const MainHeader = ({pauseSong, songPlaying, headerTitle, viewType, playlists}) 
           </div>
         )}
 
-      {viewType === 'songs' && (
+      {(headerTitle === 'Songs' || headerTitle === 'Recently Played') && (
         <div>
           <h3 className='header-title'>{headerTitle}</h3>
           <button
