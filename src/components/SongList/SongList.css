@@ -69,13 +69,13 @@
   margin-left: 40px;
 }
 
-.play-song {
+.user-song-item .play-song {
   width: 40px;
   opacity: 0;
   text-align: center;
 }
 
-.play-song .fa {
+.user-song-item  .play-song .fa {
   font-size: 30px;
   position: relative;
   top: 5px;

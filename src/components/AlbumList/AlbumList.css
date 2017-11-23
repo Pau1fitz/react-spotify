@@ -18,10 +18,36 @@
   cursor: pointer;
 }
 
+.album-image {
+    position: relative;
+}
+
 .album-image img {
   width: 100%;
 }
 
 .album-item img:hover {
-  opacity: 0.5;
+  opacity: 0.3;
+}
+
+.album-image .play-song {
+  width: 40px;
+  opacity: 0;
+  text-align: center;
+}
+
+.album-image .play-song .fa {
+  font-size: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ccc;
+  cursor: pointer;
+  -webkit-text-stroke: 6px rgb(24, 24, 24);
+  z-index: -1;
+}
+
+.album-image:hover > .play-song {
+  opacity: 1;
 }

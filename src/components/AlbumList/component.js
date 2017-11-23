@@ -13,6 +13,9 @@ class AlbumList extends Component {
           <div>
             <div className='album-image'>
               <img src={song.track.album.images[0].url} />
+              <div className='play-song'>
+                <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
+              </div>
             </div>
             <div className='album-details'>
               <p>{ song.track.album.name }</p>
