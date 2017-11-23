@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "cookie-parser": "^1.4.3",
-    "express": "^4.16.2",
+    "lodash": "^4.17.4",
     "moment": "^2.19.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
