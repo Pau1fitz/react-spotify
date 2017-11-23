@@ -25,6 +25,7 @@ body {
   bottom: 0;
   background: rgb(40, 40, 40);
   height: 80px;
+  z-index: 2;
 }
 
 .app-container {

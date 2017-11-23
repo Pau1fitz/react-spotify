@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchSongs } from '../../actions/songActions';
 
+import { addSongToLibrary } from '../../actions/userActions';
+
 const mapStateToProps = (state) => {
 
   return {
@@ -11,7 +13,9 @@ const mapStateToProps = (state) => {
     fetchSongsError: state.songsReducer.fetchSongsError,
     fetchSongsPending: state.songsReducer.fetchSongsPending,
     songPlaying: state.songsReducer.songPlaying,
-    songId: state.songsReducer.songId
+    songId: state.songsReducer.songId,
+    songAddedId: state.userReducer.songId || '',
+    viewType: state.songsReducer.viewType,  
   }
 
 };
@@ -19,7 +23,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return bindActionCreators({
-    fetchSongs
+    fetchSongs,
+    addSongToLibrary
   }, dispatch);
 
 };
