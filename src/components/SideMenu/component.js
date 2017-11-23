@@ -24,12 +24,13 @@ class SideMenu extends Component {
       },
       {
         name: 'Artists',
-        action: this.props.fetchArtists
+        action: this.props.fetchArtists,
+        getArtists: true
       }
     ];
 
     return menu.map(item => {
-      return <li key={ item.name } className='side-menu-item' onClick={() => {item.action(this.props.token); this.handleClick(item.name) }}>{ item.name }</li>
+      return <li key={ item.name } className='side-menu-item' onClick={() => {item.getArtists ? item.action(this.props.token, this.props.artistIds) : item.action(this.props.token); this.handleClick(item.name) }}>{ item.name }</li>
     })
   }
 

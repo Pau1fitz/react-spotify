@@ -1,6 +1,14 @@
-export const artistsReducer = (state = {}, action) => {
+export const artistsReducer = (state = {
+	artistIds: ''
+}, action) => {
 
 	switch (action.type) {
+
+	case "SET_ARTIST_IDS":
+		return {
+			...state,
+			artistIds: action.artistIds
+		}
 
   case "FETCH_ARTISTS_PENDING":
 			return {

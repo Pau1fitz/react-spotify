@@ -18,9 +18,7 @@ class AlbumList extends Component {
               <p>{ song.track.album.name }</p>
               <p>{ song.track.album.artists[0].name }</p>
             </div>
-
           </div>
-
         </li>
       );
     })

@@ -1,4 +1,5 @@
 import { uniqBy } from 'lodash';
+import { setArtistIds } from './artistActions';
 
 export const fetchSongsPending = () => {
   return {
@@ -32,6 +33,15 @@ export const fetchSongs = (accessToken) => {
     fetch(request).then(res => {
       return res.json();
     }).then(res => {
+
+      let artistIds = uniqBy(res.items, (item) => {
+        return item.track.artists[0].name;
+      }).map(item => {
+        return item.track.artists[0].id;
+      }).join(',');
+
+      dispatch(setArtistIds(artistIds));
+
       dispatch(fetchSongsSuccess(res.items));
     }).catch(err => {
       dispatch(fetchSongsError());
