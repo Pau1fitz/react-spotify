@@ -13,12 +13,6 @@ body {
     color: #fff;
 }
 
-.header {
-  position: fixed;
-  width: 940px;
-  z-index: 1000;
-}
-
 .footer {
   position: fixed;
   width: 100%;

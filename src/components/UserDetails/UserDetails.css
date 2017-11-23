@@ -7,12 +7,13 @@
 
 .user-image {
   border-radius: 50%;
-  height: 50px;
+  height: 30px;
 }
 
 .user-name {
   color: #fff;
+  font-size: 14px;
   position: relative;
-  left: 10px;
-  top: 15px;
+  top: 5px;
+  margin-left: 10px;
 }

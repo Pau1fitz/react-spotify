@@ -11,7 +11,7 @@ import {
 } from './actions/songActions';
 import './App.css';
 
-import UserDetails from './components/UserDetails';
+import Header from './components/Header';
 import UserPlaylists from './components/UserPlaylists';
 import MainView from './components/MainView';
 import SongControls from './components/SongControls';
@@ -95,9 +95,7 @@ class App extends Component {
           </div>
 
           <div className='main-section'>
-            <div className='header'>
-              <UserDetails />
-            </div>
+            <Header />
             <div className='user-songs-container'>
               <MainHeader
                 pauseSong={ this.pauseSong }
