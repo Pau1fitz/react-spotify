@@ -1,13 +1,28 @@
 import React from 'react';
 import SongList from '../SongList';
+import AlbumList from '../AlbumList';
 import './MainView.css';
 
-const MainView = ({ audioControl }) => {
+
+const MainView = ({ headerTitle, audioControl }) => {
+
   return (
-    <SongList
-      audioControl={ audioControl }
-    />
+    <div>
+      {headerTitle === 'Albums' ?
+        (
+          <AlbumList />
+        ) :
+        (
+          <SongList
+            audioControl={ audioControl }
+          />
+        )
+      }
+    </div>
   );
+
 }
 
-export default SongList;
+
+
+export default MainView;
