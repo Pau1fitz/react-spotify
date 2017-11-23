@@ -14,7 +14,7 @@
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  width: 180px;
+  width: 200px;
   cursor: pointer;
 }
 
@@ -22,10 +22,19 @@
   position: relative;
 }
 
+
 .category-image img {
   width: 100%;
 }
 
 .category-item img:hover {
   opacity: 0.3;
+}
+
+.category-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  font-size: 18px;
 }

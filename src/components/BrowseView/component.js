@@ -12,8 +12,8 @@ const BrowseView = ({ categories }) => {
         <li className='category-item' key={ i }>
           <div className='category-image'>
             <img src={ category.icons[0].url } />
+            <p className='category-name'>{ category.name }</p>
           </div>
-          <p className='category-name'>{ category.name }</p>
         </li>
       )
     });
