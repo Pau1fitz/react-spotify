@@ -89,6 +89,18 @@ export const stopSong = () => {
   }
 };
 
+export const pauseSong = () => {
+  return {
+    type: 'PAUSE_SONG'
+  }
+};
+
+export const resumeSong = () => {
+  return {
+    type: 'RESUME_SONG'
+  }
+};
+
 export const increaseSongTime = (time) => {
   return {
     type: 'INCREASE_SONG_TIME',

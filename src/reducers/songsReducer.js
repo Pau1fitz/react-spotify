@@ -3,7 +3,8 @@ export const songsReducer = (state = {
 	songPlaying: false,
 	timeElapsed: 0,
 	songId: 0,
-	viewType:'songs'
+	viewType:'songs',
+	songPaused: true
 }, action) => {
 
 	switch (action.type) {
@@ -85,7 +86,8 @@ export const songsReducer = (state = {
 				songPlaying: true,
 				songDetails: action.song,
 				songId: action.song.id,
-				timeElapsed: 0
+				timeElapsed: 0,
+				songPaused: false
 			}
 
 	case "STOP_SONG":
@@ -93,7 +95,20 @@ export const songsReducer = (state = {
 				...state,
 				songPlaying: false,
 				songDetails: null,
-				timeElapsed: 0
+				timeElapsed: 0,
+				songPaused: true
+			}
+
+	case "PAUSE_SONG":
+			return {
+				...state,
+				songPaused: true
+			}
+
+	case "RESUME_SONG":
+			return {
+				...state,
+				songPaused: false
 			}
 
 	case "INCREASE_SONG_TIME":

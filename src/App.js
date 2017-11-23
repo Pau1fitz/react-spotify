@@ -5,7 +5,9 @@ import { fetchUser } from './actions/userActions';
 import { setToken } from './actions/tokenActions';
 import {
   playSong,
-  stopSong
+  stopSong,
+  pauseSong,
+  resumeSong
 } from './actions/songActions';
 import './App.css';
 
@@ -50,6 +52,16 @@ class App extends Component {
     this.audio.pause();
   }
 
+  pauseSong = () => {
+    this.props.pauseSong();
+    this.audio.pause();
+  }
+
+  resumeSong = () => {
+    this.props.resumeSong();
+    this.audio.play();
+  }
+
   audioControl = (song) => {
     if(this.audio === undefined){
         this.props.playSong(song.track);
@@ -82,7 +94,8 @@ class App extends Component {
             </div>
             <div className='user-songs-container'>
               <MainHeader
-                pauseSong={ this.stopSong }
+                pauseSong={ this.pauseSong }
+                resumeSong={ this.resumeSong }
               />
               <UserSongs
                 audioControl={ this.audioControl }
@@ -91,7 +104,11 @@ class App extends Component {
           </div>
 
           <div className='footer'>
-            <SongControls stopSong={ this.stopSong } />
+            <SongControls
+              stopSong={ this.stopSong }
+              pauseSong={ this.pauseSong }
+              resumeSong={ this.resumeSong }
+            />
           </div>
         </div>
       </div>
@@ -113,7 +130,9 @@ const mapDispatchToProps = dispatch => {
     fetchUser,
     setToken,
     playSong,
-    stopSong
+    stopSong,
+    pauseSong,
+    resumeSong
   },dispatch);
 
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import './MainHeader.css';
 
-const MainHeader = ({pauseSong, songPlaying, headerTitle, viewType, playlists}) => {
+const MainHeader = ({pauseSong, resumeSong, songPaused, headerTitle, viewType, playlists}) => {
 
   let currentPlaylist;
 
@@ -28,9 +28,9 @@ const MainHeader = ({pauseSong, songPlaying, headerTitle, viewType, playlists}) 
               <h3 className='header-title'>{headerTitle}</h3>
               <p className='created-by'>Created By: <span className='lighter-text'>{currentPlaylist.owner.display_name}</span> - {currentPlaylist.tracks.total} songs</p>
               <button
-                onClick={pauseSong}
+                onClick={!songPaused ? pauseSong : resumeSong}
                 className='main-pause-play-btn'>
-                {!songPlaying ? 'PLAY' : 'PAUSE'}
+                {songPaused ? 'PLAY' : 'PAUSE'}
               </button>
 
             </div>
@@ -42,9 +42,9 @@ const MainHeader = ({pauseSong, songPlaying, headerTitle, viewType, playlists}) 
         <div>
           <h3 className='header-title'>{headerTitle}</h3>
           <button
-            onClick={pauseSong}
+            onClick={!songPaused ? pauseSong : resumeSong}
             className='main-pause-play-btn'>
-            {!songPlaying ? 'PLAY' : 'PAUSE'}
+            {songPaused ? 'PLAY' : 'PAUSE'}
           </button>
         </div>
       )}

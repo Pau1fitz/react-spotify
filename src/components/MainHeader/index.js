@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => {
 
   return {
-    songPlaying: state.songsReducer.songPlaying,
+    songPaused: state.songsReducer.songPaused,
     headerTitle: state.uiReducer.title,
     viewType: state.songsReducer.viewType,
     playlists: state.playlistReducer.playlists
