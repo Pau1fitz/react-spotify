@@ -38,7 +38,7 @@ export const fetchNewReleasesSuccess = (newReleases) => {
 
 export const fetchNewReleasesError = () => {
   return {
-    type: 'FETCH_NEW_RELEASES_CATEGORIES_ERROR'
+    type: 'FETCH_NEW_RELEASES_ERROR'
   }
 };
 
@@ -55,6 +55,37 @@ export const fetchNewReleases = (accessToken) => {
       dispatch(fetchNewReleasesSuccess(res.albums));
     }).catch(err => {
       dispatch(fetchNewReleasesError());
+    });
+  }
+}
+
+export const fetchFeaturedSuccess = (featured) => {
+  return {
+    type: 'FETCH_FEATURED_SUCCESS',
+    featured
+  }
+};
+
+export const fetchFeaturedError = () => {
+  return {
+    type: 'FETCH_FEATURED_ERROR'
+  }
+};
+
+export const fetchFeatured = (accessToken) => {
+  return dispatch => {
+    const request = new Request(`https://api.spotify.com/v1/browse/featured-playlists`, {
+    	headers: new Headers({
+    	 'Authorization': 'Bearer ' + accessToken
+      })
+    });
+    fetch(request).then(res => {
+      return res.json();
+    }).then(res => {
+      console.log(res)
+      dispatch(fetchFeaturedSuccess(res.playlists));
+    }).catch(err => {
+      dispatch(fetchFeaturedError());
     });
   }
 }

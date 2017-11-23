@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   fetchCategories,
   fetchNewReleases,
+  fetchFeatured
 } from '../../actions/browseActions';
 
 import { updateHeaderTitle } from '../../actions/uiActions';
@@ -27,7 +28,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchCategories,
     fetchNewReleases,
     updateHeaderTitle,
-    updateViewType
+    updateViewType,
+    fetchFeatured
   }, dispatch);
 
 };
