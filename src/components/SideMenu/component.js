@@ -8,6 +8,12 @@ class SideMenu extends Component {
     this.props.updateViewType(name);
   }
 
+  handleBrowseClick = ()  => {
+    this.props.updateHeaderTitle('Browse');
+    this.props.updateViewType('Genres');
+    this.props.fetchCategories(this.props.token)
+  }
+
   renderSideMenu() {
     const menu = [
       {
@@ -43,13 +49,11 @@ class SideMenu extends Component {
     })
   }
 
-
-
   render() {
 
     return (
       <ul className='side-menu-container'>
-        <li onClick={() => { this.handleClick('Browse') } } className='side-menu-item'>Browse</li>
+        <li onClick={ this.handleBrowseClick } className='side-menu-item'>Browse</li>
         <li className='side-menu-item radio'>Radio</li>
         <h3 className='user-library-header'>Your Library</h3>
         {

@@ -10,9 +10,10 @@ export const songsReducer = (state = {
 	switch (action.type) {
 
 	case "UPDATE_VIEW_TYPE":
+		console.log(action)
 		return {
 			...state,
-			viewType: action.viewType
+			viewType: action.view
 		}
 
   case "FETCH_SONGS_PENDING":
