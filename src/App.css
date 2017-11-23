@@ -15,16 +15,6 @@ body {
     margin: 0 auto;
 }
 
-.footer {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  background: rgb(40, 40, 40);
-  height: 80px;
-  z-index: 2;
-}
-
 .app-container {
   display: flex;
   position: relative;
@@ -40,7 +30,7 @@ body {
 }
 
 .main-section {
-  width: 940px;
+  width: 1028px;
   position: relative;
   left: 200px;
   padding: 0 10px;

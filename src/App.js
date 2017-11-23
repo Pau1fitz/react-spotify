@@ -12,12 +12,11 @@ import {
 import './App.css';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import UserPlaylists from './components/UserPlaylists';
 import MainView from './components/MainView';
-import SongControls from './components/SongControls';
 import ArtWork from './components/ArtWork';
 import MainHeader from './components/MainHeader';
-
 import SideMenu from './components/SideMenu';
 
 class App extends Component {
@@ -107,13 +106,11 @@ class App extends Component {
             </div>
           </div>
 
-          <div className='footer'>
-            <SongControls
-              stopSong={ this.stopSong }
-              pauseSong={ this.pauseSong }
-              resumeSong={ this.resumeSong }
-            />
-          </div>
+          <Footer
+            stopSong={ this.stopSong }
+            pauseSong={ this.pauseSong }
+            resumeSong={ this.resumeSong }
+          />
         </div>
       </div>
     );
