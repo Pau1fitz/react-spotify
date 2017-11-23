@@ -11,12 +11,15 @@ body {
     font-family: 'Proxima Nova', Georgia, sans-serif;
     background: rgb(24, 24, 24);
     color: #fff;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .footer {
   position: fixed;
   width: 100%;
   bottom: 0;
+  left: 0;
   background: rgb(40, 40, 40);
   height: 80px;
   z-index: 2;

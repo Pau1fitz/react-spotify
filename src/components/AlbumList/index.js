@@ -10,7 +10,7 @@ import {
 
 const mapStateToProps = (state) => {
 
-  const albumSongs = state.songsReducer.songs  ? uniqBy(state.songsReducer.songs, (item) => {
+  const albumSongs = state.songsReducer.songs ? uniqBy(state.songsReducer.songs, (item) => {
     return item.track.album.name;
   }) : ''
 

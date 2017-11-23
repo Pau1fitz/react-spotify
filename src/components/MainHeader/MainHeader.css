@@ -1,5 +1,12 @@
+.user-songs-container {
+  position: relative;
+  top: 50px;
+  padding-bottom: 100px;
+}
+
+
 .playlist-image {
-  width: 200px;
+  width: 230px;
 }
 
 .playlist-title-container {
@@ -9,24 +16,25 @@
 .playlist-info-container {
   padding-left: 20px;
   position: relative;
-  top: 50px;
+  top: 75px;
 }
 
 .created-by {
-  font-size: 13px;
   font-family: 'Proxima Thin', Georgia, sans-serif;
+  font-size: 13px;
   color: #aaa;
   padding: 8px 0;
 }
 
 .lighter-text {
+  font-family: 'Proxima Nova', Georgia, sans-serif;
   color: #fff;
 }
 
 .playlist-text {
+  font-family: 'Proxima Thin', Georgia, sans-serif;
   letter-spacing: 1px;
   font-size: 12px;
-  font-family: 'Proxima Thin', Georgia, sans-serif;
 }
 
 .header-title {
