@@ -19,7 +19,7 @@ export const artistsReducer = (state = {
 		case "FETCH_ARTISTS_SUCCESS":
 			return {
 				...state,
-				artists: action.artists,
+				artistList: action.artists,
         fetchArtistsError: false,
 				fetchArtistsPending: false
 			};

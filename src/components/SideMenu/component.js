@@ -30,7 +30,16 @@ class SideMenu extends Component {
     ];
 
     return menu.map(item => {
-      return <li key={ item.name } className='side-menu-item' onClick={() => {item.getArtists ? item.action(this.props.token, this.props.artistIds) : item.action(this.props.token); this.handleClick(item.name) }}>{ item.name }</li>
+      return (<li
+              key={ item.name }
+              className='side-menu-item'
+              onClick={() => {
+                item.getArtists ? item.action(this.props.token, this.props.artistIds) : item.action(this.props.token);
+                this.handleClick(item.name) }
+              }>
+                { item.name }
+              </li>
+            );
     })
   }
 
