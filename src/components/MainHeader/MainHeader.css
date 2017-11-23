@@ -4,6 +4,27 @@
   padding-bottom: 100px;
 }
 
+.browse-headers {
+  display: flex;
+}
+
+.browse-headers p {
+  color: rgb(179, 179, 179);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: 'Proxima Thin', Georgia, sans-serif;
+  letter-spacing: 1px;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.browse-headers p:first-child {
+  padding: 0 20px 0 0;
+}
+
+.browse-headers p:hover {
+  color: #fff;
+}
 
 .playlist-image {
   width: 230px;

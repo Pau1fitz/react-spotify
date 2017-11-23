@@ -48,7 +48,6 @@ const MainHeader = (
               </button>
 
             </div>
-
           </div>
         )}
 
@@ -66,11 +65,14 @@ const MainHeader = (
         </div>
       )}
 
-      {(headerTitle === 'Browse' || headerTitle === 'New Releases' || headerTitle === 'Genres' || headerTitle === 'Featured') && (
+      {(headerTitle === 'Browse') && (
         <div>
-          <p onClick={() => { fetchCategories(token); updateViewType('Genres'); updateHeaderTitle('Genres') }}>Genres</p>
-          <p onClick={() => { fetchNewReleases(token); updateViewType('New Releases'); updateHeaderTitle('New Releases') }}>New Releases</p>
-          <p onClick={() => { fetchFeatured(token); updateViewType('Featured'); updateHeaderTitle('Featured') }}>Featured</p>
+          <h3 className='header-title'>{headerTitle}</h3>
+          <div className='browse-headers'>
+            <p onClick={() => { fetchCategories(token); updateViewType('Genres'); updateHeaderTitle('Browse') }}>Genres</p>
+            <p onClick={() => { fetchNewReleases(token); updateViewType('New Releases'); updateHeaderTitle('Browse') }}>New Releases</p>
+            <p onClick={() => { fetchFeatured(token); updateViewType('Featured'); updateHeaderTitle('Browse') }}>Featured</p>
+          </div>
         </div>
       )}
 
