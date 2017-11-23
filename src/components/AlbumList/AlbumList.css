@@ -51,3 +51,12 @@
 .album-image:hover > .play-song {
   opacity: 1;
 }
+
+.album-details {
+  line-height: 22px
+}
+
+.album-details .artist-name {
+  color: rgb(179, 179, 179);
+  font-family: 'Proxima Thin', Georgia, sans-serif;
+}

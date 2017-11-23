@@ -18,8 +18,8 @@ class AlbumList extends Component {
               </div>
             </div>
             <div className='album-details'>
-              <p>{ song.track.album.name }</p>
-              <p>{ song.track.album.artists[0].name }</p>
+              <p className='album-name'>{ song.track.album.name }</p>
+              <p className='artist-name'>{ song.track.album.artists[0].name }</p>
             </div>
           </div>
         </li>

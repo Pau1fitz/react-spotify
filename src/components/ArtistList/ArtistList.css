@@ -16,9 +16,11 @@
   text-overflow: ellipsis;
   width: 180px;
   cursor: pointer;
+  text-align: center;
 }
 
 .artist-item img {
   width: 180px;
   height: 180px;
+  border-radius: 50%;
 }
