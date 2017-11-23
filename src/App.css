@@ -9,7 +9,7 @@ h3 {
 
 body {
     font-family: 'Proxima Nova', Georgia, sans-serif;
-    background: #000;
+    background: rgb(24, 24, 24);
     color: #fff;
 }
 
@@ -23,7 +23,7 @@ body {
   position: fixed;
   width: 100%;
   bottom: 0;
-  background: #222;
+  background: rgb(40, 40, 40);
   height: 80px;
 }
 
