@@ -20,7 +20,7 @@ const MainHeader = ({pauseSong, songPlaying, headerTitle, viewType, playlists}) 
           <div className='playlist-title-container'>
 
             <div className='playlist-image-container'>
-              <img className='playlist-image' src={currentPlaylist.images[0].url} />
+              <img className='playlist-image' src={currentPlaylist.images[0] ? currentPlaylist.images[0].url : null} />
             </div>
 
             <div className='playlist-info-container'>

@@ -4,8 +4,8 @@ export const playlistReducer = (state = {}, action) => {
 
 		case "FETCH_PLAYLIST_PENDING":
 			return {
-				...state,
-				fetchPlaylistPending: true
+				fetchPlaylistPending: true,
+				...state
 			}
 
 		case "FETCH_PLAYLIST_SUCCESS":

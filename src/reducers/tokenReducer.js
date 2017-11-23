@@ -4,8 +4,8 @@ export const tokenReducer = (state = {}, action) => {
 
 		case "SET_TOKEN":
 			return {
-				token: action.token,
-				...state
+				...state,
+				token: action.token
 			}
 
 		default:
