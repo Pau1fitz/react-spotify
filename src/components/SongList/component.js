@@ -21,8 +21,6 @@ class SongList extends Component {
 
   renderSongs() {
 
-    console.log(this.props)
-
     return this.props.songs.map((song, i) => {
 
       return (

@@ -6,6 +6,9 @@ const MainHeader = (
     pauseSong,
     resumeSong,
     fetchCategories,
+    fetchNewReleases,
+    updateHeaderTitle,
+    updateViewType,
     songPaused,
     headerTitle,
     viewType,
@@ -62,8 +65,11 @@ const MainHeader = (
         </div>
       )}
 
-      {headerTitle === 'Browse' && (
-        <p onClick={() => fetchCategories(token)}>Browse</p>
+      {(headerTitle === 'Browse' || headerTitle === 'New Releases' || headerTitle === 'Genres') && (
+        <div>
+          <p onClick={() => { fetchCategories(token); updateViewType('Genres'); updateHeaderTitle('Genres') }}>Genres</p>
+          <p onClick={() => { fetchNewReleases(token); updateViewType('New Releases'); updateHeaderTitle('New Releases') }}>New Releases</p>
+        </div>
       )}
 
       </div>

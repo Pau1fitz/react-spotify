@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
 
-  console.log('statess')
-
   return {
-    categories: state.browseReducer.categories
+    view: state.browseReducer.view
   }
 
 };
