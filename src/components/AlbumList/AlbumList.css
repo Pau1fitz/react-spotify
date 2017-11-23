@@ -21,3 +21,7 @@
 .album-image img {
   width: 100%;
 }
+
+.album-item img:hover {
+  opacity: 0.5;
+}
