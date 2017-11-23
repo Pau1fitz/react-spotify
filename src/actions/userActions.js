@@ -27,6 +27,8 @@ export const fetchUser = (accessToken) => {
       dispatch(fetchUserSuccess(res));
     }).catch(err => {
       dispatch(fetchUserError());
+      // send user back to homepage if error
+      window.location.href = './';
     });
   }
 
