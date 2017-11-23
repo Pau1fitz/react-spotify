@@ -1,6 +1,7 @@
 .side-menu-container {
   padding: 20px;
   color: rgb(179, 179, 179);
+  margin: 0;
 }
 
 .user-library-header {
@@ -25,6 +26,6 @@
   color: #fff;
 }
 
-.browse {
-  margin-bottom: 10px;
+.radio {
+  margin-bottom: 20px;
 }

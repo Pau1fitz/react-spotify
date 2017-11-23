@@ -8,7 +8,6 @@ import {
 } from '../../actions/songActions';
 import { fetchAlbums } from '../../actions/albumActions';
 import { fetchArtists } from '../../actions/artistActions';
-
 import {
   updateHeaderTitle,
 } from '../../actions/uiActions';
@@ -31,8 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchAlbums,
     fetchArtists,
     updateViewType,
-    updateHeaderTitle
-  }, dispatch);
-
+    updateHeaderTitle,
+  }, dispatch)
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SideMenu);

@@ -1,7 +1,17 @@
 import React from 'react';
 import './MainHeader.css';
 
-const MainHeader = ({pauseSong, resumeSong, songPaused, headerTitle, viewType, playlists}) => {
+const MainHeader = (
+  {
+    pauseSong,
+    resumeSong,
+    fetchCategories,
+    songPaused,
+    headerTitle,
+    viewType,
+    playlists,
+    token
+  }) => {
 
   let currentPlaylist;
 
@@ -50,6 +60,10 @@ const MainHeader = ({pauseSong, resumeSong, songPaused, headerTitle, viewType, p
             {songPaused ? 'PLAY' : 'PAUSE'}
           </button>
         </div>
+      )}
+
+      {headerTitle === 'Browse' && (
+        <p onClick={() => fetchCategories(token)}>Browse</p>
       )}
 
       </div>

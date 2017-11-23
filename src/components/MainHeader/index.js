@@ -1,5 +1,7 @@
 import MainHeader from "./component";
 import { connect } from "react-redux";
+import { fetchCategories } from '../../actions/browseActions';
+import { bindActionCreators } from "redux";
 
 const mapStateToProps = (state) => {
 
@@ -7,9 +9,18 @@ const mapStateToProps = (state) => {
     songPaused: state.songsReducer.songPaused,
     headerTitle: state.uiReducer.title,
     viewType: state.songsReducer.viewType,
-    playlists: state.playlistReducer.playlists
+    playlists: state.playlistReducer.playlists,
+    token: state.tokenReducer.token
   }
 
 };
 
-export default connect(mapStateToProps)(MainHeader);
+const mapDispatchToProps = (dispatch) => {
+
+	return bindActionCreators({
+    fetchCategories
+  }, dispatch);
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainHeader);

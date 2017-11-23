@@ -1,6 +1,7 @@
 .user-playlist-container {
   padding: 20px 20px 280px 20px;
   color: rgb(179, 179, 179);
+  margin: 0;
 }
 
 .user-playlist-header {

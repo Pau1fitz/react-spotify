@@ -37,13 +37,13 @@
 
 .song-player-container .play-btn {
   position: relative;
-  top: -6px;
+  top: -7px;
   font-size: 40px;
 }
 
 .song-player-container .pause-btn {
   position: relative;
-  top: -6px;
+  top: -7px;
   font-size: 40px;
   margin: 0 5px;
 }
