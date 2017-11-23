@@ -8,18 +8,18 @@ class ArtistList extends Component {
 
     return this.props.artists.map((artist, i) => {
 
-      console.log(artist)
-
       return (
         <li className='artist-item' key={ i }>
-          <div>
-            <div className='artist-image'>
-              <img src={artist.images[0] ? artist.images[0].url : ''} />
+          <a href={artist.external_urls.spotify}>
+            <div>
+              <div className='artist-image'>
+                <img src={artist.images[0] ? artist.images[0].url : ''} />
+              </div>
+              <div className='artist-details'>
+                <p>{ artist.name }</p>
+              </div>
             </div>
-            <div className='artist-details'>
-              <p>{ artist.name }</p>
-            </div>
-          </div>
+          </a>
         </li>
       );
     })
