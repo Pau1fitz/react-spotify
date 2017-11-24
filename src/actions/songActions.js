@@ -52,12 +52,6 @@ export const fetchSongs = (accessToken) => {
 	};
 };
 
-export const fetchRecentlyPlayedPending = () => {
-	return {
-		type: 'FETCH_RECENTLY_PLAYED_PENDING'
-	};
-};
-
 export const fetchRecentlyPlayedSuccess = (songs) => {
 	return {
 		type: 'FETCH_RECENTLY_PLAYED_SUCCESS',
@@ -79,7 +73,7 @@ export const fetchRecentlyPlayed = (accessToken) => {
 			})
 		});
 
-		dispatch(fetchRecentlyPlayedPending());
+		dispatch(fetchSongsPending());
 
 		fetch(request).then(res => {
 			return res.json();

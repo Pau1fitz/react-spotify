@@ -99,7 +99,7 @@ class SongList extends Component {
 				</div>
 
 				{
-					this.props.songs && this.renderSongs()
+					this.props.songs && !this.props.fetchSongsPending && !this.props.fetchPlaylistSongsPending && this.renderSongs()
 				}
 
 			</div>
@@ -121,6 +121,7 @@ SongList.propTypes = {
 	]),
 	fetchSongsError: PropTypes.bool,
 	fetchSongsPending: PropTypes.bool,
+	fetchPlaylistSongsPending: PropTypes.bool,
 	fetchSongs: PropTypes.func,
 	audioControl: PropTypes.func,
 	addSongToLibrary: PropTypes.func

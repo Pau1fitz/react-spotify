@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
 		songs: state.songsReducer.songs ? state.songsReducer.songs : '',
 		fetchSongsError: state.songsReducer.fetchSongsError,
 		fetchSongsPending: state.songsReducer.fetchSongsPending,
+		fetchPlaylistSongsPending: state.songsReducer.fetchPlaylistSongsPending,
 		songPlaying: state.songsReducer.songPlaying,
 		songId: state.songsReducer.songId,
 		songAddedId: state.userReducer.songId || '',
