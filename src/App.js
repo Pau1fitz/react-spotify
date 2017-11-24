@@ -67,22 +67,29 @@ class App extends Component {
     }
   }
 
+
+
   audioControl = (song) => {
+
+    const { playSong, stopSong } = this.props;
+
     if(this.audio === undefined){
-        this.props.playSong(song.track);
+        playSong(song.track);
         this.audio = new Audio(song.track.preview_url);
         this.audio.play();
     } else {
-        this.props.stopSong();
+        stopSong();
         this.audio.pause();
-        this.props.playSong(song.track);
+        playSong(song.track);
         this.audio = new Audio(song.track.preview_url);
         this.audio.play();
     }
   }
 
   render() {
+
     return (
+
       <div className='App'>
 
         <div className='app-container'>
@@ -95,7 +102,7 @@ class App extends Component {
 
           <div className='main-section'>
             <Header />
-            <div className='user-songs-container'>
+            <div className='main-section-container'>
               <MainHeader
                 pauseSong={ this.pauseSong }
                 resumeSong={ this.resumeSong }
@@ -110,6 +117,7 @@ class App extends Component {
             stopSong={ this.stopSong }
             pauseSong={ this.pauseSong }
             resumeSong={ this.resumeSong }
+            audioControl={ this.audioControl }
           />
         </div>
       </div>

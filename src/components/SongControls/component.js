@@ -42,6 +42,35 @@ class SongControls extends Component {
 
   }
 
+  getSongIndex = () => {
+
+    const { songs, songDetails } = this.props;
+
+    const currentIndex = songs.map((song, index) => {
+      if(song.track === songDetails) {
+        return index;
+      }
+    }).filter(item => {
+      return item !== undefined;
+    })[0];
+
+    return currentIndex;
+
+  }
+
+  nextSong = () => {
+
+    const { songs , audioControl} = this.props;
+    let currentIndex = this.getSongIndex();
+    currentIndex === songs.length - 1 ? audioControl(songs[0]) : audioControl(songs[currentIndex + 1]);
+  }
+
+  prevSong = () => {
+    const { songs, audioControl } = this.props;
+    let currentIndex = this.getSongIndex();
+    currentIndex === 0 ? audioControl(songs[songs.length - 1]) : audioControl(songs[currentIndex - 1]);
+  }
+
   render() {
 
     const showPlay = this.props.songPaused ? 'fa fa-play-circle-o play-btn' : 'fa fa-pause-circle-o pause-btn';
@@ -56,7 +85,7 @@ class SongControls extends Component {
 
         <div className='song-controls'>
 
-          <div className='reverse-song'>
+          <div onClick={this.prevSong} className='reverse-song'>
             <i className="fa fa-step-backward reverse" aria-hidden="true"></i>
           </div>
 
@@ -64,7 +93,7 @@ class SongControls extends Component {
             <i onClick={!this.props.songPaused ? this.props.pauseSong : this.props.resumeSong} className={"fa play-btn" + showPlay} aria-hidden="true"></i>
           </div>
 
-          <div className='next-song'>
+          <div onClick={this.nextSong} className='next-song'>
             <i className="fa fa-step-forward forward" aria-hidden="true"></i>
           </div>
 

@@ -13,7 +13,9 @@ const mapStateToProps = (state) => {
     artistName: state.songsReducer.songDetails ? state.songsReducer.songDetails.artists[0].name : '',
     songPlaying: state.songsReducer.songPlaying,
     timeElapsed: state.songsReducer.timeElapsed,
-    songPaused: state.songsReducer.songPaused
+    songPaused: state.songsReducer.songPaused,
+    songDetails: state.songsReducer.songDetails,
+    songs: state.songsReducer.songs
   }
 
 };
