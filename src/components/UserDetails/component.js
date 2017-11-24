@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './UserDetails.css';
 
-class UserDetails extends Component {
+const UserDetails = ({ userImage, displayName}) => {
+	return (
+		<div className='user-details-container'>
+			<img alt='user' className='user-image' src={userImage} />
+			<p className='user-name'>{displayName}</p>
+		</div>
+	);
+};
 
-
-  render() {
-
-    return (
-      <div className='user-details-container'>
-          <img alt='user' className='user-image' src={this.props.userImage} />
-          <p className='user-name'>{this.props.displayName}</p>
-      </div>
-    )
-
-  }
-}
+UserDetails.propTypes = {
+	userImage: PropTypes.string,
+	displayName: PropTypes.string
+};
 
 export default UserDetails;

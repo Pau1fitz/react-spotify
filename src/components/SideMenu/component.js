@@ -1,67 +1,89 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './SideMenu.css';
 
-class SideMenu extends Component {
+const SideMenu = ({
+	updateHeaderTitle,
+	updateViewType,
+	fetchFeatured,
+	fetchRecentlyPlayed,
+	fetchSongs,
+	fetchAlbums,
+	fetchArtists,
+	token,
+	artistIds
+}) => {
 
-  handleClick = (name)  => {
-    this.props.updateHeaderTitle(name);
-    this.props.updateViewType(name);
-  }
 
-  handleBrowseClick = ()  => {
-    this.props.updateHeaderTitle('Browse');
-    this.props.updateViewType('Featured');
-    this.props.fetchFeatured(this.props.token);
-  }
+	const handleClick = (name)  => {
+		updateHeaderTitle(name);
+		updateViewType(name);
+	};
 
-  renderSideMenu() {
-    const menu = [
-      {
-        name: 'Recently Played',
-        action: this.props.fetchRecentlyPlayed
-      },
-      {
-        name: 'Songs',
-        action: this.props.fetchSongs
-      },
-      {
-        name: 'Albums',
-        action: this.props.fetchAlbums
-      },
-      {
-        name: 'Artists',
-        action: this.props.fetchArtists,
-        getArtists: true
-      }
-    ];
+	const handleBrowseClick = ()  => {
+		updateHeaderTitle('Browse');
+		updateViewType('Featured');
+		fetchFeatured(this.props.token);
+	};
 
-    return menu.map(item => {
-      return (
-        <li key={ item.name }
-          className='side-menu-item'
-          onClick={() => {
-            item.getArtists ? item.action(this.props.token, this.props.artistIds) : item.action(this.props.token);
-            this.handleClick(item.name) }
-          }>
-          { item.name }
-        </li>
-        );
-    })
-  }
+	const renderSideMenu = () => {
+		const menu = [
+			{
+				name: 'Recently Played',
+				action: fetchRecentlyPlayed
+			},
+			{
+				name: 'Songs',
+				action: fetchSongs
+			},
+			{
+				name: 'Albums',
+				action: fetchAlbums
+			},
+			{
+				name: 'Artists',
+				action: fetchArtists,
+				getArtists: true
+			}
+		];
 
-  render() {
+		return menu.map(item => {
+			return (
+				<li key={ item.name }
+					className='side-menu-item'
+					onClick={() => {
+						item.getArtists ? item.action(token, artistIds) : item.action(token);
+						handleClick(item.name); }
+					}>
+					{ item.name }
+				</li>
+			);
+		});
+	};
 
-    return (
-      <ul className='side-menu-container'>
-        <li onClick={ this.handleBrowseClick } className='side-menu-item'>Browse</li>
-        <li className='side-menu-item radio'>Radio</li>
-        <h3 className='user-library-header'>Your Library</h3>
-        {
-          this.renderSideMenu()
-        }
-      </ul>
-    );
-  }
-}
+	return (
+		<ul className='side-menu-container'>
+			<li onClick={ handleBrowseClick } className='side-menu-item'>Browse</li>
+			<li className='side-menu-item radio'>Radio</li>
+			<h3 className='user-library-header'>Your Library</h3>
+			{
+				renderSideMenu()
+			}
+		</ul>
+	);
+
+};
+
+SideMenu.propTypes = {
+	updateHeaderTitle: PropTypes.func,
+	updateViewType: PropTypes.func,
+	fetchFeatured: PropTypes.func,
+	fetchRecentlyPlayed: PropTypes.func,
+	fetchSongs: PropTypes.func,
+	fetchAlbums: PropTypes.func,
+	fetchArtists: PropTypes.func,
+	token: PropTypes.string,
+	artistIds: PropTypes.string
+};
 
 export default SideMenu;

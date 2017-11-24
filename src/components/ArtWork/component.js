@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './ArtWork.css';
 
-class ArtWork extends Component {
+const ArtWork = (albumArtwork) => {
+	return (
+		<div className='album-artwork-container'>
+			<img className='album-artwork' src={ albumArtwork } />
+		</div>
+	);
+};
 
-  render() {
-
-    return (
-      <div className='album-artwork-container'>
-        <img className='album-artwork' src={ this.props.albumArtwork } />
-      </div>
-    );
-  }
-}
+ArtWork.propTypes = {
+	albumArtwork: PropTypes.string
+};
 
 export default ArtWork;

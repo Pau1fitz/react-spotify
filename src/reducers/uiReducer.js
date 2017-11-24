@@ -1,17 +1,18 @@
-export const songsReducer = (state = {
+const defaultState = {
 	title: 'Songs'
-}, action) => {
+};
 
+export const songsReducer = (state = defaultState, action) => {
 	switch (action.type) {
 
-  case "UPDATE_HEADER_TITLE":
-			return {
-				...state,
-				title: action.title
-			}
+	case "UPDATE_HEADER_TITLE":
+		return {
+			...state,
+			title: action.title
+		};
 
-		default:
-			return state;
+	default:
+		return state;
 	}
 
 };

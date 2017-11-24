@@ -10,7 +10,7 @@ import browseReducer from './browseReducer';
 
 export default combineReducers({
 	userReducer,
-  tokenReducer,
+	tokenReducer,
 	playlistReducer,
 	songsReducer,
 	albumsReducer,

@@ -2,10 +2,12 @@ import React from 'react';
 import UserDetails from '../UserDetails';
 import './Header.css';
 
-export default () => {
-  return(
-    <div className='header'>
-      <UserDetails />
-    </div>
-  )
-}
+const Header = () => {
+	return(
+		<div className='header'>
+			<UserDetails />
+		</div>
+	);
+};
+
+export default Header ;

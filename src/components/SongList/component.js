@@ -1,111 +1,123 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import './SongList.css';
 
 class SongList extends Component {
 
-  componentWillReceiveProps (nextProps) {
+	componentWillReceiveProps (nextProps) {
 
-    if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending) {
-        this.props.fetchSongs(nextProps.token);
-    }
+		if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending) {
+			this.props.fetchSongs(nextProps.token);
+		}
 
-  }
+	}
 
-  msToMinutesAndSeconds(ms) {
-    const minutes = Math.floor(ms / 60000);
-    const seconds = ((ms % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-  }
+	msToMinutesAndSeconds(ms) {
+		const minutes = Math.floor(ms / 60000);
+		const seconds = ((ms % 60000) / 1000).toFixed(0);
+		return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+	}
 
 
-  renderSongs() {
+	renderSongs() {
 
-    return this.props.songs.map((song, i) => {
+		return this.props.songs.map((song, i) => {
 
-      return (
-        <li className={song.track.id === this.props.songId ? 'active user-song-item' : 'user-song-item'} key={ i }>
-          <div onClick={() => { this.props.audioControl(song) } } className='play-song'>
-            <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
-          </div>
+			return (
+				<li className={song.track.id === this.props.songId ? 'active user-song-item' : 'user-song-item'} key={ i }>
+					<div onClick={() => { this.props.audioControl(song); } } className='play-song'>
+						<i className="fa fa-play-circle-o play-btn" aria-hidden="true"/>
+					</div>
 
-          {this.props.viewType !== 'songs' && (
-            <p className='add-song' onClick={() => {this.props.addSongToLibrary(this.props.token, song.track.id)}}>
-              {this.props.songAddedId === song.track.id ?
-                (<i className="fa fa-check" aria-hidden="true"></i>) :
-                (<i className="fa fa-plus" aria-hidden="true"></i>)
-              }
-            </p>
-          )}
+					{this.props.viewType !== 'songs' && (
+						<p className='add-song' onClick={() => {this.props.addSongToLibrary(this.props.token, song.track.id);}}>
+							{this.props.songAddedId === song.track.id ?
+								(<i className="fa fa-check" aria-hidden="true" />) :
+								(<i className="fa fa-plus" aria-hidden="true" />)
+							}
+						</p>
+					)}
 
-          {this.props.viewType == 'songs' && (
-            <p className='add-song'>
-              <i className="fa fa-check" aria-hidden="true"></i>
-            </p>
-          )}
+					{this.props.viewType == 'songs' && (
+						<p className='add-song'>
+							<i className="fa fa-check" aria-hidden="true"/>
+						</p>
+					)}
 
-          <div className='song-title'>
-            <p>{ song.track.name }</p>
-          </div>
+					<div className='song-title'>
+						<p>{ song.track.name }</p>
+					</div>
 
-          <div className='song-artist'>
-            <p>{ song.track.artists[0].name }</p>
-          </div>
+					<div className='song-artist'>
+						<p>{ song.track.artists[0].name }</p>
+					</div>
 
-          <div className='song-album'>
-            <p>{ song.track.album.name }</p>
-          </div>
+					<div className='song-album'>
+						<p>{ song.track.album.name }</p>
+					</div>
 
-          <div className='song-added'>
-            <p>{ moment(song.added_at).format('YYYY-MM-DD')}</p>
-          </div>
+					<div className='song-added'>
+						<p>{ moment(song.added_at).format('YYYY-MM-DD')}</p>
+					</div>
 
-          <div className='song-length'>
-            <p>{ this.msToMinutesAndSeconds(song.track.duration_ms) }</p>
-          </div>
+					<div className='song-length'>
+						<p>{ this.msToMinutesAndSeconds(song.track.duration_ms) }</p>
+					</div>
 
-        </li>
-      );
-    })
-  }
+				</li>
+			);
+		});
+	}
 
-  render() {
+	render() {
 
-    return (
+		return (
+			<div>
 
-      <div>
+				<div className='song-header-container'>
+					<div className='song-title-header'>
+						<p>Title</p>
+					</div>
 
-        <div className='song-header-container'>
+					<div className='song-artist-header'>
+						<p>Artist</p>
+					</div>
 
-          <div className='song-title-header'>
-            <p>Title</p>
-          </div>
+					<div className='song-album-header'>
+						<p>Album</p>
+					</div>
 
-          <div className='song-artist-header'>
-            <p>Artist</p>
-          </div>
+					<div className='song-added-header'>
+						<i className="fa fa-calendar-plus-o" aria-hidden="true"/>
+					</div>
 
-          <div className='song-album-header'>
-            <p>Album</p>
-          </div>
+					<div className='song-length-header'>
+						<p><i className="fa fa-clock-o" aria-hidden="true" /></p>
+					</div>
 
-          <div className='song-added-header'>
-            <i className="fa fa-calendar-plus-o" aria-hidden="true"></i>
-          </div>
+				</div>
 
-          <div className='song-length-header'>
-            <p><i className="fa fa-clock-o" aria-hidden="true"></i></p>
-          </div>
+				{
+					this.props.songs && this.renderSongs()
+				}
 
-        </div>
-
-        {
-          this.props.songs && this.renderSongs()
-        }
-
-      </div>
-    );
-  }
+			</div>
+		);
+	}
 }
+
+SongList.propTypes = {
+	viewType: PropTypes.string,
+	token: PropTypes.string,
+	songAddedId: PropTypes.string,
+	songId: PropTypes.string,
+	songs: PropTypes.array,
+	fetchSongsError: PropTypes.bool,
+	fetchSongsPending: PropTypes.bool,
+	fetchSongs: PropTypes.func,
+	audioControl: PropTypes.func,
+	addSongToLibrary: PropTypes.func
+};
 
 export default SongList;

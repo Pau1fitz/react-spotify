@@ -1,41 +1,46 @@
-import React, { Component } from 'react';
-import moment from 'moment';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './AlbumList.css';
 
-class AlbumList extends Component {
+const AlbumList = ({ songs }) => {
 
-  renderAlbums() {
+	const renderAlbums = () => {
+		return songs.map((song, i) => {
+			return (
+				<li
+					onClick={() => { this.props.audioControl(song); } }
+					className='album-item'
+					key={ i }
+				>
+					<div>
+						<div className='album-image'>
+							<img src={song.track.album.images[0].url} />
+							<div className='play-song'>
+								<i className="fa fa-play-circle-o play-btn" aria-hidden="true" />
+							</div>
+						</div>
 
-    return this.props.songs.map((song, i) => {
+						<div className='album-details'>
+							<p className='album-name'>{ song.track.album.name }</p>
+							<p className='artist-name'>{ song.track.album.artists[0].name }</p>
+						</div>
+					</div>
+				</li>
+			);
+		});
+	};
 
-      return (
-        <li onClick={() => { this.props.audioControl(song) } } className='album-item' key={ i }>
-          <div>
-            <div className='album-image'>
-              <img src={song.track.album.images[0].url} />
-              <div className='play-song'>
-                <i className="fa fa-play-circle-o play-btn" aria-hidden="true"></i>
-              </div>
-            </div>
-            <div className='album-details'>
-              <p className='album-name'>{ song.track.album.name }</p>
-              <p className='artist-name'>{ song.track.album.artists[0].name }</p>
-            </div>
-          </div>
-        </li>
-      );
-    })
-  }
+	return (
+		<ul className='album-view-container'>
+			{renderAlbums()}
+		</ul>
+	);
+	
+};
 
-  render() {
-
-    return (
-
-      <ul className='album-view-container'>
-        {this.renderAlbums()}
-      </ul>
-    );
-  }
-}
+AlbumList.propTypes = {
+	songs: PropTypes.array,
+	audioControl: PropTypes.func
+};
 
 export default AlbumList;
