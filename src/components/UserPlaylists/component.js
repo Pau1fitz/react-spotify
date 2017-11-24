@@ -18,7 +18,7 @@ class UserPlaylists extends Component {
 			};
 
 			return (
-				<li onClick={ getPlaylistSongs } className='user-playlist-item' key={ playlist.id }>
+				<li onClick={ getPlaylistSongs } className={this.props.title === playlist.name ? 'active side-menu-item' : 'side-menu-item'} key={ playlist.id }>
 					{ playlist.name }
 				</li>
 			);
@@ -41,6 +41,7 @@ class UserPlaylists extends Component {
 UserPlaylists.propTypes = {
 	userId: PropTypes.string,
 	token: PropTypes.string,
+	title: PropTypes.string,
 	playlistMenu:  PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array

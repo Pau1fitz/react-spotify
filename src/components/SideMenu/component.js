@@ -11,6 +11,7 @@ const SideMenu = ({
 	fetchAlbums,
 	fetchArtists,
 	token,
+	title,
 	artistIds
 }) => {
 
@@ -50,7 +51,7 @@ const SideMenu = ({
 		return menu.map(item => {
 			return (
 				<li key={ item.name }
-					className='side-menu-item'
+					className={title === item.name ? 'active side-menu-item': 'side-menu-item'}
 					onClick={() => {
 						item.getArtists ? item.action(token, artistIds) : item.action(token);
 						handleClick(item.name); }
@@ -63,7 +64,7 @@ const SideMenu = ({
 
 	return (
 		<ul className='side-menu-container'>
-			<li onClick={ handleBrowseClick } className='side-menu-item'>Browse</li>
+			<li side-menu-item radio onClick={ handleBrowseClick } className={title === 'Browse' ? 'active side-menu-item': 'side-menu-item'}>Browse</li>
 			<li className='side-menu-item radio'>Radio</li>
 			<h3 className='user-library-header'>Your Library</h3>
 			{
@@ -83,7 +84,8 @@ SideMenu.propTypes = {
 	fetchAlbums: PropTypes.func,
 	fetchArtists: PropTypes.func,
 	token: PropTypes.string,
-	artistIds: PropTypes.string
+	artistIds: PropTypes.string,
+	title: PropTypes.string
 };
 
 export default SideMenu;

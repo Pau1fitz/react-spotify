@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
 	return {
 		userId: state.userReducer.user ? state.userReducer.user.id : '',
 		token: state.tokenReducer.token ? state.tokenReducer.token : '',
-		artistIds: state.artistsReducer.artistIds
+		artistIds: state.artistsReducer.artistIds,
+		title: state.uiReducer.title
 	};
 
 };
