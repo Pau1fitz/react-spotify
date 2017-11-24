@@ -21,7 +21,7 @@ const MainHeader = (
   let currentPlaylist;
 
   if(viewType === 'playlist') {
-    currentPlaylist = playlistMenu.filter(playlist => {
+    currentPlaylist = playlists.filter(playlist => {
       return playlist.name === headerTitle
     })[0];
   }

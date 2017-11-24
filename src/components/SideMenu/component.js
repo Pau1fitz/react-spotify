@@ -10,8 +10,8 @@ class SideMenu extends Component {
 
   handleBrowseClick = ()  => {
     this.props.updateHeaderTitle('Browse');
-    this.props.updateViewType('Genres');
-    this.props.fetchCategories(this.props.token)
+    this.props.updateViewType('Featured');
+    this.props.fetchFeatured(this.props.token);
   }
 
   renderSideMenu() {

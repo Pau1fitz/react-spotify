@@ -8,7 +8,7 @@ import {
 } from '../../actions/songActions';
 import { fetchAlbums } from '../../actions/albumActions';
 import { fetchArtists } from '../../actions/artistActions';
-import { fetchCategories } from '../../actions/browseActions';
+import { fetchFeatured } from '../../actions/browseActions';
 import {
   updateHeaderTitle,
 } from '../../actions/uiActions';
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchSongs,
     fetchAlbums,
     fetchArtists,
-    fetchCategories,
+    fetchFeatured,
     updateViewType,
     updateHeaderTitle,
   }, dispatch)

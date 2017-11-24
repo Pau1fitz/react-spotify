@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
     songPaused: state.songsReducer.songPaused,
     headerTitle: state.uiReducer.title,
     viewType: state.songsReducer.viewType,
-    playlistMenu: state.playlistReducer.playlistMenu,
+    playlists: state.playlistReducer.playlists,
     token: state.tokenReducer.token
   }
 

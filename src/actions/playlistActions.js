@@ -17,6 +17,13 @@ export const fetchPlaylistMenuError = () => {
   }
 };
 
+export const addPlaylistItem = (playlist) => {
+  return {
+    type: 'ADD_PLAYLIST_ITEM',
+    playlist
+  }
+};
+
 export const fetchPlaylistsMenu = (userId, accessToken) => {
   return dispatch => {
     const request = new Request(`https://api.spotify.com/v1/users/${userId}/playlists`, {
