@@ -14,12 +14,12 @@
   text-transform: uppercase;
   font-family: 'Proxima Thin', Georgia, sans-serif;
   letter-spacing: 1px;
-  padding: 0 20px;
+  margin: 0 20px;
   cursor: pointer;
 }
 
 .browse-headers p:first-child {
-  padding: 0 20px 0 0;
+  margin: 0 20px 0 0;
 }
 
 .browse-headers p:hover {
@@ -61,4 +61,19 @@
 .header-title {
   font-size: 48px;
   padding: 3px 0 5px 0;
+}
+
+.browse-headers .active {
+  position: relative;
+}
+
+.browse-headers .active:after {
+  content: "";
+  position: absolute;
+  width: 35px;
+  left: 50%;
+  top: 22px;
+  border-bottom: 2px solid #1db954;
+  transform: translate(-50%, -50%);
+
 }

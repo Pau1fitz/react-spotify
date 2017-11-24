@@ -69,9 +69,9 @@ const MainHeader = (
         <div>
           <h3 className='header-title'>{headerTitle}</h3>
           <div className='browse-headers'>
-            <p onClick={() => { fetchCategories(token); updateViewType('Genres'); updateHeaderTitle('Browse') }}>Genres</p>
-            <p onClick={() => { fetchNewReleases(token); updateViewType('New Releases'); updateHeaderTitle('Browse') }}>New Releases</p>
-            <p onClick={() => { fetchFeatured(token); updateViewType('Featured'); updateHeaderTitle('Browse') }}>Featured</p>
+            <p className={viewType === 'Genres' ? 'active' : ''} onClick={() => { fetchCategories(token); updateViewType('Genres'); updateHeaderTitle('Browse') }}>Genres</p>
+            <p className={viewType === 'New Releases' ? 'active' : ''} onClick={() => { fetchNewReleases(token); updateViewType('New Releases'); updateHeaderTitle('Browse') }}>New Releases</p>
+            <p className={viewType === 'Featured' ? 'active' : ''} onClick={() => { fetchFeatured(token); updateViewType('Featured'); updateHeaderTitle('Browse') }}>Featured</p>
           </div>
         </div>
       )}
