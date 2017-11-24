@@ -14,13 +14,14 @@ const MainHeader = (
     headerTitle,
     viewType,
     playlists,
+    playlistMenu,
     token
   }) => {
 
   let currentPlaylist;
 
   if(viewType === 'playlist') {
-    currentPlaylist = playlists.filter(playlist => {
+    currentPlaylist = playlistMenu.filter(playlist => {
       return playlist.name === headerTitle
     })[0];
   }

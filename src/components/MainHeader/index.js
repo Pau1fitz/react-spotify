@@ -11,12 +11,11 @@ import { updateViewType } from '../../actions/songActions';
 import { bindActionCreators } from "redux";
 
 const mapStateToProps = (state) => {
-
   return {
     songPaused: state.songsReducer.songPaused,
     headerTitle: state.uiReducer.title,
     viewType: state.songsReducer.viewType,
-    playlists: state.playlistReducer.playlists,
+    playlistMenu: state.playlistReducer.playlistMenu,
     token: state.tokenReducer.token
   }
 
