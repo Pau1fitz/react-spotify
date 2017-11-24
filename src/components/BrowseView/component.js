@@ -38,7 +38,10 @@ const BrowseView = ({ view, viewType, token, fetchPlaylistSongs, updateHeaderTit
 
 
 BrowseView.propTypes = {
-	view: PropTypes.string,
+	view: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.array
+	]),
 	viewType:  PropTypes.string,
 	token: PropTypes.string,
 	fetchPlaylistSongs: PropTypes.func,
