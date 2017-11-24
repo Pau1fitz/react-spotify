@@ -20,6 +20,8 @@
   font-size: 14px;
   width: 140px;
   cursor: pointer;
+text-overflow: ellipsis;
+white-space: nowrap;
 }
 
 .side-menu-item:hover {
