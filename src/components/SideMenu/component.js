@@ -23,7 +23,7 @@ const SideMenu = ({
 	const handleBrowseClick = ()  => {
 		updateHeaderTitle('Browse');
 		updateViewType('Featured');
-		fetchFeatured(this.props.token);
+		fetchFeatured(token);
 	};
 
 	const renderSideMenu = () => {
