@@ -41,7 +41,10 @@ class UserPlaylists extends Component {
 UserPlaylists.propTypes = {
 	userId: PropTypes.string,
 	token: PropTypes.string,
-	playlistMenu: PropTypes.array,
+	playlistMenu:  PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.array
+	]),
 	fetchPlaylistsMenu: PropTypes.func,
 	fetchPlaylistSongs: PropTypes.func,
 	updateHeaderTitle: PropTypes.func

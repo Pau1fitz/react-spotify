@@ -5,7 +5,7 @@ import './ArtWork.css';
 const ArtWork = (albumArtwork) => {
 	return (
 		<div className='album-artwork-container'>
-			<img className='album-artwork' src={ albumArtwork } />
+			<img className='album-artwork' src={ albumArtwork.albumImage } />
 		</div>
 	);
 };

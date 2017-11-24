@@ -34,7 +34,10 @@ const ArtistList = ({ artists }) => {
 };
 
 ArtistList.propTypes = {
-	artists: PropTypes.array
+	artists: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.array
+	]),
 };
 
 export default ArtistList;

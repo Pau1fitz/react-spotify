@@ -120,7 +120,7 @@ SongControls.propTypes = {
 	increaseSongTime: PropTypes.func,
 	pauseSong: PropTypes.func,
 	songs: PropTypes.array,
-	songDetails: PropTypes.obj,
+	songDetails: PropTypes.object,
 	audioControl: PropTypes.func
 };
 

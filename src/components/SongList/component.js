@@ -111,8 +111,14 @@ SongList.propTypes = {
 	viewType: PropTypes.string,
 	token: PropTypes.string,
 	songAddedId: PropTypes.string,
-	songId: PropTypes.string,
-	songs: PropTypes.array,
+	songId: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	songs: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.array
+	]),
 	fetchSongsError: PropTypes.bool,
 	fetchSongsPending: PropTypes.bool,
 	fetchSongs: PropTypes.func,

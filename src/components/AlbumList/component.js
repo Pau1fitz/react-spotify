@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './AlbumList.css';
 
-const AlbumList = ({ songs }) => {
+const AlbumList = ({ songs, audioControl }) => {
 
 	const renderAlbums = () => {
 		return songs.map((song, i) => {
 			return (
 				<li
-					onClick={() => { this.props.audioControl(song); } }
+					onClick={() => { audioControl(song); } }
 					className='album-item'
 					key={ i }
 				>
@@ -35,7 +35,7 @@ const AlbumList = ({ songs }) => {
 			{renderAlbums()}
 		</ul>
 	);
-	
+
 };
 
 AlbumList.propTypes = {
