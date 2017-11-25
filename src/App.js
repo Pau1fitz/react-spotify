@@ -84,9 +84,8 @@ class App extends Component {
 		return (
 
 			<div className='App'>
-
 				<div className='app-container'>
-
+				
 					<div className='left-side-section'>
 						<SideMenu />
 						<UserPlaylists />
