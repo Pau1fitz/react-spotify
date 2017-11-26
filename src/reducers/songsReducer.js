@@ -64,7 +64,7 @@ export const songsReducer = (state = defaultState, action) => {
 	case "FETCH_PLAYLIST_SONGS_PENDING":
 		return {
 			...state,
-			fetchSongsPending: true
+			fetchPlaylistSongsPending: true
 		};
 
 	case "FETCH_PLAYLIST_SONGS_SUCCESS":
@@ -72,15 +72,15 @@ export const songsReducer = (state = defaultState, action) => {
 			...state,
 			songs: action.songs,
 			viewType: 'playlist',
-			fetchSongsError: false,
-			fetchSongsPending: false
+			fetchPlaylistSongsError: false,
+			fetchPlaylistSongsPending: false
 		};
 
 	case "FETCH_PLAYLIST_SONGS_ERROR":
 		return {
 			...state,
-			fetchSongsError: true,
-			fetchSongsPending: false
+			fetchPlaylistSongsError: true,
+			fetchPlaylistSongsPending: false
 		};
 
 	case "PLAY_SONG":

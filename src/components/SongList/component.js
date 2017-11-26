@@ -7,6 +7,8 @@ class SongList extends Component {
 
 	componentWillReceiveProps (nextProps) {
 
+		console.log(nextProps.viewType)
+
 		if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending && nextProps.viewType === 'songs') {
 			this.props.fetchSongs(nextProps.token);
 		}
@@ -22,14 +24,7 @@ class SongList extends Component {
 
 	renderSongs() {
 
-		console.log(this.props)
-
 		return this.props.songs.map((song, i) => {
-
-
-
-			 // let action = (this.props.songPlaying && this.props.songPaused) ? this.props.resumeSong : !this.props.songPlaying && this.props.songPaused ? this.props.audioControl;
-
 
 			const buttonClass = song.track.id === this.props.songId && !this.props.songPaused ? "fa-pause-circle-o" : "fa-play-circle-o";
 
@@ -110,7 +105,7 @@ class SongList extends Component {
 				</div>
 
 				{
-					this.props.songs && !this.props.fetchSongsPending && this.renderSongs()
+					this.props.songs && !this.props.fetchSongsPending && !this.props.fetchPlaylistSongsPending && this.renderSongs()
 				}
 
 			</div>
