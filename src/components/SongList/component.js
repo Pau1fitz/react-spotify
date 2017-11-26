@@ -7,7 +7,7 @@ class SongList extends Component {
 
 	componentWillReceiveProps (nextProps) {
 
-		if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending) {
+		if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending && nextProps.viewType === 'songs') {
 			this.props.fetchSongs(nextProps.token);
 		}
 
@@ -99,7 +99,7 @@ class SongList extends Component {
 				</div>
 
 				{
-					this.props.songs && !this.props.fetchSongsPending && !this.props.fetchPlaylistSongsPending && this.renderSongs()
+					this.props.songs && !this.props.fetchSongsPending && this.renderSongs()
 				}
 
 			</div>

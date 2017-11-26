@@ -42,28 +42,29 @@ export const songsReducer = (state = defaultState, action) => {
 	case "FETCH_RECENTLY_PLAYED_PENDING":
 		return {
 			...state,
-			fetchRecentlyPlayedPending: true
+			fetchSongsPending: true
 		};
 
 	case "FETCH_RECENTLY_PLAYED_SUCCESS":
 		return {
 			...state,
 			songs: action.songs,
-			fetchRecentlyPlayedError: false,
-			fetchRecentlyPlayedPending: false
+			viewType: 'Recently Played',
+			fetchSongsError: false,
+			fetchSongsPending: false
 		};
 
 	case "FETCH_RECENTLY_PLAYED_ERROR":
 		return {
 			...state,
-			fetchRecentlyPlayedError: true,
-			fetchRecentlyPlayedPending: false
+			fetchSongsError: true,
+			fetchSongsPending: false
 		};
 
 	case "FETCH_PLAYLIST_SONGS_PENDING":
 		return {
 			...state,
-			fetchPlaylistSongsPending: true
+			fetchSongsPending: true
 		};
 
 	case "FETCH_PLAYLIST_SONGS_SUCCESS":
@@ -71,15 +72,15 @@ export const songsReducer = (state = defaultState, action) => {
 			...state,
 			songs: action.songs,
 			viewType: 'playlist',
-			fetchPlaylistSongsError: false,
-			fetchPlaylistSongsPending: false
+			fetchSongsError: false,
+			fetchSongsPending: false
 		};
 
 	case "FETCH_PLAYLIST_SONGS_ERROR":
 		return {
 			...state,
-			fetchPlaylistError: true,
-			fetchPlaylistSongsPending: false
+			fetchSongsError: true,
+			fetchSongsPending: false
 		};
 
 	case "PLAY_SONG":
