@@ -24,10 +24,12 @@ class SongList extends Component {
 
 		return this.props.songs.map((song, i) => {
 
+			const buttonClass = song.track.id === this.props.songId ? "fa-pause-circle-o" : "fa-play-circle-o";
+
 			return (
 				<li className={song.track.id === this.props.songId ? 'active user-song-item' : 'user-song-item'} key={ i }>
 					<div onClick={() => { this.props.audioControl(song); } } className='play-song'>
-						<i className="fa fa-play-circle-o play-btn" aria-hidden="true"/>
+						<i className={`fa ${buttonClass} play-btn`} aria-hidden="true"/>
 					</div>
 
 					{this.props.viewType !== 'songs' && (
