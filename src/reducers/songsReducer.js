@@ -39,6 +39,28 @@ export const songsReducer = (state = defaultState, action) => {
 			fetchSongsPending: false
 		};
 
+	case "SEARCH_SONGS_PENDING":
+		return {
+			...state,
+			searchSongsPending: true
+		};
+
+	case "SEARCH_SONGS_SUCCESS":
+		return {
+			...state,
+			songs: action.songs,
+			searchSongsError: false,
+			searchSongsPending: false,
+			viewType: 'search'
+		};
+
+	case "SEARCH_SONGS_ERROR":
+		return {
+			...state,
+			searchSongsError: true,
+			searchSongsPending: false
+		};
+
 	case "FETCH_RECENTLY_PLAYED_PENDING":
 		return {
 			...state,
