@@ -10,8 +10,8 @@ email - spotifyreact@gmail.com
 password - Example
 ```
 
-![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/music.png "Music")
-![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/browse.png "Browse")
+![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/songs.png "Songs")
+![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/browser.png "Browse")
 
 If you wish to run the code locally run the following.
 
