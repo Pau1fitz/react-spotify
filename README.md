@@ -1,4 +1,4 @@
-<h3>React-Spotify</h3>
+#React-Spotify
 
 This is React-Spotify, a React front end that communicates with the Spotify API.
 
