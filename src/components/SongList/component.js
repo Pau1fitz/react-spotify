@@ -22,13 +22,22 @@ class SongList extends Component {
 
 	renderSongs() {
 
+		console.log(this.props)
+
 		return this.props.songs.map((song, i) => {
 
-			const buttonClass = song.track.id === this.props.songId ? "fa-pause-circle-o" : "fa-play-circle-o";
+
+
+			 // let action = (this.props.songPlaying && this.props.songPaused) ? this.props.resumeSong : !this.props.songPlaying && this.props.songPaused ? this.props.audioControl;
+
+
+			const buttonClass = song.track.id === this.props.songId && !this.props.songPaused ? "fa-pause-circle-o" : "fa-play-circle-o";
 
 			return (
 				<li className={song.track.id === this.props.songId ? 'active user-song-item' : 'user-song-item'} key={ i }>
-					<div onClick={() => { this.props.audioControl(song); } } className='play-song'>
+					<div onClick={() => {(song.track.id === this.props.songId) && this.props.songPlaying && this.props.songPaused ? this.props.resumeSong() :
+	 			 this.props.songPlaying && !this.props.songPaused && (song.track.id === this.props.songId)  ? this.props.pauseSong() :
+	 			 this.props.audioControl(song); } } className='play-song'>
 						<i className={`fa ${buttonClass} play-btn`} aria-hidden="true"/>
 					</div>
 

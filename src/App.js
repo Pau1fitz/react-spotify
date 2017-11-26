@@ -50,6 +50,8 @@ class App extends Component {
 	}
 
 	pauseSong = () => {
+
+		console.log('here')
 		if(this.audio) {
 			this.props.pauseSong();
 			this.audio.pause();
@@ -85,7 +87,7 @@ class App extends Component {
 
 			<div className='App'>
 				<div className='app-container'>
-				
+
 					<div className='left-side-section'>
 						<SideMenu />
 						<UserPlaylists />
@@ -101,6 +103,7 @@ class App extends Component {
 							/>
 							<MainView
 								pauseSong={this.pauseSong}
+								resumeSong={ this.resumeSong }
 								audioControl={ this.audioControl }
 							/>
 						</div>

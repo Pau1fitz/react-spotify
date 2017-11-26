@@ -6,7 +6,7 @@ import ArtistList from '../ArtistList';
 import BrowseView from '../BrowseView';
 import './MainView.css';
 
-const MainView = ({ headerTitle, audioControl }) => {
+const MainView = ({ headerTitle, audioControl, resumeSong, pauseSong }) => {
 
 	return (
 		<div>
@@ -18,7 +18,7 @@ const MainView = ({ headerTitle, audioControl }) => {
 						(headerTitle === 'Browse') ?
 							( <BrowseView />) :
 							//anything else show SongList
-							( <SongList audioControl={ audioControl } />)
+							( <SongList resumeSong={ resumeSong } pauseSong={ pauseSong } audioControl={ audioControl } />)
 			}
 		</div>
 	);
