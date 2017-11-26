@@ -78,9 +78,7 @@ export const fetchRecentlyPlayed = (accessToken) => {
 				'Authorization': 'Bearer ' + accessToken
 			})
 		});
-
-		console.log('here!')
-
+		
 		dispatch(fetchRecentlyPlayedPending());
 
 		fetch(request).then(res => {

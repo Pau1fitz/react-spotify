@@ -1,3 +1,5 @@
+import { uniqBy } from 'lodash';
+
 export const fetchPlaylistMenuPending = () => {
 	return {
 		type: 'FETCH_PLAYLIST_MENU_PENDING'
@@ -80,6 +82,10 @@ export const fetchPlaylistSongs = (userId, playlistId, accessToken) => {
 		fetch(request).then(res => {
 			return res.json();
 		}).then(res => {
+			//remove duplicate tracks
+			res.items = uniqBy(res.items, (item) => {
+				return item.track.id;
+			});
 			dispatch(fetchPlaylistSongsSuccess(res.items));
 		}).catch(err => {
 			dispatch(fetchPlaylistSongsError(err));

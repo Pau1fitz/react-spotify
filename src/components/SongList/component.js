@@ -7,8 +7,6 @@ class SongList extends Component {
 
 	componentWillReceiveProps (nextProps) {
 
-		console.log(nextProps.viewType)
-
 		if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending && nextProps.viewType === 'songs') {
 			this.props.fetchSongs(nextProps.token);
 		}
