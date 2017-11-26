@@ -1,17 +1,14 @@
 import AlbumList from "./component";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchSongs, playSong, stopSong } from '../../actions/songActions';
+import { fetchArtistSongs } from '../../actions/artistActions';
+import { updateHeaderTitle } from '../../actions/uiActions';
 
 const mapStateToProps = (state) => {
 
 	return {
 		token: state.tokenReducer.token ? state.tokenReducer.token : '',
-		artists: state.artistsReducer.artistList ? state.artistsReducer.artistList.artists : '',
-		fetchSongsError: state.songsReducer.fetchSongsError,
-		fetchSongsPending: state.songsReducer.fetchSongsPending,
-		songPlaying: state.songsReducer.songPlaying,
-		songId: state.songsReducer.songId
+		artists: state.artistsReducer.artistList ? state.artistsReducer.artistList.artists : ''
 	};
 
 };
@@ -19,9 +16,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return bindActionCreators({
-		fetchSongs,
-		playSong,
-		stopSong
+		fetchArtistSongs,
+		updateHeaderTitle
 	}, dispatch);
 
 };

@@ -69,5 +69,32 @@
   top: 22px;
   border-bottom: 2px solid #1db954;
   transform: translate(-50%, -50%);
+}
 
+.current-artist-header-container {
+	display: flex;
+}
+
+.current-artist-image {
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+}
+
+.current-artist-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 20px;
+}
+
+.current-artist-info p {
+	text-transform: uppercase;
+	font-family: 'Proxima Thin', Georgia, sans-serif;
+	font-size: 13px;
+}
+
+.artist-button {
+	margin-top: 20px;
+	margin-left: 40px;
 }

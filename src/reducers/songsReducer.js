@@ -83,6 +83,28 @@ export const songsReducer = (state = defaultState, action) => {
 			fetchPlaylistSongsPending: false
 		};
 
+	case "FETCH_ARTIST_SONGS_PENDING":
+		return {
+			...state,
+			fetchArtistSongsPending: true
+		};
+
+	case "FETCH_ARTIST_SONGS_SUCCESS":
+		return {
+			...state,
+			songs: action.songs,
+			viewType: 'Artist',
+			fetchArtistSongsError: false,
+			fetchArtistSongsPending: false
+		};
+
+	case "FETCH_ARTIST_SONGS_ERROR":
+		return {
+			...state,
+			fetchArtistSongsError: true,
+			fetchArtistSongsPending: false
+		};
+
 	case "PLAY_SONG":
 		return {
 			...state,

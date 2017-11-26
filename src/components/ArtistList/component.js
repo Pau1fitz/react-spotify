@@ -2,13 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ArtistList.css';
 
-const ArtistList = ({ artists }) => {
+const ArtistList = ({ artists, fetchArtistSongs, token, updateHeaderTitle }) => {
 
 	const renderArtists = () => {
 		return artists.map((artist, i) => {
+
+			const artistSongsAction = (artist, token) => {
+				fetchArtistSongs(artist.id, token);
+				updateHeaderTitle(artist.name);
+			}
+
 			return (
-				<li className='artist-item' key={ i }>
-					<a href={artist.external_urls.spotify}>
+				<li onClick={() => {artistSongsAction(artist, token); } } className='artist-item' key={ i }>
+					<a>
 						<div>
 							<div className='artist-image'>
 								<img src={artist.images[0] ? artist.images[0].url : ''} />

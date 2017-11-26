@@ -14,16 +14,26 @@ const MainHeader = ({
 	headerTitle,
 	viewType,
 	playlists,
-	token
+	token,
+	artists
 }) => {
 
 	let currentPlaylist;
+	let currentArtist;
 
 	if(viewType === 'playlist') {
 		currentPlaylist = playlists.filter(playlist => {
 			return playlist.name === headerTitle;
 		})[0];
 	}
+
+	if(viewType === 'Artist' && artists.length > 0) {
+		currentArtist = artists.filter(artist => {
+			console.log(artist)
+			return artist.name === headerTitle;
+		})[0];
+	}
+
 
 	return (
 
@@ -50,17 +60,43 @@ const MainHeader = ({
 				</div>
 			)}
 
+			{viewType === 'Artist' && currentArtist && (
+
+				<div>
+
+					<div className='current-artist-header-container'>
+						<img className='current-artist-image' src={currentArtist.images[0].url} />
+						<div className='current-artist-info'>
+							<p>Artist from your library</p>
+							<h3>{currentArtist.name}</h3>
+						</div>
+					</div>
+
+					<button
+						onClick={!songPaused ? pauseSong : resumeSong}
+						className='main-pause-play-btn artist-button'>
+						{songPaused ? 'PLAY' : 'PAUSE'}
+					</button>
+
+				</div>
+
+			)}
+
 			{(headerTitle === 'Songs'||
         headerTitle === 'Recently Played' ||
         headerTitle === 'Albums' ||
         headerTitle === 'Artists') && (
 					<div>
 						<h3 className='header-title'>{headerTitle}</h3>
-						<button
-							onClick={!songPaused ? pauseSong : resumeSong}
-							className='main-pause-play-btn'>
-							{songPaused ? 'PLAY' : 'PAUSE'}
-						</button>
+
+						{headerTitle !== 'Artists' && (
+							<button
+								onClick={!songPaused ? pauseSong : resumeSong}
+								className='main-pause-play-btn'>
+								{songPaused ? 'PLAY' : 'PAUSE'}
+							</button>
+						)}
+
 					</div>
 				)}
 

@@ -19,7 +19,6 @@ class SongList extends Component {
 		return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 	}
 
-
 	renderSongs() {
 
 		return this.props.songs.map((song, i) => {

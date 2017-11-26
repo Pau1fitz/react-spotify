@@ -6,11 +6,13 @@ import { updateHeaderTitle } from '../../actions/uiActions';
 import { updateViewType } from '../../actions/songActions';
 
 const mapStateToProps = (state) => {
+
 	return {
 		songPaused: state.songsReducer.songPaused,
 		headerTitle: state.uiReducer.title,
 		viewType: state.songsReducer.viewType,
 		playlists: state.playlistReducer.playlists,
+		artists: state.artistsReducer.artistList ? state.artistsReducer.artistList.artists : [],
 		token: state.tokenReducer.token
 	};
 
