@@ -29,11 +29,16 @@
 }
 
 .user-song-item:hover {
-  background: #202020;
+  background: rgb(51, 51, 51);
 }
 
 .active.user-song-item {
   color: #1db954;
+  background: rgb(51, 51, 51);
+}
+
+.add-song {
+	color: #fff;
 }
 
 .user-song-item:hover > .play-song {
@@ -154,9 +159,9 @@
 }
 
 .add-song .fa {
-  -webkit-text-stroke: 4px rgb(24, 24, 24);
+  -webkit-text-stroke: 3px rgb(24, 24, 24);
 }
 
 .add-song .fa:hover {
-  -webkit-text-stroke: 3px rgb(24, 24, 24);
+  -webkit-text-stroke: 2px rgb(24, 24, 24);
 }

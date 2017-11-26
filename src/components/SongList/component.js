@@ -36,8 +36,8 @@ class SongList extends Component {
 					{this.props.viewType !== 'songs' && (
 						<p className='add-song' onClick={() => {this.props.addSongToLibrary(this.props.token, song.track.id);}}>
 							{this.props.songAddedId === song.track.id ?
-								(<i className="fa fa-check" aria-hidden="true" />) :
-								(<i className="fa fa-plus" aria-hidden="true" />)
+								(<i className="fa fa-check add-song" aria-hidden="true" />) :
+								(<i className="fa fa-plus add-song" aria-hidden="true" />)
 							}
 						</p>
 					)}
