@@ -93,6 +93,31 @@
   line-height: 42px;
 }
 
+.song-length,
+.song-length-header {
+	width: 60px;
+}
+
+.song-added,
+.song-added-header {
+	width: 80px;
+}
+
+.song-album,
+.song-album-header {
+	width: 210px;
+}
+
+.song-artist,
+.song-artist-header {
+	width: 180px;
+}
+
+.song-title,
+.song-title-header {
+	width: 250px;
+}
+
 .song-title-header p,
 .song-artist-header p,
 .song-album-header p,
