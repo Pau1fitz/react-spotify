@@ -50,8 +50,6 @@ class App extends Component {
 	}
 
 	pauseSong = () => {
-
-		console.log('here')
 		if(this.audio) {
 			this.props.pauseSong();
 			this.audio.pause();
