@@ -2,7 +2,7 @@ const defaultState = {
 	title: 'Songs'
 };
 
-export const songsReducer = (state = defaultState, action) => {
+export const uiReducer = (state = defaultState, action) => {
 	switch (action.type) {
 
 	case "UPDATE_HEADER_TITLE":
@@ -17,4 +17,4 @@ export const songsReducer = (state = defaultState, action) => {
 
 };
 
-export default songsReducer;
+export default uiReducer;
