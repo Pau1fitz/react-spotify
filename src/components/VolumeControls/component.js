@@ -25,6 +25,7 @@ class VolumeControls extends Component {
 
 		return (
 			<div className='volume-container'>
+				<i className="fa fa-volume-up" aria-hidden="true"></i>
 				<input className='volume' type="range" min={0} max={100} value={this.state.volume} onInput={this.updateVolume} />
 			</div>
 		);
