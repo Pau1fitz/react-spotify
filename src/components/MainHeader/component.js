@@ -29,7 +29,6 @@ const MainHeader = ({
 
 	if(viewType === 'Artist' && artists.length > 0) {
 		currentArtist = artists.filter(artist => {
-			console.log(artist)
 			return artist.name === headerTitle;
 		})[0];
 	}

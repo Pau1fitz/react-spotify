@@ -88,7 +88,6 @@ export const searchSongs = (searchTerm, accessToken) => {
 			}
 			return res.json();
 		}).then(res => {
-			console.log(res.tracks.items)
 			res.items = res.tracks.items.map(item => {
 				return {
 					track: item
