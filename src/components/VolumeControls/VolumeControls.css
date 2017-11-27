@@ -4,8 +4,7 @@
 	right: 10px;
 }
 
-.volume,
-input[type=range]::-moz-range-track {
+.volume {
   -webkit-appearance: none;
   width: 120px;
   height: 5px;
