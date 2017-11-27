@@ -1,4 +1,4 @@
-export const soundReducer = (state = { volume: 10}, action) => {
+export const soundReducer = (state = { volume: 100}, action) => {
 	switch (action.type) {
 	case "UPDATE_VOLUME":
 		return {

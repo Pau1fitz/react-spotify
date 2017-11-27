@@ -39,7 +39,12 @@ class App extends Component {
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.token) {
 			this.props.fetchUser(nextProps.token);
+		};
+
+		if(this.audio !== undefined) {
+			this.audio.volume = nextProps.volume / 100;
 		}
+
 	}
 
 	stopSong = () => {
@@ -127,12 +132,14 @@ App.propTypes = {
 	playSong: PropTypes.func,
 	stopSong: PropTypes.func,
 	resumeSong: PropTypes.func,
+	volume: PropTypes.number
 };
 
 const mapStateToProps = (state) => {
 
 	return {
-		token: state.tokenReducer.token
+		token: state.tokenReducer.token,
+		volume: state.soundReducer.volume
 	};
 
 };

@@ -16,6 +16,8 @@ class VolumeControls extends Component {
 		this.setState({
 			volume: e.target.value
 		});
+
+		this.props.updateVolume(Math.ceil(e.target.value / 10) * 10);
 	}
 
 
@@ -30,7 +32,8 @@ class VolumeControls extends Component {
 }
 
 VolumeControls.propTypes = {
-	volume: PropTypes.number
+	volume: PropTypes.number,
+	updateVolume: PropTypes.func
 };
 
 export default VolumeControls;
