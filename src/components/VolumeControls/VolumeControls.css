@@ -12,11 +12,18 @@
   border-radius: 4px;
   outline: none;
   opacity: 1;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
 }
 
-.volume-container .fa-volume-up {
+input[type=range]::-moz-range-track {
+  width: 120px;
+  height: 5px;
+  background: #4CAF50;
+  border-radius: 4px;
+  outline: none;
+  opacity: 1;
+}
+
+.volume-container  .fa-volume-up {
 	position: relative;
 	top: 3px;
 	margin-right: 5px;
@@ -27,13 +34,12 @@
     background: #4CAF50;
 }
 
-.volume::-webkit-slider-thumb,
-.volume::-moz-range-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    cursor: pointer;
-    border-radius: 50%;
+.volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 50%;
 }
