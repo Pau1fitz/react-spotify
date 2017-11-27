@@ -20,8 +20,9 @@
   font-size: 14px;
   width: 140px;
   cursor: pointer;
-text-overflow: ellipsis;
-white-space: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
 
 .side-menu-item:hover {
@@ -33,12 +34,12 @@ white-space: nowrap;
 }
 
 .side-menu-container .active {
-	margin-left: -3px;
+  margin-left: -3px;
 }
 
 .side-menu-container .active:before {
-	content: "";
-	border-left: 3px solid #1db954;
-	position: relative;
-	left: -18px;
+  content: "";
+  border-left: 3px solid #1db954;
+  position: relative;
+  left: -18px;
 }
