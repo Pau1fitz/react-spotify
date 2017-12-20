@@ -28,8 +28,8 @@ class SongList extends Component {
 			return (
 				<li className={song.track.id === this.props.songId ? 'active user-song-item' : 'user-song-item'} key={ i }>
 					<div onClick={() => {(song.track.id === this.props.songId) && this.props.songPlaying && this.props.songPaused ? this.props.resumeSong() :
-	 			 this.props.songPlaying && !this.props.songPaused && (song.track.id === this.props.songId)  ? this.props.pauseSong() :
-	 			 this.props.audioControl(song); } } className='play-song'>
+						this.props.songPlaying && !this.props.songPaused && (song.track.id === this.props.songId)  ? this.props.pauseSong() :
+							this.props.audioControl(song); } } className='play-song'>
 						<i className={`fa ${buttonClass} play-btn`} aria-hidden="true"/>
 					</div>
 

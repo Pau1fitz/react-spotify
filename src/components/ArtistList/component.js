@@ -10,7 +10,7 @@ const ArtistList = ({ artists, fetchArtistSongs, token, updateHeaderTitle }) => 
 			const artistSongsAction = (artist, token) => {
 				fetchArtistSongs(artist.id, token);
 				updateHeaderTitle(artist.name);
-			}
+			};
 
 			return (
 				<li onClick={() => {artistSongsAction(artist, token); } } className='artist-item' key={ i }>
