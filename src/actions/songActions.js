@@ -91,8 +91,8 @@ export const searchSongs = (searchTerm, accessToken) => {
 			res.items = res.tracks.items.map(item => {
 				return {
 					track: item
-				}
-			})
+				};
+			});
 			dispatch(searchSongsSuccess(res.items));
 		}).catch(err => {
 			dispatch(fetchSongsError(err));

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import './VolumeControls.css';
 
@@ -25,7 +24,7 @@ class VolumeControls extends Component {
 
 		return (
 			<div className='volume-container'>
-				<i className="fa fa-volume-up" aria-hidden="true"></i>
+				<i className="fa fa-volume-up" aria-hidden="true"/>
 				<input className='volume' type="range" min={0} max={100} value={this.state.volume} onInput={this.updateVolume} />
 			</div>
 		);
