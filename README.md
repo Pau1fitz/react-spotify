@@ -20,3 +20,7 @@ npm install
 npm run start
 visit http://localhost:3000
 ```
+
+### License
+
+Released under the MIT License. Check `LICENSE.md` for more info.
