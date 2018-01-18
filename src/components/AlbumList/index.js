@@ -1,6 +1,6 @@
 import AlbumList from "./component";
 import { connect } from "react-redux";
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 
 const mapStateToProps = (state) => {
 

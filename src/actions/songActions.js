@@ -1,4 +1,4 @@
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import { setArtistIds } from './artistActions';
 
 export const fetchSongsPending = () => {
