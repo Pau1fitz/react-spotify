@@ -5,10 +5,11 @@ This is `React-Spotify`, a React front end client that communicates with the Spo
 See it in action at http://pau1fitz.github.io/react-spotify
 
 If you don't have a spotify account you can use the following credentials:
-```
-email - spotifyreact@gmail.com
-password - Example
-```
+
+> email: spotifyreact@gmail.com
+
+> password: Example
+
 
 ![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/songs.png "Song")
 ![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/browser.png "Browse")
