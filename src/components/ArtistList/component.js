@@ -44,6 +44,9 @@ ArtistList.propTypes = {
 		PropTypes.string,
 		PropTypes.array
 	]),
+	fetchArtistSongs: PropTypes.func,
+	token: PropTypes.string,
+	updateHeaderTitle: PropTypes.func
 };
 
 export default ArtistList;

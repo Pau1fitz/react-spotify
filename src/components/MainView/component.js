@@ -27,7 +27,9 @@ const MainView = ({ headerTitle, audioControl, resumeSong, pauseSong }) => {
 
 MainView.propTypes = {
 	headerTitle: PropTypes.string,
-	audioControl: PropTypes.func
+	audioControl: PropTypes.func,
+	resumeSong: PropTypes.func,
+	pauseSong: PropTypes.func
 };
 
 export default MainView;

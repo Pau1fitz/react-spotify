@@ -6,11 +6,9 @@ import './SongList.css';
 class SongList extends Component {
 
 	componentWillReceiveProps (nextProps) {
-
 		if(nextProps.token !== '' && !nextProps.fetchSongsError && nextProps.fetchSongsPending && nextProps.viewType === 'songs') {
 			this.props.fetchSongs(nextProps.token);
 		}
-
 	}
 
 	msToMinutesAndSeconds(ms) {
@@ -20,9 +18,7 @@ class SongList extends Component {
 	}
 
 	renderSongs() {
-
 		return this.props.songs.map((song, i) => {
-
 			const buttonClass = song.track.id === this.props.songId && !this.props.songPaused ? "fa-pause-circle-o" : "fa-play-circle-o";
 
 			return (
@@ -67,7 +63,6 @@ class SongList extends Component {
 					<div className='song-length'>
 						<p>{ this.msToMinutesAndSeconds(song.track.duration_ms) }</p>
 					</div>
-
 				</li>
 			);
 		});
@@ -77,30 +72,23 @@ class SongList extends Component {
 
 		return (
 			<div>
-
 				<div className='song-header-container'>
 					<div className='song-title-header'>
 						<p>Title</p>
 					</div>
-
 					<div className='song-artist-header'>
 						<p>Artist</p>
 					</div>
-
 					<div className='song-album-header'>
 						<p>Album</p>
 					</div>
-
 					<div className='song-added-header'>
 						<i className="fa fa-calendar-plus-o" aria-hidden="true"/>
 					</div>
-
 					<div className='song-length-header'>
 						<p><i className="fa fa-clock-o" aria-hidden="true" /></p>
 					</div>
-
 				</div>
-
 				{
 					this.props.songs && !this.props.fetchSongsPending && !this.props.fetchPlaylistSongsPending && this.renderSongs()
 				}
@@ -127,7 +115,11 @@ SongList.propTypes = {
 	fetchPlaylistSongsPending: PropTypes.bool,
 	fetchSongs: PropTypes.func,
 	audioControl: PropTypes.func,
-	addSongToLibrary: PropTypes.func
+	songPaused: PropTypes.bool,
+	songPlaying: PropTypes.bool,
+	resumeSong: PropTypes.func,
+	pauseSong: PropTypes.func,
+	addSongToLibrary: PropTypes.func,
 };
 
 export default SongList;

@@ -15,7 +15,6 @@ class TrackSearch extends Component {
 	}
 
 	render() {
-
 		return(
 			<div className='track-search-container'>
 				<form onSubmit={() => { this.props.searchSongs(this.state.searchTerm, this.props.token);}}>
@@ -28,5 +27,10 @@ class TrackSearch extends Component {
 		);
 	}
 }
+
+TrackSearch.propTypes = {
+	searchSongs: PropTypes.func,
+	token: PropTypes.string,
+};
 
 export default TrackSearch;

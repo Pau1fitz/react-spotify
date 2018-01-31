@@ -33,18 +33,14 @@ const MainHeader = ({
 		})[0];
 	}
 
-
 	return (
 
 		<div className='section-title'>
 			{viewType === 'playlist' && (
-
 				<div className='playlist-title-container'>
-
 					<div className='playlist-image-container'>
 						<img className='playlist-image' src={currentPlaylist.images[0] ? currentPlaylist.images[0].url : null} />
 					</div>
-
 					<div className='playlist-info-container'>
 						<p className='playlist-text'>PLAYLIST</p>
 						<h3 className='header-title'>{headerTitle}</h3>
@@ -60,9 +56,7 @@ const MainHeader = ({
 			)}
 
 			{viewType === 'Artist' && currentArtist && (
-
 				<div>
-
 					<div className='current-artist-header-container'>
 						<img className='current-artist-image' src={currentArtist.images[0].url} />
 						<div className='current-artist-info'>
@@ -70,24 +64,21 @@ const MainHeader = ({
 							<h3>{currentArtist.name}</h3>
 						</div>
 					</div>
-
 					<button
 						onClick={!songPaused ? pauseSong : resumeSong}
 						className='main-pause-play-btn artist-button'>
 						{songPaused ? 'PLAY' : 'PAUSE'}
 					</button>
-
 				</div>
-
 			)}
 
-			{(headerTitle === 'Songs'||
-        headerTitle === 'Recently Played' ||
-        headerTitle === 'Albums' ||
-        headerTitle === 'Artists') && (
+			{(
+				headerTitle === 'Songs'||
+				headerTitle === 'Recently Played' ||
+				headerTitle === 'Albums' ||
+				headerTitle === 'Artists') && (
 					<div>
 						<h3 className='header-title'>{headerTitle}</h3>
-
 						{headerTitle !== 'Artists' && (
 							<button
 								onClick={!songPaused ? pauseSong : resumeSong}
@@ -98,7 +89,6 @@ const MainHeader = ({
 
 					</div>
 				)}
-
 			{(headerTitle === 'Browse') && (
 				<div>
 					<h3 className='header-title'>{headerTitle}</h3>
@@ -109,7 +99,6 @@ const MainHeader = ({
 					</div>
 				</div>
 			)}
-
 		</div>
 
 	);
@@ -129,7 +118,8 @@ MainHeader.propTypes = {
 	viewType: PropTypes.string,
 	playlists: PropTypes.array,
 	playlistMenu: PropTypes.array,
-	token: PropTypes.string
+	token: PropTypes.string,
+	artists: PropTypes.array,
 };
 
 export default MainHeader;
