@@ -5,9 +5,20 @@ import React from 'react';
 import Header from './index';
 
 describe('Header', () => {
-  describe('renders correctly', () => {
-    it('Header should render', () => {
-      const wrapper = shallow(<Header />);
-    });
+
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<Header />);
+  })
+
+  it('Header should render', () => {
+    expect(wrapper).to.have.length(1);
   });
+
+  it('Header should render both TrackSearch and UserDetails', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper.children()).to.have.length(2);
+  });
+
 });
