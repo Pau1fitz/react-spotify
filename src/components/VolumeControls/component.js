@@ -5,13 +5,16 @@ import './VolumeControls.css';
 class VolumeControls extends Component {
 
 	constructor(props) {
+    
 		super(props);
 		this.state = {
 			volume: props.volume
-		};
+    };
+    
 	}
 
 	updateVolume = (e) => {
+
 		this.setState({
 			volume: e.target.value
 		});
@@ -27,7 +30,8 @@ class VolumeControls extends Component {
 				<i className="fa fa-volume-up" aria-hidden="true"/>
 				<input className='volume' type="range" min={0} max={100} value={this.state.volume} onChange={this.updateVolume} />
 			</div>
-		);
+    );
+    
 	}
 }
 

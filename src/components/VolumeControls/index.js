@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateVolume } from '../../actions/soundActions';
 
-
 const mapStateToProps = (state) => {
-
-	return {
+  
+  return {
 		volume: state.soundReducer.volume
-	};
-
+  };
+  
 };
 
 const mapDispatchToProps = (dispatch) => {
