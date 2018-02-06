@@ -13,7 +13,6 @@ const Footer = ({ stopSong, pauseSong, resumeSong, audioControl}) => {
 				resumeSong={ resumeSong }
 				audioControl={ audioControl }
 			/>
-
 			<VolumeControls />
 		</div>
 	);
