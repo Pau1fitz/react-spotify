@@ -17,8 +17,8 @@ If you don't have a spotify account you can use the following credentials:
 If you wish to run the code locally run the following.
 
 ```
-npm install
-npm run start
+yarn
+yarn start
 visit http://localhost:3000
 ```
 
