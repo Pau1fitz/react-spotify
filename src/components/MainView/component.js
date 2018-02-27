@@ -8,28 +8,28 @@ import './MainView.css';
 
 const MainView = ({ headerTitle, audioControl, resumeSong, pauseSong }) => {
 
-	return (
-		<div>
-			{
-				headerTitle === 'Albums' ?
-					(<AlbumList audioControl={ audioControl } />) :
-					headerTitle === 'Artists' ?
-						(<ArtistList />) :
-						(headerTitle === 'Browse') ?
-							( <BrowseView />) :
-							//anything else show SongList
-							( <SongList resumeSong={ resumeSong } pauseSong={ pauseSong } audioControl={ audioControl } />)
-			}
-		</div>
-	);
+  return (
+    <div>
+      {
+        headerTitle === 'Albums' ?
+          (<AlbumList audioControl={ audioControl } />) :
+          headerTitle === 'Artists' ?
+            (<ArtistList />) :
+            (headerTitle === 'Browse') ?
+              ( <BrowseView />) :
+              //anything else show SongList
+              ( <SongList resumeSong={ resumeSong } pauseSong={ pauseSong } audioControl={ audioControl } />)
+      }
+    </div>
+  );
 
 };
 
 MainView.propTypes = {
-	headerTitle: PropTypes.string,
-	audioControl: PropTypes.func,
-	resumeSong: PropTypes.func,
-	pauseSong: PropTypes.func
+  headerTitle: PropTypes.string,
+  audioControl: PropTypes.func,
+  resumeSong: PropTypes.func,
+  pauseSong: PropTypes.func
 };
 
 export default MainView;

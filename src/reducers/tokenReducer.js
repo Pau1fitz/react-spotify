@@ -1,15 +1,15 @@
 export const tokenReducer = (state = {}, action) => {
-	switch (action.type) {
+  switch (action.type) {
 
-	case "SET_TOKEN":
-		return {
-			...state,
-			token: action.token
-		};
+  case "SET_TOKEN":
+    return {
+      ...state,
+      token: action.token
+    };
 
-	default:
-		return state;
-	}
+  default:
+    return state;
+  }
 
 };
 

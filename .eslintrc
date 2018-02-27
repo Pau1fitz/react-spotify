@@ -34,7 +34,7 @@
     },
     "rules": {
         "no-mixed-spaces-and-tabs": "warn",
-        "indent": ["error", "tab"],
+        "indent": ["warn", 2],
         "no-const-assign": "warn",
         "no-this-before-super": "warn",
         "no-undef": "warn",
@@ -45,7 +45,6 @@
         "no-console": 1,
         "no-debugger": 1,
         "no-var": 1,
-        "semi": [1, "always"],
         "no-trailing-spaces": 0,
         "eol-last": 0,
         "no-underscore-dangle": 0,

@@ -5,24 +5,24 @@ import VolumeControls from '../VolumeControls';
 import './Footer.css';
 
 const Footer = ({ stopSong, pauseSong, resumeSong, audioControl}) => {
-	return(
-		<div className='footer'>
-			<SongControls
-				stopSong={ stopSong }
-				pauseSong={ pauseSong }
-				resumeSong={ resumeSong }
-				audioControl={ audioControl }
-			/>
-			<VolumeControls />
-		</div>
-	);
+  return(
+    <div className='footer'>
+      <SongControls
+        stopSong={ stopSong }
+        pauseSong={ pauseSong }
+        resumeSong={ resumeSong }
+        audioControl={ audioControl }
+      />
+      <VolumeControls />
+    </div>
+  );
 };
 
 Footer.propTypes = {
-	stopSong: PropTypes.func,
-	pauseSong: PropTypes.func,
-	resumeSong: PropTypes.func,
-	audioControl: PropTypes.func
+  stopSong: PropTypes.func,
+  pauseSong: PropTypes.func,
+  resumeSong: PropTypes.func,
+  audioControl: PropTypes.func
 };
 
 export default Footer;

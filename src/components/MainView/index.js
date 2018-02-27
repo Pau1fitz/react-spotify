@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
 
-	return {
-		headerTitle: state.uiReducer.title
-	};
+  return {
+    headerTitle: state.uiReducer.title
+  };
 
 };
 

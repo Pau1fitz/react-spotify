@@ -9,26 +9,26 @@ import { updateHeaderTitle } from '../../actions/uiActions';
 
 const mapStateToProps = (state) => {
 
-	return {
-		userId: state.userReducer.user ? state.userReducer.user.id : '',
-		token: state.tokenReducer.token ? state.tokenReducer.token : '',
-		artistIds: state.artistsReducer.artistIds,
-		title: state.uiReducer.title
-	};
+  return {
+    userId: state.userReducer.user ? state.userReducer.user.id : '',
+    token: state.tokenReducer.token ? state.tokenReducer.token : '',
+    artistIds: state.artistsReducer.artistIds,
+    title: state.uiReducer.title
+  };
 
 };
 
 const mapDispatchToProps = (dispatch) => {
 
-	return bindActionCreators({
-		fetchRecentlyPlayed,
-		fetchSongs,
-		fetchAlbums,
-		fetchArtists,
-		fetchFeatured,
-		updateViewType,
-		updateHeaderTitle,
-	}, dispatch);
+  return bindActionCreators({
+    fetchRecentlyPlayed,
+    fetchSongs,
+    fetchAlbums,
+    fetchArtists,
+    fetchFeatured,
+    updateViewType,
+    updateHeaderTitle,
+  }, dispatch);
 
 };
 

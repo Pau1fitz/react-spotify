@@ -10,13 +10,13 @@ import browseReducer from './browseReducer';
 import soundReducer from './soundReducer';
 
 export default combineReducers({
-	userReducer,
-	tokenReducer,
-	playlistReducer,
-	songsReducer,
-	albumsReducer,
-	artistsReducer,
-	uiReducer,
-	browseReducer,
-	soundReducer
+  userReducer,
+  tokenReducer,
+  playlistReducer,
+  songsReducer,
+  albumsReducer,
+  artistsReducer,
+  uiReducer,
+  browseReducer,
+  soundReducer
 });

@@ -6,19 +6,19 @@ import { updateHeaderTitle } from '../../actions/uiActions';
 
 const mapStateToProps = (state) => {
 
-	return {
-		token: state.tokenReducer.token ? state.tokenReducer.token : '',
-		artists: state.artistsReducer.artistList ? state.artistsReducer.artistList.artists : ''
-	};
+  return {
+    token: state.tokenReducer.token ? state.tokenReducer.token : '',
+    artists: state.artistsReducer.artistList ? state.artistsReducer.artistList.artists : ''
+  };
 
 };
 
 const mapDispatchToProps = (dispatch) => {
 
-	return bindActionCreators({
-		fetchArtistSongs,
-		updateHeaderTitle
-	}, dispatch);
+  return bindActionCreators({
+    fetchArtistSongs,
+    updateHeaderTitle
+  }, dispatch);
 
 };
 

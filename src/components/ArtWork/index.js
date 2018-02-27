@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
 
-	return {
-		albumImage: state.songsReducer.songDetails ? state.songsReducer.songDetails.album.images[0].url : ''
-	};
+  return {
+    albumImage: state.songsReducer.songDetails ? state.songsReducer.songDetails.album.images[0].url : ''
+  };
 
 };
 
