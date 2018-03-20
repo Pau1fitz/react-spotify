@@ -2,7 +2,7 @@
 
 This is `React-Spotify`, a React front end client that communicates with the Spotify API.
 
-See it in action at http://pau1fitz.github.io/react-spotify
+See it in action [here](http://pau1fitz.github.io/react-spotify)
 
 If you don't have a spotify account you can use the following credentials:
 
@@ -21,6 +21,10 @@ yarn
 yarn start
 visit http://localhost:3000
 ```
+
+Please note that the Spotify API only provides 30 second audio snippets. It may be possible to get the full track by using the [Web Playback SDK](https://beta.developer.spotify.com/documentation/web-playback-sdk/).
+
+
 
 ### License
 
