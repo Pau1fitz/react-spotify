@@ -4,7 +4,7 @@ This is `React-Spotify`, a React front end client that communicates with the Spo
 
 See it in action [here](http://pau1fitz.github.io/react-spotify).
 
-If you don't have a spotify account you can use the following credentials:
+If you don't have a spotify account, don't worry, you can use the following credentials:
 
 > email: spotifyreact@gmail.com
 
