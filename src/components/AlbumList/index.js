@@ -4,9 +4,7 @@ import uniqBy from "lodash/uniqBy";
 
 const mapStateToProps = state => {
   const albumSongs = state.songsReducer.songs
-    ? uniqBy(state.songsReducer.songs, item => {
-        return item.track.album.name;
-      })
+    ? uniqBy(state.songsReducer.songs, item => item.track.album.name)
     : "";
 
   return {

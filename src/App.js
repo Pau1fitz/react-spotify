@@ -107,16 +107,16 @@ class App extends Component {
                 pauseSong={this.pauseSong}
                 resumeSong={this.resumeSong}
                 audioControl={this.audioControl}
-              />{" "}
-            </div>{" "}
+              />
+            </div>
           </div>
           <Footer
             stopSong={this.stopSong}
             pauseSong={this.pauseSong}
             resumeSong={this.resumeSong}
             audioControl={this.audioControl}
-          />{" "}
-        </div>{" "}
+          />
+        </div>
       </div>
     );
   }
