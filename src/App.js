@@ -10,8 +10,6 @@ import {
   pauseSong,
   resumeSong
 } from "./actions/songActions";
-import "./App.css";
-
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import UserPlaylists from "./components/UserPlaylists";
@@ -19,6 +17,7 @@ import MainView from "./components/MainView";
 import ArtWork from "./components/ArtWork";
 import MainHeader from "./components/MainHeader";
 import SideMenu from "./components/SideMenu";
+import "./App.css";
 
 class App extends Component {
   static audio;
