@@ -1,93 +1,9 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true,
-        "mocha": true
-    },
-    "settings": {
-        "import/resolver": {
-            "webpack": {
-                "config": "./config/webpack.config.dev.js"
-            }
-        }
-    },
+    "extends": "react-app",
     "plugins": [
         "prettier",
         "react",
         "import"
     ],
-    "extends": [
-        "prettier"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true,
-            "experimentalObjectRestSpread": true
-        },
-        "sourceType": "module"
-    },
-    "globals": {
-        "EPGJS_COMM": true
-    },
-    "rules": {
-        "no-mixed-spaces-and-tabs": "warn",
-        "indent": ["warn", 2],
-        "no-const-assign": "warn",
-        "no-this-before-super": "warn",
-        "no-undef": "warn",
-        "no-unreachable": "warn",
-        "no-unused-vars": "warn",
-        "constructor-super": "warn",
-        "valid-typeof": "warn",
-        "no-console": 1,
-        "no-debugger": 1,
-        "no-var": 1,
-        "no-trailing-spaces": 0,
-        "eol-last": 0,
-        "no-underscore-dangle": 0,
-        "no-alert": 0,
-        "no-lone-blocks": 0,
-        "react/jsx-quotes": 0,
-        "react/display-name": [ 1, {"ignoreTranspilerName": false }],
-        "react/jsx-boolean-value": 1,
-        "react/jsx-closing-bracket-location": 0,
-        "react/jsx-indent-props": 0,
-        "react/jsx-key": 1,
-        "react/jsx-max-props-per-line": 0,
-        "react/jsx-no-duplicate-props": 1,
-        "react/jsx-no-literals": 0,
-        "react/jsx-no-undef": 1,
-        "react/jsx-pascal-case": 1,
-        "react/jsx-sort-prop-types": 0,
-        "react/jsx-sort-props": 0,
-        "react/jsx-uses-react": 1,
-        "react/jsx-uses-vars": 1,
-        "react/jsx-wrap-multilines": 1,
-        "react/no-danger": 1,
-        "react/no-did-mount-set-state": 1,
-        "react/no-did-update-set-state": 1,
-        "react/no-direct-mutation-state": 1,
-        "react/no-set-state": 0,
-        "react/no-unknown-property": 1,
-        "react/prefer-es6-class": 1,
-        "react/prop-types": 1,
-        "react/react-in-jsx-scope": 1,
-        "react/self-closing-comp": 1,
-        "react/sort-comp": 1,
-        "import/named": 1,
-        "import/no-absolute-path": 1,
-        "import/no-dynamic-require": 1,
-        "import/no-webpack-loader-syntax": 1,
-        "import/export": 1,
-        "import/no-named-as-default": 1,
-        "import/no-deprecated": 1,
-        "import/no-extraneous-dependencies": 1,
-        "import/no-mutable-exports": 1,
-        "import/first": 1,
-        "import/no-duplicates": 1,
-        "import/newline-after-import": "warn"
-    }
+    "env": {}
 }

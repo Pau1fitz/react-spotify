@@ -40,14 +40,14 @@ class SongList extends Component {
           <div
             onClick={() => {
               song.track.id === this.props.songId &&
-              this.props.songPlaying &&
-              this.props.songPaused
+                this.props.songPlaying &&
+                this.props.songPaused
                 ? this.props.resumeSong()
                 : this.props.songPlaying &&
                   !this.props.songPaused &&
                   song.track.id === this.props.songId
-                ? this.props.pauseSong()
-                : this.props.audioControl(song);
+                  ? this.props.pauseSong()
+                  : this.props.audioControl(song);
             }}
             className="play-song"
           >
@@ -64,12 +64,12 @@ class SongList extends Component {
               {this.props.songAddedId === song.track.id ? (
                 <i className="fa fa-check add-song" aria-hidden="true" />
               ) : (
-                <i className="fa fa-plus add-song" aria-hidden="true" />
-              )}
+                  <i className="fa fa-plus add-song" aria-hidden="true" />
+                )}
             </p>
           )}
 
-          {this.props.viewType == "songs" && (
+          {this.props.viewType === "songs" && (
             <p className="add-song">
               <i className="fa fa-check" aria-hidden="true" />
             </p>
@@ -145,7 +145,7 @@ SongList.propTypes = {
   songPlaying: PropTypes.bool,
   resumeSong: PropTypes.func,
   pauseSong: PropTypes.func,
-  addSongToLibrary: PropTypes.func
+  addSongToLibrary: PropTypes.func,
 };
 
 export default SongList;

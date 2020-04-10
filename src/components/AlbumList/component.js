@@ -15,7 +15,7 @@ const AlbumList = ({ songs, audioControl }) => {
         >
           <div>
             <div className="album-image">
-              <img src={song.track.album.images[0].url} />
+              <img alt="album" src={song.track.album.images[0].url} />
               <div className="play-song">
                 <i
                   className="fa fa-play-circle-o play-btn"

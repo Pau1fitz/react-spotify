@@ -6,7 +6,7 @@ const BrowseView = ({ view, viewType, token, fetchPlaylistSongs, updateHeaderTit
 
   let browseView;
 
-  if(view) {
+  if (view) {
 
     browseView = view.map((item, i) => {
 
@@ -16,12 +16,12 @@ const BrowseView = ({ view, viewType, token, fetchPlaylistSongs, updateHeaderTit
         updateHeaderTitle(item.name);
       };
 
-      return(
-        <li onClick={viewType === 'Featured' ? getPlaylistSongs : null} className='category-item' key={ i }>
+      return (
+        <li onClick={viewType === 'Featured' ? getPlaylistSongs : null} className='category-item' key={i}>
           <div className='category-image'>
-            <img src={ item.icons ? item.icons[0].url : item.images[0].url} />
+            <img alt="category" src={item.icons ? item.icons[0].url : item.images[0].url} />
             {viewType === 'Genres' && (
-              <p className='category-name'>{ item.name }</p>
+              <p className='category-name'>{item.name}</p>
             )}
           </div>
         </li>
@@ -31,7 +31,7 @@ const BrowseView = ({ view, viewType, token, fetchPlaylistSongs, updateHeaderTit
 
   return (
     <ul className='browse-view-container'>
-      { browseView }
+      {browseView}
     </ul>
   );
 };
@@ -42,7 +42,7 @@ BrowseView.propTypes = {
     PropTypes.string,
     PropTypes.array
   ]),
-  viewType:  PropTypes.string,
+  viewType: PropTypes.string,
   token: PropTypes.string,
   fetchPlaylistSongs: PropTypes.func,
   updateHeaderTitle: PropTypes.func,

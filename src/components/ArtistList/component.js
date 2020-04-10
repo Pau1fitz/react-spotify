@@ -26,7 +26,7 @@ const ArtistList = ({
           <a>
             <div>
               <div className="artist-image">
-                <img src={artist.images[0] ? artist.images[0].url : ""} />
+                <img alt="artist" src={artist.images[0] ? artist.images[0].url : ""} />
               </div>
               <div className="artist-details">
                 <p>{artist.name}</p>

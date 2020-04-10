@@ -21,13 +21,13 @@ const MainHeader = ({
   let currentPlaylist;
   let currentArtist;
 
-  if(viewType === 'playlist') {
+  if (viewType === 'playlist') {
     currentPlaylist = playlists.filter(playlist => {
       return playlist.name === headerTitle;
     })[0];
   }
 
-  if(viewType === 'Artist' && artists.length > 0) {
+  if (viewType === 'Artist' && artists.length > 0) {
     currentArtist = artists.filter(artist => {
       return artist.name === headerTitle;
     })[0];
@@ -39,7 +39,7 @@ const MainHeader = ({
       {viewType === 'playlist' && (
         <div className='playlist-title-container'>
           <div className='playlist-image-container'>
-            <img className='playlist-image' src={currentPlaylist.images[0] ? currentPlaylist.images[0].url : null} />
+            <img alt="playlist" className='playlist-image' src={currentPlaylist.images[0] ? currentPlaylist.images[0].url : null} />
           </div>
           <div className='playlist-info-container'>
             <p className='playlist-text'>PLAYLIST</p>
@@ -58,7 +58,7 @@ const MainHeader = ({
       {viewType === 'Artist' && currentArtist && (
         <div>
           <div className='current-artist-header-container'>
-            <img className='current-artist-image' src={currentArtist.images[0].url} />
+            <img alt="current-artist" className='current-artist-image' src={currentArtist.images[0].url} />
             <div className='current-artist-info'>
               <p>Artist from your library</p>
               <h3>{currentArtist.name}</h3>
@@ -73,10 +73,10 @@ const MainHeader = ({
       )}
 
       {(
-        headerTitle === 'Songs'||
-				headerTitle === 'Recently Played' ||
-				headerTitle === 'Albums' ||
-				headerTitle === 'Artists') && (
+        headerTitle === 'Songs' ||
+        headerTitle === 'Recently Played' ||
+        headerTitle === 'Albums' ||
+        headerTitle === 'Artists') && (
           <div>
             <h3 className='header-title'>{headerTitle}</h3>
             {headerTitle !== 'Artists' && (
