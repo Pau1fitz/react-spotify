@@ -1,4 +1,4 @@
-# React-Spotify 🎼🎺🎸🎻🎤
+# React-Spotify 🎺🎸🎻🎤
 
 This is `React-Spotify`, a React front end client that communicates with the Spotify API.
 
