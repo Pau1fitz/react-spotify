@@ -1,6 +1,4 @@
-export const updateHeaderTitle = (title) => {
-  return {
-    type: 'UPDATE_HEADER_TITLE',
-    title
-  };
-};
+export const updateHeaderTitle = (title) => ({
+  type: 'UPDATE_HEADER_TITLE',
+  title
+})
