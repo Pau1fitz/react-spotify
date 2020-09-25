@@ -27,11 +27,8 @@ Spotify uses OAuth2 for authentication and authorization. On initial setup [App 
 All updates are tracked in the [Changelog](https://github.com/ianhuet/react-spotify/blob/master/CHANGELOG.md) under [Semantic Versioning](https://semver.org/).
 
 
-### Bundler
-Webpack (v.3.8) is used to produce either development or production builds.
-
-
 ### Source Project Specs
+Built on Create-React-App and ejected. Webpack (v.3.8) is the bundler.
 
 *Dependancies*
 - React 16.1.1
