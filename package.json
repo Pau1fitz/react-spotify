@@ -1,11 +1,6 @@
 {
-<<<<<<< Updated upstream
-  "name": "spotify",
-  "version": "0.1.0",
-=======
   "name": "react-spotify-2",
   "version": "2.0.0",
->>>>>>> Stashed changes
   "private": true,
   "main": "build/main.js",
   "dependencies": {
