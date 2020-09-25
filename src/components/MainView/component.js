@@ -8,7 +8,7 @@ import "./MainView.css";
 
 const MainView = ({ headerTitle, audioControl, resumeSong, pauseSong }) => {
   return (
-    <React.Fragment>
+    <div>
       {headerTitle === "Albums" ? (
         <AlbumList audioControl={audioControl} />
       ) : headerTitle === "Artists" ? (
@@ -23,7 +23,7 @@ const MainView = ({ headerTitle, audioControl, resumeSong, pauseSong }) => {
           audioControl={audioControl}
         />
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

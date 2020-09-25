@@ -10,30 +10,44 @@ import {
   pauseSong,
   resumeSong,
 } from './actions/songActions';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import UserPlaylists from './components/UserPlaylists';
-import MainView from './components/MainView';
+
 import ArtWork from './components/ArtWork';
+import Footer from './components/Footer';
+import Header from './components/Header';
 import MainHeader from './components/MainHeader';
+import MainView from './components/MainView';
 import SideMenu from './components/SideMenu';
+import UserPlaylists from './components/UserPlaylists';
+
 import './App.css';
 
 class App extends Component {
   static audio;
 
   componentDidMount() {
-    let hashParams = {};
-    let e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    while ((e = r.exec(q))) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
+    const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4';
+    const redirectUri = 'http://localhost:3000/app';
+    const scopes = ['playlist-read-private', 'playlist-read-collaborative', 'playlist-modify-public', 'user-read-recently-played', 'playlist-modify-private', 'ugc-image-upload', 'user-follow-modify', 'user-follow-read', 'user-library-read', 'user-library-modify', 'user-read-private', 'user-read-email', 'user-top-read', 'user-read-playback-state'];
+    const authorisationUrl = 
+      `https://accounts.spotify.com/authorize?client_id=${clientId}&scope=${scopes.join('%20')}&response_type=token&redirect_uri=${redirectUri}`;
+
+    function getHashParams() {
+      const hashParams = {};
+      const regex = /([^&;=]+)=?([^&;]*)/g;
+      const q = window.location.hash.substring(1);
+      let e;
+  
+      e = regex.exec(q);
+      while (e) {
+        hashParams[e[1]] = decodeURIComponent(e[2]);
+        e = regex.exec(q);
+      }
+      return hashParams;
     }
 
+    const hashParams = getHashParams();
     if (!hashParams.access_token) {
-      window.location.href =
-        'https://accounts.spotify.com/authorize?client_id=230be2f46909426b8b80cac36446b52a&scope=playlist-read-private%20playlist-read-collaborative%20playlist-modify-public%20user-read-recently-played%20playlist-modify-private%20ugc-image-upload%20user-follow-modify%20user-follow-read%20user-library-read%20user-library-modify%20user-read-private%20user-read-email%20user-top-read%20user-read-playback-state&response_type=token&redirect_uri=http://localhost:3000/callback';
+      window.location.href = authorisationUrl;
     } else {
       this.props.setToken(hashParams.access_token);
     }

@@ -1,6 +1,6 @@
 {
-  "name": "spotify",
-  "version": "0.1.0",
+  "name": "React Spotify v.2",
+  "version": "2.0.0",
   "private": true,
   "main": "build/main.js",
   "dependencies": {
