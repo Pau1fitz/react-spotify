@@ -6,9 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
-## [2.0.1] - 2020.xx.xx
-### XXXXXXXXXX
+## [2.0.2] - 2020.xx.xx
+### Changed
+- 
 
+
+## [2.0.1] - 2020.09.25
+### Changed
+- Extract REDIRECT_URI to ENV variable
 
 ## [2.0.0] - 2020.09.25
 ### Changed

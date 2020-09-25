@@ -26,7 +26,7 @@ class App extends Component {
 
   componentDidMount() {
     const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4';
-    const redirectUri = 'http://localhost:3000/app';
+    const redirectUri = process.env.REACT_APP_REDIRECT_URI;
     const scopes = ['playlist-read-private', 'playlist-read-collaborative', 'playlist-modify-public', 'user-read-recently-played', 'playlist-modify-private', 'ugc-image-upload', 'user-follow-modify', 'user-follow-read', 'user-library-read', 'user-library-modify', 'user-read-private', 'user-read-email', 'user-top-read', 'user-read-playback-state'];
     const authorisationUrl = 
       `https://accounts.spotify.com/authorize?client_id=${clientId}&scope=${scopes.join('%20')}&response_type=token&redirect_uri=${redirectUri}`;
