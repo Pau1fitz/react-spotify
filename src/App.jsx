@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/userActions';
@@ -135,16 +135,16 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  token: PropTypes.string,
-  fetchUser: PropTypes.func,
-  setToken: PropTypes.func,
-  pauseSong: PropTypes.func,
-  playSong: PropTypes.func,
-  stopSong: PropTypes.func,
-  resumeSong: PropTypes.func,
-  volume: PropTypes.number,
-};
+// App.propTypes = {
+//   token: PropTypes.string,
+//   fetchUser: PropTypes.func,
+//   setToken: PropTypes.func,
+//   pauseSong: PropTypes.func,
+//   playSong: PropTypes.func,
+//   stopSong: PropTypes.func,
+//   resumeSong: PropTypes.func,
+//   volume: PropTypes.number,
+// };
 
 const mapStateToProps = (state) => {
   return {

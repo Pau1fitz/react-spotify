@@ -23,23 +23,16 @@ Spotify uses OAuth2 for authentication and authorization. On initial setup [App 
 
 ## Development
 
+### Technology Stack
+- Bootstrapped with Create-React-App
+- State handled with Redux
+- 
+
+### Deployment
+The application is automatically deployed into Vercel via a webhook on the Master branch.
+
 ### Changelog
 All updates are tracked in the [Changelog](https://github.com/ianhuet/react-spotify/blob/master/CHANGELOG.md) under [Semantic Versioning](https://semver.org/).
-
-
-### Source Project Specs
-Built on Create-React-App and ejected. Webpack (v.3.8) is the bundler.
-
-*Dependancies*
-- React 16.1.1
-- Redux 3.7.2
-- Lodash 4.17
-
-*DevDependancies*
-- Webpack 3.8.1
-- Jest 20.0
-- Chai 4.1.2
-- Enzyme 3.3.0
 
 
 ### License

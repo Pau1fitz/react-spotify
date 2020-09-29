@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import "./UserPlaylists.css";
 
 class UserPlaylists extends Component {
@@ -46,14 +46,14 @@ class UserPlaylists extends Component {
   }
 }
 
-UserPlaylists.propTypes = {
-  userId: PropTypes.string,
-  token: PropTypes.string,
-  title: PropTypes.string,
-  playlistMenu: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  fetchPlaylistsMenu: PropTypes.func,
-  fetchPlaylistSongs: PropTypes.func,
-  updateHeaderTitle: PropTypes.func
-};
+// UserPlaylists.propTypes = {
+//   userId: PropTypes.string,
+//   token: PropTypes.string,
+//   title: PropTypes.string,
+//   playlistMenu: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+//   fetchPlaylistsMenu: PropTypes.func,
+//   fetchPlaylistSongs: PropTypes.func,
+//   updateHeaderTitle: PropTypes.func
+// };
 
 export default UserPlaylists;

@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+
 import './MainHeader.css';
 
 const MainHeader = ({
@@ -105,21 +106,21 @@ const MainHeader = ({
 
 };
 
-MainHeader.propTypes = {
-  pauseSong: PropTypes.func,
-  resumeSong: PropTypes.func,
-  fetchCategories: PropTypes.func,
-  fetchNewReleases: PropTypes.func,
-  fetchFeatured: PropTypes.func,
-  updateHeaderTitle: PropTypes.func,
-  updateViewType: PropTypes.func,
-  songPaused: PropTypes.bool,
-  headerTitle: PropTypes.string,
-  viewType: PropTypes.string,
-  playlists: PropTypes.array,
-  playlistMenu: PropTypes.array,
-  token: PropTypes.string,
-  artists: PropTypes.array,
-};
+// MainHeader.propTypes = {
+//   pauseSong: PropTypes.func,
+//   resumeSong: PropTypes.func,
+//   fetchCategories: PropTypes.func,
+//   fetchNewReleases: PropTypes.func,
+//   fetchFeatured: PropTypes.func,
+//   updateHeaderTitle: PropTypes.func,
+//   updateViewType: PropTypes.func,
+//   songPaused: PropTypes.bool,
+//   headerTitle: PropTypes.string,
+//   viewType: PropTypes.string,
+//   playlists: PropTypes.array,
+//   playlistMenu: PropTypes.array,
+//   token: PropTypes.string,
+//   artists: PropTypes.array,
+// };
 
 export default MainHeader;
