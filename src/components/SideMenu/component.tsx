@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import "./SideMenu.css";
 
 const SideMenu = ({
@@ -83,17 +83,17 @@ const SideMenu = ({
   );
 };
 
-SideMenu.propTypes = {
-  updateHeaderTitle: PropTypes.func,
-  updateViewType: PropTypes.func,
-  fetchFeatured: PropTypes.func,
-  fetchRecentlyPlayed: PropTypes.func,
-  fetchSongs: PropTypes.func,
-  fetchAlbums: PropTypes.func,
-  fetchArtists: PropTypes.func,
-  token: PropTypes.string,
-  artistIds: PropTypes.string,
-  title: PropTypes.string
-};
+// SideMenu.propTypes = {
+//   updateHeaderTitle: PropTypes.func,
+//   updateViewType: PropTypes.func,
+//   fetchFeatured: PropTypes.func,
+//   fetchRecentlyPlayed: PropTypes.func,
+//   fetchSongs: PropTypes.func,
+//   fetchAlbums: PropTypes.func,
+//   fetchArtists: PropTypes.func,
+//   token: PropTypes.string,
+//   artistIds: PropTypes.string,
+//   title: PropTypes.string
+// };
 
 export default SideMenu;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchUser } from './actions/userActions';
@@ -25,12 +25,27 @@ class App extends Component {
   static audio;
 
   componentDidMount() {
-    const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4';
-    const redirectUri = process.env.REACT_APP_REDIRECT_URI;
-    const scopes = ['playlist-read-private', 'playlist-read-collaborative', 'playlist-modify-public', 'user-read-recently-played', 'playlist-modify-private', 'ugc-image-upload', 'user-follow-modify', 'user-follow-read', 'user-library-read', 'user-library-modify', 'user-read-private', 'user-read-email', 'user-top-read', 'user-read-playback-state'];
-    const authorisationUrl = 
-      `https://accounts.spotify.com/authorize?client_id=${clientId}&scope=${scopes.join('%20')}&response_type=token&redirect_uri=${redirectUri}`;
-
+    function getAuthorisationUrl() {      
+      const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4';
+      const redirectUri = process.env.REACT_APP_REDIRECT_URI;
+      const scopes = [
+        'playlist-read-private',
+        'playlist-read-collaborative',
+        'playlist-modify-public',
+        'user-read-recently-played',
+        'playlist-modify-private',
+        'ugc-image-upload',
+        'user-follow-modify',
+        'user-follow-read',
+        'user-library-read',
+        'user-library-modify',
+        'user-read-private',
+        'user-read-email',
+        'user-top-read',
+        'user-read-playback-state'
+      ];
+      return `https://accounts.spotify.com/authorize?client_id=${clientId}&scope=${scopes.join('%20')}&response_type=token&redirect_uri=${redirectUri}`;
+    }
     function getHashParams() {
       const hashParams = {};
       const regex = /([^&;=]+)=?([^&;]*)/g;
@@ -47,7 +62,7 @@ class App extends Component {
 
     const hashParams = getHashParams();
     if (!hashParams.access_token) {
-      window.location.href = authorisationUrl;
+      window.location.href = getAuthorisationUrl();
     } else {
       this.props.setToken(hashParams.access_token);
     }
@@ -135,16 +150,16 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  token: PropTypes.string,
-  fetchUser: PropTypes.func,
-  setToken: PropTypes.func,
-  pauseSong: PropTypes.func,
-  playSong: PropTypes.func,
-  stopSong: PropTypes.func,
-  resumeSong: PropTypes.func,
-  volume: PropTypes.number,
-};
+// App.propTypes = {
+//   token: PropTypes.string,
+//   fetchUser: PropTypes.func,
+//   setToken: PropTypes.func,
+//   pauseSong: PropTypes.func,
+//   playSong: PropTypes.func,
+//   stopSong: PropTypes.func,
+//   resumeSong: PropTypes.func,
+//   volume: PropTypes.number,
+// };
 
 const mapStateToProps = (state) => {
   return {

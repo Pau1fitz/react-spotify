@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './ArtWork.css';
 
 const ArtWork = (albumArtwork) => (
@@ -9,8 +9,8 @@ const ArtWork = (albumArtwork) => (
 );
 
 
-ArtWork.propTypes = {
-  albumArtwork: PropTypes.string
-};
+// ArtWork.propTypes = {
+//   albumArtwork: PropTypes.string
+// };
 
 export default ArtWork;

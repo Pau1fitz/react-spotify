@@ -6,10 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
-## [2.0.2] - 2020.xx.xx
-### Changed
-- 
+## [2.0.x] - 2020.xx.xx
 
+
+## [2.0.2] - 2020.09.29
+### Changed
+- Replace ejected CRA (Config & Scripts) with latest, unejected Create-React-App
+- Remove Electron
+- Begin migration to Typescript
+- Upgrade React v.16.13.1
+- Upgrade Redux v.4.0.5
 
 ## [2.0.1] - 2020.09.25
 ### Changed
