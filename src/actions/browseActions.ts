@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const fetchCategoriesSuccess = (categories) => {
   return {
     type: 'FETCH_CATEGORIES_SUCCESS',

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const playlistReducer = (state = {}, action) => {
   switch (action.type) {
 

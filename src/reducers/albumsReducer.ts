@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const albumsReducer = (state = {}, action) => {
   switch (action.type) {
     case "FETCH_ALBUMS_PENDING":

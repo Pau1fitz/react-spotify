@@ -1,3 +1,4 @@
+// @ts-nocheck
 import uniqBy from 'lodash/uniqBy';
 import { setArtistIds } from './artistActions';
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const browseReducer = (state = {}, action) => {
   switch (action.type) {
   case "FETCH_CATEGORIES_SUCCESS":

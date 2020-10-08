@@ -7,49 +7,33 @@ h3 {
   padding: 0;
 }
 
-@keyframes octocat-wave {
-  0%,
-  100% {
-    transform: rotate(0)
-  }
-  20%,
-  60% {
-    transform: rotate(-25deg)
-  }
-  40%,
-  80% {
-    transform: rotate(10deg)
-  }
-}
 
 body {
-    font-family: 'Proxima Nova', Georgia, sans-serif;
-    background: rgb(24, 24, 24);
-    color: #fff;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0;
+  font-family: 'Proxima Nova', Georgia, sans-serif;
+  background: #040404;
+  color: #fff;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
 }
 
-.app-container {
-  display: flex;
+.app {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 98%;
   position: relative;
 }
 
-.left-side-section {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  bottom: 10px;
-  width: 180px;
+.side-section {
+  height: 100%;
   overflow-y: auto;
 }
 
 .main-section {
-  width: 900px;
+  background: linear-gradient(180deg, #404040 0%, #121212 10%);
+  height: 100%;
+  padding: 0 30px;
   position: relative;
-  left: 200px;
-  padding: 0 10px;
 }
 
 .main-section-container {

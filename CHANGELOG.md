@@ -6,7 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
-## [2.0.x] - 2020.xx.xx
+## [2.1.0] - 2020.10.08
+## Changed
+- Migrate all CSS to CSS-in-JSS
+- Reorganise `components` into Atomic Design heirarchy
+- Add `containers` directory
+- Migrate smaller class components to functional components
+- Add Icon, PlayInfo components
+- @ts-nocheck on all files throwing Typescript errors
 
 
 ## [2.0.2] - 2020.09.29

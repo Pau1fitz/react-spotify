@@ -1,9 +1,0 @@
-.footer {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  background: rgb(40, 40, 40);
-  height: 80px;
-  z-index: 2;
-}

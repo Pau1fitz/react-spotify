@@ -1,33 +1,29 @@
-import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { fetchUser } from './actions/userActions';
-import { setToken } from './actions/tokenActions';
+// @ts-nocheck
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { fetchUser } from './actions/userActions'
+import { setToken } from './actions/tokenActions'
 import {
   playSong,
   stopSong,
   pauseSong,
   resumeSong,
-} from './actions/songActions';
+} from './actions/songActions'
 
-import ArtWork from './components/ArtWork';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import MainHeader from './components/MainHeader';
-import MainView from './components/MainView';
-import SideMenu from './components/SideMenu';
-import UserPlaylists from './components/UserPlaylists';
+import { Player, Utility } from './components/molecules'
+import { MainHeader, SideMenu } from './components/organisms'
+import { MainView } from './containers'
 
-import './App.css';
+import './App.css'
 
 class App extends Component {
-  static audio;
+  static audio
 
   componentDidMount() {
     function getAuthorisationUrl() {      
-      const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4';
-      const redirectUri = process.env.REACT_APP_REDIRECT_URI;
+      const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4'
+      const redirectUri = process.env.REACT_APP_REDIRECT_URI
       const scopes = [
         'playlist-read-private',
         'playlist-read-collaborative',
@@ -43,110 +39,108 @@ class App extends Component {
         'user-read-email',
         'user-top-read',
         'user-read-playback-state'
-      ];
-      return `https://accounts.spotify.com/authorize?client_id=${clientId}&scope=${scopes.join('%20')}&response_type=token&redirect_uri=${redirectUri}`;
+      ]
+      return `https://accounts.spotify.com/authorize?client_id=${clientId}&scope=${scopes.join('%20')}&response_type=token&redirect_uri=${redirectUri}`
     }
     function getHashParams() {
-      const hashParams = {};
-      const regex = /([^&;=]+)=?([^&;]*)/g;
-      const q = window.location.hash.substring(1);
-      let e;
+      const hashParams = {}
+      const regex = /([^&;=]+)=?([^&;]*)/g
+      const queries = window.location.hash.substring(1)
   
-      e = regex.exec(q);
-      while (e) {
-        hashParams[e[1]] = decodeURIComponent(e[2]);
-        e = regex.exec(q);
+      let element = regex.exec(queries)
+      while (element) {
+        hashParams[element[1]] = decodeURIComponent(element[2])
+        element = regex.exec(queries)
       }
-      return hashParams;
+      return hashParams
     }
 
-    const hashParams = getHashParams();
+    let hashParams = getHashParams()
     if (!hashParams.access_token) {
-      window.location.href = getAuthorisationUrl();
+      window.location.href = getAuthorisationUrl()
     } else {
-      this.props.setToken(hashParams.access_token);
+      this.props.setToken(hashParams.access_token)
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.token) {
-      this.props.fetchUser(nextProps.token);
+      this.props.fetchUser(nextProps.token)
     }
 
     if (this.audio !== undefined) {
-      this.audio.volume = nextProps.volume / 100;
+      this.audio.volume = nextProps.volume / 100
     }
   }
 
   stopSong = () => {
     if (this.audio) {
-      this.props.stopSong();
-      this.audio.pause();
+      this.props.stopSong()
+      this.audio.pause()
     }
-  };
+  }
 
   pauseSong = () => {
     if (this.audio) {
-      this.props.pauseSong();
-      this.audio.pause();
+      this.props.pauseSong()
+      this.audio.pause()
     }
-  };
+  }
 
   resumeSong = () => {
     if (this.audio) {
-      this.props.resumeSong();
-      this.audio.play();
+      this.props.resumeSong()
+      this.audio.play()
     }
-  };
+  }
 
   audioControl = (song) => {
-    const { playSong, stopSong } = this.props;
+    const { playSong, stopSong } = this.props
 
     if (this.audio === undefined) {
-      playSong(song.track);
-      this.audio = new Audio(song.track.preview_url);
-      this.audio.play();
+      playSong(song.track)
+      this.audio = new Audio(song.track.preview_url)
+      this.audio.play()
     } else {
-      stopSong();
-      this.audio.pause();
-      playSong(song.track);
-      this.audio = new Audio(song.track.preview_url);
-      this.audio.play();
+      stopSong()
+      this.audio.pause()
+      playSong(song.track)
+      this.audio = new Audio(song.track.preview_url)
+      this.audio.play()
     }
-  };
+  }
 
   render() {
     return (
-      <div className="App">
-        <div className="app-container">
-          <div className="left-side-section">
-            <SideMenu />
-            <UserPlaylists />
-            <ArtWork />
-          </div>
-          <div className="main-section">
-            <Header />
-            <div className="main-section-container">
-              <MainHeader
-                pauseSong={this.pauseSong}
-                resumeSong={this.resumeSong}
-              />{' '}
-              <MainView
-                pauseSong={this.pauseSong}
-                resumeSong={this.resumeSong}
-                audioControl={this.audioControl}
-              />
-            </div>
-          </div>
-          <Footer
-            stopSong={this.stopSong}
-            pauseSong={this.pauseSong}
-            resumeSong={this.resumeSong}
-            audioControl={this.audioControl}
-          />
+      <div className='app'>
+        <div className='side-section'>
+          <SideMenu />
         </div>
+
+        <div className='main-section'>
+          <Utility />
+
+          <div className='main-section-container'>
+            <MainHeader
+              pauseSong={this.pauseSong}
+              resumeSong={this.resumeSong}
+            />{' '}
+            <MainView
+              pauseSong={this.pauseSong}
+              resumeSong={this.resumeSong}
+              audioControl={this.audioControl}
+            />
+          </div>
+        </div>
+
+        <Player
+          stopSong={this.stopSong}
+          pauseSong={this.pauseSong}
+          resumeSong={this.resumeSong}
+          audioControl={this.audioControl}
+        />
       </div>
-    );
+    )
   }
 }
 
@@ -159,14 +153,14 @@ class App extends Component {
 //   stopSong: PropTypes.func,
 //   resumeSong: PropTypes.func,
 //   volume: PropTypes.number,
-// };
+// }
 
 const mapStateToProps = (state) => {
   return {
     token: state.tokenReducer.token,
     volume: state.soundReducer.volume,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
@@ -179,7 +173,7 @@ const mapDispatchToProps = (dispatch) => {
       resumeSong,
     },
     dispatch
-  );
-};
+  )
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

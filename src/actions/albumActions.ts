@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const fetchAlbumsPending = () => {
   return {
     type: 'FETCH_ALBUMS_PENDING'

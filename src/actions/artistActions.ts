@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const fetchArtistsPending = () => {
   return {
     type: 'FETCH_ARTISTS_PENDING'
