@@ -1,22 +1,20 @@
+// @ts-nocheck
 import React from 'react'
-import { createUseStyles } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 
 import { Button, Overline } from '../atoms'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   playlistHeader: {
     alignItems: 'flex-end',
     display: 'flex',
-    height: '160px',
+    paddingTop: '16px',
 
-    '& .playlistImage': {
-      backgroundColor: '#FFFFFF',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      height: '100%',
+    '& img': {
       marginRight: '20px',
-      maxHeight: '160px',
-      maxWidth: '160px',
+      maxHeight: '200px',
+      maxWidth: '200px',
+      objectFit: 'cover',
       width: '100%',
     },
     '& .subTitle': {
@@ -24,7 +22,7 @@ const useStyles = createUseStyles({
     },
     '& .playlistName': {
       fontSize: '40px',
-      fontFamily: "'Proxima Bold', Georgia, sans-serif",
+      fontFamily: theme.typography.family.bold,
       letterSpacing: '1px',
     },
     '& .subText': {
@@ -35,26 +33,30 @@ const useStyles = createUseStyles({
       '& em': {
         color: '#FFFFFF',
         fontStyle: 'normal',
-      },  
+      },
+      '& strong': {
+        fontSize: '20px',
+      }
     },
   },
-})
+}))
 
 const PlaylistHeader = ({ buttonAction, buttonLabel, currentPlaylist }) => {
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
 
   const getPlaylistImageUrl = (playlist) => 
     playlist.images[0] ? playlist.images[0].url : null
 
   return (
     <div className={classes.playlistHeader}>
-      <div className='playlistImage' style={{ backgroundImage: `url(${getPlaylistImageUrl(currentPlaylist)})` }}></div>
+      <img src={getPlaylistImageUrl(currentPlaylist)} />
 
       <div>
         <Overline className="subTitle">PLAYLIST</Overline>
 
         <h3 className='playlistName'>{currentPlaylist.name}</h3>
-        <p className='subText'>Created By: <em>{currentPlaylist.owner.display_name}</em> - {currentPlaylist.tracks.total} songs</p>
+        <p className='subText'>Created by <em>{currentPlaylist.owner.display_name}</em> <strong>&#183;</strong> {currentPlaylist.tracks.total} songs</p>
 
         <Button onClickAction={buttonAction}>
           {buttonLabel}

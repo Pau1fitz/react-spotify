@@ -5,14 +5,11 @@ import { TrackSearch, UserDetails } from '../../molecules'
 
 const useStyles = createUseStyles({
   utility: {
-    position: 'relative',
-    width: 'inherit',
-
-    '& .layout': {
-      display: 'flex',
-      flexFlow: 'row nowrap',
-      justifyContent: 'space-between',
-    }
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    gridArea: 'topRow1 / mainCol / topRow1 / mainCol',
+    justifyContent: 'space-between',
+    padding: '0 20px',
   }
 })
 
@@ -21,10 +18,8 @@ const Utility = () => {
 
   return (
     <div className={classes.utility}>
-      <div className='layout'>
-        <TrackSearch />
-        <UserDetails />
-      </div>
+      <TrackSearch />
+      <UserDetails />
     </div>
   )
 }

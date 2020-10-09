@@ -1,15 +1,16 @@
+// @ts-nocheck
 import React from 'react'
 import clsx from 'clsx'
-import { createUseStyles } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   overline: {
     fontSize: '11px',
-    fontFamily: '"Proxima Thin", sans-serif',
+    fontFamily: theme.typography.family.thin,
     letterSpacing: '1px',
     textTransform: 'uppercase',
   }
-})
+}))
 
 type Props = {
   children: React.ReactNode,
@@ -17,7 +18,8 @@ type Props = {
 }
 
 export const Overline = ({ children, className }: Props) => {
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
 
   return (
     <p className={clsx(

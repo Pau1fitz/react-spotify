@@ -1,11 +1,12 @@
+// @ts-nocheck
 import React from 'react'
-import { createUseStyles } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 import PropTypes from 'prop-types'
 import key from 'weak-key'
 
 import { Icon } from './'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   albumCard: {
     cursor: 'pointer',
     display: 'block',
@@ -18,6 +19,8 @@ const useStyles = createUseStyles({
     whiteSpace: 'nowrap',
 
     '& .albumCover': {
+      position: 'relative',
+
       '& img': {
         maxHeight: '100%',
         objectFit: 'cover',
@@ -25,28 +28,34 @@ const useStyles = createUseStyles({
       },
 
       '& .playIcon': {
-        fontSize: '50px',
-        left: 'calc(50% - 15px)',
+        fontSize: '60px',
+        left: 'calc(50% - 30px)',
         position: 'absolute',
-        top: 'calc(50% - 15px)',
+        top: 'calc(50% - 30px)',
       },  
     },
 
     '& .albumDetails': {
+      fontFamily: theme.typography.family.bold,
       fontSize: '13px',
-      fontWeight: 'bold',
+      letterSpacing: '0.5px',
       lineHeight: '20px',
       padding: '10px 0',
+
+      '& > *': {
+        margin: 0,
+      }
     },
     '& .subText': {
-      color: '#B2B2B2',
-      fontWeight: 'normal',
+      color: theme.palette.grey[1],
+      fontFamily: theme.typography.family.normal,
     },
   }
-})
+}))
 
 export const AlbumCard = ({ song, audioControl }) => {
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
 
   return (
     <li

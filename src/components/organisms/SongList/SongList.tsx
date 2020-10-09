@@ -8,18 +8,13 @@ import moment from 'moment'
 
 const useStyles = createUseStyles({
   songList: {
-    '& .song-header': {
-      borderBottom: '1px solid #666666',
-      display: 'flex',
-      marginTop: '20px',
-      paddingBottom: '6px',
-    },
     '& .section-title': {
       fontFamily: '"Proxima Bold", Georgia, sans-serif',
       fontSize: '34px',
       fontWeight: '800',
       padding: '0 0 20px 0',
     },
+
     '& .main-pause-play-btn': {
       background: '#1DB954',
       border: 'none',
@@ -33,27 +28,7 @@ const useStyles = createUseStyles({
       padding: '10px',
       width: '100px',
     },
-    '& .song-row': {
-      borderBottom: '1px solid #666',
-      cursor: 'pointer',
-      display: 'flex',
-      fontSize: '14px',
-      lineHeight: '40px',
-      listStyleType: 'none',
-    },
-    '& .song-row:hover': {
-      background: '#333333',
-    },
-    '& .active.song-row': {
-      color: '#1DB954',
-      background: '#333333',
-    },
-    '& .add-song': {
-      color: '#FFFFFF',
-    },
-    '& .song-row:hover > .play-song': {
-      opacity: 1,
-    },
+
     '& .song-title-col': {
       width: '300px',
     },
@@ -69,58 +44,97 @@ const useStyles = createUseStyles({
     '& .song-length-col': {
       width: '60px',
     },
-    '& .song-title-header': {
-      marginLeft: '60px',
+
+    '& .song-header': {
+      borderBottom: '1px solid #666666',
+      display: 'flex',
+      marginTop: '20px',
+      paddingBottom: '6px',
+
+      '& p': {
+        color: '#CCCCCC',
+        fontFamily: '"Proxima Thin", Georgia, sans-serif',
+        fontSize: '12px',
+        padding: '0 8px',
+        textTransform: 'uppercase',
+      },
+
+      '& .song-title-header': {
+        marginLeft: '60px',
+      },
+      '& .song-length-header .fa-clock-o': {
+        color: '#CCCCCC',
+        fontSize: '17px',
+      },
+      '& .song-added-header': {
+        color: '#CCCCCC',
+        width: '80px',
+      },
     },
-    '& .song-row .play-song': {
-      opacity: 0,
-      textAlign: 'center',
-      width: '40px',
-    },
-    '& .song-row  .play-song .fa': {
-      color: '#CCCCCC',
+
+    '& .song-row': {
+      borderBottom: '1px solid #666',
       cursor: 'pointer',
-      fontSize: '30px',
-      position: 'relative',
-      top: '5px',
-      '-webkit-text-stroke': '2px #181818',
+      display: 'flex',
+      fontSize: '14px',
+      lineHeight: '40px',
+      listStyleType: 'none',
+
+      '&.active': {
+        color: '#1DB954',
+        background: '#333333',
+      },
+
+      '&:hover': {
+        background: '#333333',
+
+        '& > .play-song': {
+          opacity: 1,
+        },  
+      },
+
+      '& .play-song': {
+        opacity: 0,
+        textAlign: 'center',
+        width: '40px',
+
+        '& .fa': {
+          color: '#CCCCCC',
+          cursor: 'pointer',
+          fontSize: '30px',
+          position: 'relative',
+          top: '5px',
+          '-webkit-text-stroke': '2px #181818',
+
+          '&:hover': {
+            color: '#FFFFFF',
+          },
+        },
+      },
+
+      '& p': {
+        lineHeight: '42px',
+        overflow: 'hidden',
+        padding: '0 8px',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
     },
-    '& .play-song .fa:hover': {
-      color: '#FFFFFF',
-    },
-    '& .song-row p': {
-      lineHeight: '42px',
-      overflow: 'hidden',
-      padding: '0 8px',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-    },
-    '& .song-header p': {
-      color: '#CCCCCC',
-      fontFamily: '"Proxima Thin", Georgia, sans-serif',
-      fontSize: '12px',
-      padding: '0 8px',
-      textTransform: 'uppercase',
-    },
-    '& .song-length-header .fa-clock-o': {
-      color: '#CCCCCC',
-      fontSize: '17px',
-    },
-    '& .song-added-header': {
-      color: '#CCCCCC',
-      width: '80px',
-    },
+
     '& .add-song': {
+      color: '#FFFFFF',
       cursor: 'pointer',
       fontSize: '20px',
       width: '20px',
       zIndex: '1',
-    },
-    '& .add-song .fa': {
-      '-webkit-text-stroke': '3px #181818',
-    },
-    '& .add-song .fa:hover': {
-      '-webkit-text-stroke': '2px #181818',
+
+      '& .fa': {
+        '-webkit-text-stroke': '3px #181818',
+
+        '&:hover': {
+          '-webkit-text-stroke': '2px #181818',
+        },  
+      },
     },
   }
 })
@@ -153,7 +167,7 @@ const SongList = ({
     ) {
       fetchSongs(token)
     }
-  }, [fetchSongsError, fetchSongsPending, token, viewType])
+  }, [fetchSongs, fetchSongsError, fetchSongsPending, token, viewType])
 
   const msToMinutesAndSeconds = (ms) => {
     const minutes = Math.floor(ms / 60000)

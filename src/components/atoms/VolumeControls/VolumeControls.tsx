@@ -1,10 +1,11 @@
+// @ts-nocheck
 import React, { useState } from 'react'
-import { createUseStyles } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 import PropTypes from 'prop-types'
 
 import { Icon } from '../'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   volumeControls: {
     alignItems: 'center',
     display: 'flex',
@@ -12,9 +13,9 @@ const useStyles = createUseStyles({
     justifyContent: 'space-between',
 
     '& .volume': {
-      background: '#1DB954',
-      borderRadius: '4px',
-      height: '5px',
+      background: theme.palette.grey[4],
+      borderRadius: theme.borderRadius.small,
+      height: '4px',
       outline: 'none',
       opacity: '1',
       width: '120px',
@@ -25,9 +26,9 @@ const useStyles = createUseStyles({
         opacity: '0.8',
       },
       '&::-moz-range-track': {
-        background: '#4CAF50',
-        borderRadius: '4px',
-        height: '5px',
+        background: theme.palette.grey[3],
+        borderRadius: theme.borderRadius.small,
+        height: '4px',
         opacity: '1',
         outline: 'none',
         width: '120px',
@@ -47,13 +48,15 @@ const useStyles = createUseStyles({
       marginRight: '5px',
     },
   }
-})
+}))
 
 export const VolumeControls = ({
   updateVolume,
   volume,
 }) => {
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
+
   const [volumeState, setVolumeState] = useState(volume)
 
   const handleVolumeChange = (event) => {

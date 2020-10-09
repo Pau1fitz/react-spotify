@@ -1,7 +1,12 @@
 // @ts-nocheck
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { createUseStyles } from 'react-jss'
+import { ThemeProvider } from 'theming'
+import clsx from 'clsx'
+
 import { fetchUser } from './actions/userActions'
 import { setToken } from './actions/tokenActions'
 import {
@@ -10,17 +15,60 @@ import {
   pauseSong,
   resumeSong,
 } from './actions/songActions'
-
 import { Player, Utility } from './components/molecules'
 import { MainHeader, SideMenu } from './components/organisms'
 import { MainView } from './containers'
+import { SpotifyDark } from './theme'
 
-import './App.css'
+const cssBaseline = {
+  backgroundColor: '#040404',
+  color: '#FFFFFF',
+  fontFamily: '#000000',
+  margin: 0,
+  padding: 0,
+}
 
-class App extends Component {
-  static audio
+const useStyles = createUseStyles({
+  app: {
+    display: 'grid',
+    gridTemplateColumns: '[secondaryCol] minmax(200px, 1fr) [mainCol] 5fr',
+    gridTemplateRows: '[topRow1] 50px [topRow2] 60px [mainRow] 1fr [baseRow] 80px',
+    height: '100vh',
+    width: '100vw',
 
-  componentDidMount() {
+    background: '#040404',
+    color: '#FFFFFF',
+    fontFamily: '"Proxima Nova", sans-serif',
+  },
+
+  mainViewSection: {
+    background: 'linear-gradient(180deg, #404040 0%, #121212 10%)',
+    gridArea: 'topRow2 / mainCol / baseRow / mainCol',
+    overflow: 'hidden',
+    padding: '0 20px',
+  },
+  scrollingPane: {
+    height: '100%',
+    overflowY: 'auto',
+    marginBottom: '60px',
+  },
+})
+
+const App = ({
+  fetchUser,
+  pauseSong,
+  playSong,
+  resumeSong,
+  setToken,
+  stopSong,
+  token,
+  volume,
+}) => {
+  const classes = useStyles()
+
+  const [htmlAudioObj, setHtmlAudioObj] = useState(undefined)
+
+  useEffect(() => {
     function getAuthorisationUrl() {      
       const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4'
       const redirectUri = process.env.REACT_APP_REDIRECT_URI
@@ -59,101 +107,107 @@ class App extends Component {
     if (!hashParams.access_token) {
       window.location.href = getAuthorisationUrl()
     } else {
-      this.props.setToken(hashParams.access_token)
+      setToken(hashParams.access_token)
     }
-  }
+  }, [])
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.token) {
-      this.props.fetchUser(nextProps.token)
+  useEffect(() => {
+    Object.keys(cssBaseline).map((styleKey) => {
+      document.body.style[styleKey] = cssBaseline[styleKey]
+    })
+  }, [])
+
+  useEffect(() => {
+    if (token) {
+      fetchUser(token)
     }
+  }, [fetchUser, token])
 
-    if (this.audio !== undefined) {
-      this.audio.volume = nextProps.volume / 100
+  useEffect(() => {
+    if (htmlAudioObj) {
+      htmlAudioObj.play()
     }
-  }
+  }, [htmlAudioObj])
 
-  stopSong = () => {
-    if (this.audio) {
-      this.props.stopSong()
-      this.audio.pause()
+  useEffect(() => {
+    if (htmlAudioObj !== undefined) {
+      htmlAudioObj.volume = volume / 100
     }
-  }
+  }, [htmlAudioObj, volume])
 
-  pauseSong = () => {
-    if (this.audio) {
-      this.props.pauseSong()
-      this.audio.pause()
-    }
-  }
-
-  resumeSong = () => {
-    if (this.audio) {
-      this.props.resumeSong()
-      this.audio.play()
-    }
-  }
-
-  audioControl = (song) => {
-    const { playSong, stopSong } = this.props
-
-    if (this.audio === undefined) {
-      playSong(song.track)
-      this.audio = new Audio(song.track.preview_url)
-      this.audio.play()
-    } else {
+  const handleStopSong = () => {
+    if (htmlAudioObj) {
       stopSong()
-      this.audio.pause()
-      playSong(song.track)
-      this.audio = new Audio(song.track.preview_url)
-      this.audio.play()
+      htmlAudioObj.pause()
+    }
+  }
+  const handlePauseSong = () => {
+    if (htmlAudioObj) {
+      pauseSong()
+      htmlAudioObj.pause()
+    }
+  }
+  const handleResumeSong = () => {
+    if (htmlAudioObj) {
+      resumeSong()
+      htmlAudioObj.play()
     }
   }
 
-  render() {
-    return (
-      <div className='app'>
-        <div className='side-section'>
-          <SideMenu />
-        </div>
+  const audioController = (song) => {
+    if (!!htmlAudioObj) {
+      stopSong()
+      htmlAudioObj.pause()
+    }
 
-        <div className='main-section'>
-          <Utility />
+    playSong(song.track)
+    setHtmlAudioObj(new Audio(song.track.preview_url))
+  }
 
-          <div className='main-section-container'>
-            <MainHeader
-              pauseSong={this.pauseSong}
-              resumeSong={this.resumeSong}
-            />{' '}
-            <MainView
-              pauseSong={this.pauseSong}
-              resumeSong={this.resumeSong}
-              audioControl={this.audioControl}
-            />
-          </div>
+  const mainViewStyling = clsx(
+    classes.mainViewSection,
+    classes.scrollingPane,
+  )
+  return (
+    <ThemeProvider theme={SpotifyDark}>
+      <div className={classes.app}>
+        <SideMenu />
+
+        <Utility />
+
+        <div className={mainViewStyling}>
+          <MainHeader
+            pauseSong={handlePauseSong}
+            resumeSong={handleResumeSong}
+          />
+          <MainView
+            audioControl={audioController}
+            pauseSong={handlePauseSong}
+            resumeSong={handleResumeSong}
+          />
         </div>
 
         <Player
-          stopSong={this.stopSong}
-          pauseSong={this.pauseSong}
-          resumeSong={this.resumeSong}
-          audioControl={this.audioControl}
+          audioControl={audioController}
+          pauseSong={handlePauseSong}
+          resumeSong={handleResumeSong}
+          stopSong={handleStopSong}
         />
       </div>
-    )
-  }
+    </ThemeProvider>
+  )
 }
 
-// App.propTypes = {
-//   token: PropTypes.string,
-//   fetchUser: PropTypes.func,
-//   setToken: PropTypes.func,
-//   pauseSong: PropTypes.func,
-//   playSong: PropTypes.func,
-//   stopSong: PropTypes.func,
-//   resumeSong: PropTypes.func,
-//   volume: PropTypes.number,
-// }
+App.propTypes = {
+  fetchUser: PropTypes.func,
+  pauseSong: PropTypes.func,
+  playSong: PropTypes.func,
+  resumeSong: PropTypes.func,
+  setToken: PropTypes.func,
+  stopSong: PropTypes.func,
+  token: PropTypes.string,
+  volume: PropTypes.number,
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -166,11 +220,11 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       fetchUser,
-      setToken,
-      playSong,
-      stopSong,
       pauseSong,
+      playSong,
       resumeSong,
+      setToken,
+      stopSong,
     },
     dispatch
   )

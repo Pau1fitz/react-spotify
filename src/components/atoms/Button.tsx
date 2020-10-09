@@ -1,12 +1,13 @@
+// @ts-nocheck
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   button: {
-    background: '#1db954',
+    background: theme.palette.primary.main,
     border: '4px solid transparent',
-    borderRadius: '20px',
-    color: '#FFFFFF',
+    borderRadius: theme.borderRadius.large,
+    color: theme.palette.common.white.primary,
     cursor: 'pointer',
     fontSize: '10px',
     letterSpacing: '1px',
@@ -14,11 +15,11 @@ const useStyles = createUseStyles({
     padding: '5px 30px',
 
     '&:hover': {
-      background: '#2FD566',
-      border: '4px solid #2FD566',
+      background: theme.palette.primary.dark,
+      border: `4px solid ${theme.palette.primary.dark}`,
     },
   }
-})
+}))
 
 export const Button = ({ onClickAction, children }) => {
   const classes = useStyles()

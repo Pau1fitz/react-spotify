@@ -1,16 +1,16 @@
+// @ts-nocheck
 import React from 'react'
-import { createUseStyles } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 import PropTypes from 'prop-types'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   playInfo: {
     alignItems: 'center',
     display: 'flex',
     flexFlow: 'row nowrap',
-    minWidth: '144px',
-    maxWidth: '200px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    width: '200px',
 
     '& img': {
       height: '52px',
@@ -19,20 +19,22 @@ const useStyles = createUseStyles({
   
     '& .songName': {
       fontSize: '13px',
+      paddingBottom: '6px',
     },
     '& .artistName': {
-      color: '#B2B2B2',
+      color: theme.palette.grey[1],
       fontSize: '12px',
     },
   },
-})
+}))
 
 export const PlayInfo = ({
   albumImageUrl,
   artistName,
   songName,
 }) => {
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
   const hasSong = artistName && songName
 
   return (

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 const useStyles = createUseStyles({
   userDetails: {
+    alignItems: 'center',
     display: 'flex',
     justifyContent: 'flex-end',
-    padding: '10px 0',
 
     '& img': {
       borderRadius: '50%',
@@ -14,11 +14,9 @@ const useStyles = createUseStyles({
     },
 
     '& .name': {
-      color: '#FFFFFF',
+      color: '#FFFFFF', // theme.palette.white,
       fontSize: '14px',
       marginLeft: '10px',
-      position: 'relative',
-      top: '5px',
     },
   }
 })
@@ -35,8 +33,8 @@ const UserDetails = ({ userImageUrl, displayName }) => {
 }
 
 UserDetails.propTypes = {
+  displayName: PropTypes.string,
   userImageUrl: PropTypes.string,
-  displayName: PropTypes.string
 }
 
 export default UserDetails

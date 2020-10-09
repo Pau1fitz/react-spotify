@@ -10,10 +10,10 @@ const useStyles = createUseStyles({
     color: '#B3B3B3',
     padding: '20px',
     margin: '0',
+  },
 
-    '& .sectionTitle': {
-      marginBottom: '4px',
-    }  
+  sectionTitle: {
+    margin: '0 0 12px',
   },
 
   menu: {
@@ -64,7 +64,7 @@ const UserPlaylists = ({
     if (userId !== '' && token !== '') {
       fetchPlaylistsMenu(userId, token)
     }
-  }, [userId, token])
+  }, [fetchPlaylistsMenu, userId, token])
 
   const getPlaylistSongs = (playlist) => {
     fetchPlaylistSongs(
@@ -94,7 +94,7 @@ const UserPlaylists = ({
 
   return (
     <div className={classes.userPlaylist}>
-      <Overline className='sectionTitle'>Playlists</Overline>
+      <Overline className={classes.sectionTitle}>Playlists</Overline>
 
       {
         playlistMenu &&

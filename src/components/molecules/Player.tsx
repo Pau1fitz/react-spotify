@@ -11,15 +11,9 @@ const useStyles = createUseStyles({
     borderTop: '1px solid #181818',
     boxSizing: 'border-box',
     display: 'flex',
+    gridArea: 'baseRow / secondaryCol / baseRow / 3',
     justifyContent: 'space-between',
-
-    bottom: 0,
-    height: '80px',
-    left: 0,
-    padding: '0 30px 0 20px',
-    position: 'fixed',
-    width: '100%',
-    zIndex: 2,
+    padding: '0 20px',
   },
 })
 

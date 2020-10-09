@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import { createUseStyles } from 'react-jss'
+// @ts-nocheck
+import React, { useEffect, useState } from 'react'
+import { createUseStyles, useTheme } from 'react-jss'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 
 import { Icon } from '../'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   playControls: {
     alignItems: 'center',
     display: 'flex',
@@ -48,21 +49,21 @@ const useStyles = createUseStyles({
     },
 
     '& .barBg': {
-      background: '#404040',
-      borderRadius: '4px',
+      background: theme.palette.grey[4],
+      borderRadius: theme.borderRadius.small,
       height: '4px',
       margin: '0 10px',
       width: '500px',
     },
     '& .bar': {
-      background: '#1db954',
-      borderRadius: '4px',
+      background: theme.palette.grey[2],
+      borderRadius: theme.borderRadius.small,
       height: '4px',
       margin: '0',
       width: '100px',
     }
   }
-})
+}))
 
 export const PlayControls = ({
   audioControl,
@@ -76,35 +77,37 @@ export const PlayControls = ({
   stopSong,
   timeElapsed,
 }) => {
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
+
   const [songTime, setSongTime] = useState(timeElapsed)
   const [intervalId, setIntervalId] = useState(false)
 
-  // componentWillReceiveProps(nextProps) {
-  //   const calculateTime = () => {
-  //     const intervalId = setInterval(() => {
-  //       if (this.state.timeElapsed === 30) {
-  //         clearInterval(this.state.intervalId)
-  //         stopSong()
-  //       } else if (!songPaused) {
-  //         increaseSongTime(this.state.timeElapsed + 1)
-  //       }
-  //     }, 1000)
+  useEffect(() => {
+    const calculateTime = () => {
+      const interval = setInterval(() => {
+        if (timeElapsed === 30) {
+          clearInterval(intervalId)
+          stopSong()
+        } else if (!songPaused) {
+          increaseSongTime(timeElapsed + 1)
+        }
+      }, 1000)
   
-  //     setIntervalId(intervalId)
-  //   }
+      setIntervalId(interval)
+    }
 
-  //   if (!nextProps.songPlaying) {
-  //     clearInterval(intervalId)
-  //   }
+    if (!songPlaying) {
+      clearInterval(intervalId)
+    }
 
-  //   if (nextProps.songPlaying && nextProps.timeElapsed === 0) {
-  //     clearInterval(intervalId)
-  //     calculateTime()
-  //   }
+    if (songPlaying && timeElapsed === 0) {
+      clearInterval(intervalId)
+      calculateTime()
+    }
 
-  //   setSongTime(nextProps.timeElapsed)
-  // }
+    setSongTime(timeElapsed)
+  }, [])
 
   const getSongIndex = () =>
     songs.map((song, index) =>
@@ -133,7 +136,7 @@ export const PlayControls = ({
             <Icon name='step-backward' />
           </a>
 
-          <a onClick={handlePlayPauseSong} className='play-btn'>
+          <a onClick={handlePlayPauseSong}>
             <Icon name={buttonPlayPauseIcon} className='button large' />
           </a>
 

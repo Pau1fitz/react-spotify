@@ -2,6 +2,7 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 import PropTypes from 'prop-types'
+import clsx from 'clsx'
 
 import { Overline } from '../../atoms'
 import { UserPlaylists } from '../.'
@@ -11,17 +12,36 @@ const useStyles = createUseStyles({
     color: '#B3B3B3',
     padding: '20px',
     margin: '0',
+  },
 
-    '& .sectionTitle': {
-      marginBottom: '4px',
-    }  
+  sectionTitle: {
+    margin: '0 0 12px',
+  },
+
+  homeSection: {
+    gridArea: 'topRow1 / secondaryCol / mainRow / secondaryCol',
+    padding: '20px',
+  },
+  playlistSection: {
+    gridArea: 'mainRow / secondaryCol / mainRow / secondaryCol',
+    overflow: 'hidden',
+    padding: '20px',
+    paddingBottom: '0',
+    paddingRight: 0,
+  },
+  scrollingPane: {
+    height: '100%',
+    overflowY: 'auto',
+    marginBottom: '60px',
+    paddingRight: '20px',
+    textAlign: 'justify',
   },
 
   menu: {
     fontFamily: '"Proxima Thin", sans-serif',
     listStyleType: 'none',
     margin: 0,
-    marginBottom: '16px',
+    marginBottom: '28px',
     padding: 0,
 
     '& li': {
@@ -69,7 +89,7 @@ const SideMenu = ({
     updateViewType(name)
   }
   const handleBrowseClick = () => {
-    updateHeaderTitle('Brows')
+    updateHeaderTitle('Browse')
     updateViewType('Feature')
     fetchFeatured(token)
   }
@@ -116,26 +136,34 @@ const SideMenu = ({
   }
 
   return (
-    <div className={classes.sideMenu}>
-      <ul className={classes.menu}>
-        <li
-          onClick={handleBrowseClick}
-          className={
-            title === 'Browse' ? 'active' : ''
-          }
-        >
-          Browse
-        </li>
-        <li className='radio'>Radio</li>
-      </ul>
-    
-      <Overline className='sectionTitle'>Your Library</Overline>
-      <ul className={classes.menu}>
-        {renderLibraryMenu()}
-      </ul>
+    <>
+      <div className={classes.homeSection}>
+        <ul className={classes.menu}>
+          <li>Home</li>
+          <li
+            onClick={handleBrowseClick}
+            className={clsx(
+              title === 'Browse' && 'active'
+            )}
+          >
+            Browse
+          </li>
+          <li className='radio'>Radio</li>
+        </ul>
+      </div>
 
-      <UserPlaylists />
-    </div>
+      <div className={classes.playlistSection}>
+        <div className={classes.scrollingPane}>
+
+          <Overline className={classes.sectionTitle}>Your Library</Overline>
+          <ul className={classes.menu}>
+            {renderLibraryMenu()}
+          </ul>
+
+          <UserPlaylists />
+        </div>
+      </div>
+    </>
   )
 }
 

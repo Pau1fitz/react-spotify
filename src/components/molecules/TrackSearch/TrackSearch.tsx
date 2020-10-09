@@ -6,8 +6,8 @@ import { Button, Icon } from '../../atoms'
 
 const useStyles = createUseStyles({
   trackSearch: {
-    position: 'relative',
-    top: '10px',
+    alignItems: 'center',
+    display: 'flex',
 
     '& input': {
       background: '#FFFFFF',
@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
       border: 'none',
       outline: 'none',
 
-      '& searchIcon': {
+      '& .searchIcon': {
         color: 'white',
         cursor: 'pointer',
         fontSize: '15px',
