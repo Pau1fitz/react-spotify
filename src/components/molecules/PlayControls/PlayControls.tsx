@@ -1,11 +1,12 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles, useTheme } from 'react-jss'
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
 import moment from 'moment'
 
 import { Icon } from '../../atoms'
+import { increaseSongTime } from '../../../features/songsSlice'
 
 const useStyles = createUseStyles((theme) => ({
   playControls: {
@@ -83,26 +84,24 @@ const useStyles = createUseStyles((theme) => ({
 // TODO: add random playback function
 // TODO: add loop playback function
 
-export const PlayControls = ({
+const PlayControls = ({
   audioControl,
-  className,
-  increaseSongTime,
   pauseSong,
   resumeSong,
-  songDetails,
-  songPaused,
-  songPlaying,
-  songs,
-  stopSong,
-  timeElapsed,
+  className,
 }) => {
   const theme = useTheme()
   const classes = useStyles({ theme })
+  const dispatch = useDispatch()
+
+  const songs = useSelector(state => state.songs.song)
+  const songDetails = useSelector(state => state.songs.songDetails)
+  const songPaused = useSelector(state => state.songs.songPaused)
+  const songPlaying = useSelector(state => state.songs.songPlaying)
+  const timeElapsed = useSelector(state => state.songs.timeElapsed)
 
   const [songTime, setSongTime] = useState(timeElapsed)
   const [intervalId, setIntervalId] = useState(false)
-
-  // console.log('PC', songPlaying, songPaused, timeElapsed, intervalId)
 
   useEffect(() => {
     const calculateTime = () => {
@@ -111,7 +110,7 @@ export const PlayControls = ({
       //     clearInterval(intervalId)
       //     stopSong()
       //   } else if (!songPaused) {
-      //     increaseSongTime(timeElapsed + 1)
+      //     dispatch(increaseSongTime(timeElapsed + 1))
       //   }
       // }, 1000)
 
@@ -124,7 +123,7 @@ export const PlayControls = ({
             clearInterval(intervalId)
             stopSong()
           } else if (!songPaused) {
-            increaseSongTime(timeElapsed + 1)
+            dispatch(increaseSongTime(timeElapsed + 1))
           }
         }, 1000)
       )
@@ -180,13 +179,13 @@ export const PlayControls = ({
         <li onClick={handleRandomPlayback} className='icon small'>
           <Icon name='random' className='disabled' />
         </li>
-        <li onClick={handlePrevSong} className='icon small'>
+        <li onClick={handlePrevSong} className='icon small' aria-label='Go to Previous track'>
           <Icon name='step-backward' />
         </li>
-        <li onClick={handlePlayPauseSong} className='icon large'>
+        <li onClick={handlePlayPauseSong} className='icon large' aria-label='Play/Pause playback'>
           <Icon name={`${buttonPlayPauseIcon}`} iconSet='far' />
         </li>
-        <li onClick={handleNextSong} className='icon small'>
+        <li onClick={handleNextSong} className='icon small' aria-label='Go to Next track'>
           <Icon name='step-forward' />
         </li>
         <li onClick={handleLoopPlayback} className='icon small redo'>
@@ -209,18 +208,4 @@ export const PlayControls = ({
   )
 }
 
-PlayControls.propTypes = {
-  artistName: PropTypes.string,
-  audioControl: PropTypes.func,
-  className: PropTypes.string,
-  increaseSongTime: PropTypes.func,
-  pauseSong: PropTypes.func,
-  resumeSong: PropTypes.func,
-  songDetails: PropTypes.object,
-  songName: PropTypes.string,
-  songPaused: PropTypes.bool,
-  songPlaying: PropTypes.bool,
-  songs: PropTypes.array,
-  stopSong: PropTypes.func,
-  timeElapsed: PropTypes.number,
-}
+export default PlayControls

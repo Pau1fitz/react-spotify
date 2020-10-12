@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ## [2.1.2.1] - 2020.10.xx
 ## Changed
-- Migrate App to Redux hooks
-
+- Migrate App, MainView, PlayerBar, PlayControls & SongList to Redux hooks
+- Resolve playback controls not working
+- Start test coverage for PlayControls
 
 
 ## [2.1.2] - 2020.10.12

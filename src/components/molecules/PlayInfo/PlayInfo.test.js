@@ -22,17 +22,15 @@ describe('PlayInfo displays expected content', () => {
     expect(screen.queryByTestId('artist-name')).not.toBeInTheDocument()
   })
 
-  test.only('when short content is presented', async () => {
+  test('when short content is presented', async () => {
     renderComponent(songDetails1)
-  
+
     expect(screen.getByTestId('song-name')).toHaveTextContent('Words Remain')
     expect(screen.getByTestId('artist-name')).toHaveTextContent('Moderator')
 
     const artwork = screen.getByTestId('artwork')
-    screen.debug(artwork)
-
     expect(screen.getByTestId('artwork')).toHaveAttribute('alt', 'Words Remain - Moderator')
-    expect(screen.getByTestId('artwork')).toHaveAttribute('src', 'https://i.scdn.co/image/ab67616d00001e0231073ba528a43985280d4dc6')
+    expect(screen.getByTestId('artwork')).toHaveAttribute('src', 'https://i.scdn.co/image/ab67616d0000485131073ba528a43985280d4dc6')
   })
 
   test('when long content is presented', async () => {

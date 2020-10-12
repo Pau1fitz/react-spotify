@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { createUseStyles } from 'react-jss'
-import PropTypes from 'prop-types'
 
 import { ArtistList } from '../../components/molecules'
 import { AlbumList, BrowseView, SongList } from '../../components/organisms'
@@ -10,8 +10,10 @@ const useStyles = createUseStyles({
   mainView: {}
 })
 
-const MainView = ({ headerTitle, audioControl, resumeSong, pauseSong }) => {
+const MainView = ({ audioControl, resumeSong, pauseSong }) => {
   const classes = useStyles()
+
+  const headerTitle = useSelector(state => state.uiReducer.title)
 
   return (
     <div className={classes.mainView}>
@@ -30,20 +32,13 @@ const MainView = ({ headerTitle, audioControl, resumeSong, pauseSong }) => {
       {
         !['Albums', 'Artists', 'Browse'].includes(headerTitle) &&
         <SongList
-          resumeSong={resumeSong}
-          pauseSong={pauseSong}
           audioControl={audioControl}
+          pauseSong={pauseSong}
+          resumeSong={resumeSong}
         />
       }
     </div>
   )
-}
-
-MainView.propTypes = {
-  audioControl: PropTypes.func,
-  headerTitle: PropTypes.string,
-  pauseSong: PropTypes.func,
-  resumeSong: PropTypes.func,
 }
 
 export default MainView
