@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles } from 'react-jss'
 import { ThemeProvider } from 'theming'
@@ -26,6 +26,8 @@ const cssBaseline = {
   margin: 0,
   padding: 0,
 }
+
+let htmlAudioObj
 
 const useStyles = createUseStyles({
   app: {
@@ -59,8 +61,6 @@ const App = () => {
 
   const token = useSelector(state => state.token.token)
   const volume = useSelector(state => state.sound.volume)
-
-  const [htmlAudioObj, setHtmlAudioObj] = useState(undefined)
 
   useEffect(() => {
     function getAuthorisationUrl() {
@@ -131,31 +131,32 @@ const App = () => {
 
   const handleStopSong = () => {
     if (htmlAudioObj) {
-      stopSong()
+      dispatch(stopSong())
       htmlAudioObj.pause()
     }
   }
   const handlePauseSong = () => {
     if (htmlAudioObj) {
-      pauseSong()
+      dispatch(pauseSong())
       htmlAudioObj.pause()
     }
   }
   const handleResumeSong = () => {
     if (htmlAudioObj) {
-      resumeSong()
+      dispatch(resumeSong())
       htmlAudioObj.play()
     }
   }
 
   const audioController = (song) => {
-    if (!!htmlAudioObj) {
-      stopSong()
+    if (htmlAudioObj !== undefined) {
+      dispatch(stopSong())
       htmlAudioObj.pause()
     }
 
-    playSong(song.track)
-    setHtmlAudioObj(new Audio(song.track.preview_url))
+    htmlAudioObj = new Audio(song.track.preview_url)
+    htmlAudioObj.play()
+    dispatch(playSong(song.track))
   }
 
   const mainViewStyling = clsx(

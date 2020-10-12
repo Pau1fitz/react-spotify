@@ -1,12 +1,19 @@
 // @ts-nocheck
 import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles } from 'react-jss'
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
 import key from 'weak-key'
 import moment from 'moment'
 
 import { Icon } from '../../atoms'
+import { 
+  fetchPlaylistSongsPending,
+  fetchSongs,
+  fetchSongsError,
+  fetchSongsPending
+} from '../../../features/songsSlice'
+import { addSongToLibrary } from '../../../features/userSlice'
 
 const useStyles = createUseStyles({
   songList: {
@@ -123,6 +130,11 @@ const useStyles = createUseStyles({
       },
     },
 
+    '& .play-btn': {
+      color: '#FFFFFF',
+      cursor: 'pointer',
+      fontSize: '20px',
+    },
     '& .add-song': {
       color: '#FFFFFF',
       cursor: 'pointer',
@@ -141,24 +153,17 @@ const useStyles = createUseStyles({
   }
 })
 
-const SongList = ({
-  addSongToLibrary,
-  audioControl,
-  fetchPlaylistSongsPending,
-  fetchSongs,
-  fetchSongsError,
-  fetchSongsPending,
-  pauseSong,
-  resumeSong,
-  songAddedId,
-  songId,
-  songPaused,
-  songPlaying,
-  songs,
-  token,
-  viewType,
-}) => {
+const SongList = ({ audioControl, resumeSong, pauseSong }) => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+
+  const songAddedId = useSelector(state => state.user.songId)
+  const songId = useSelector(state => state.songs.songId)
+  const songPaused = useSelector(state => state.songs.songPaused)
+  const songPlaying = useSelector(state => state.songs.songPlaying)
+  const songs = useSelector(state => state.songs.songs)
+  const token = useSelector(state => state.token.token)
+  const viewType = useSelector(state => state.songs.viewType)
 
   useEffect(() => {
     if (
@@ -177,6 +182,18 @@ const SongList = ({
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
   }
 
+  const handleSongControl = (song) => {
+    if (song.track.id !== songId) {
+      audioControl(song)
+    }
+    else if (songPlaying && songPaused) {
+      resumeSong()
+    }
+    else if (songPlaying && !songPaused) {
+      pauseSong()
+    }
+  }
+
   const renderSongsTable = () => {
     return songs.map((song) => {
       const buttonClass =
@@ -193,13 +210,7 @@ const SongList = ({
           key={key(song)}
         >
           <div
-            onClick={() => {
-              song.track.id === (songId && songPlaying && songPaused)
-                ? resumeSong()
-                : (songPlaying && !songPaused && song.track.id === songId)
-                  ? pauseSong()
-                  : audioControl(song)
-            }}
+            onClick={() => handleSongControl(song)}
             className='play-song'
           >
             <Icon name={buttonClass} className='play-btn' />
@@ -209,7 +220,7 @@ const SongList = ({
             <p
               className='add-song'
               onClick={() => {
-                addSongToLibrary(token, song.track.id)
+                dispatch(addSongToLibrary(token, song.track.id))
               }}
             >
               {songAddedId === song.track.id ? (
@@ -273,29 +284,11 @@ const SongList = ({
       </div>
 
       {
-        (songs && !fetchSongsPending && !fetchPlaylistSongsPending) &&
+        (songs) && // !fetchSongsPending && !fetchPlaylistSongsPending) &&
         renderSongsTable()
       }
     </div>
   )
-}
-
-SongList.propTypes = {
-  addSongToLibrary: PropTypes.func,
-  audioControl: PropTypes.func,
-  fetchPlaylistSongsPending: PropTypes.bool,
-  fetchSongs: PropTypes.func,
-  fetchSongsError: PropTypes.bool,
-  fetchSongsPending: PropTypes.bool,
-  pauseSong: PropTypes.func,
-  resumeSong: PropTypes.func,
-  songAddedId: PropTypes.string,
-  songId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  songPaused: PropTypes.bool,
-  songPlaying: PropTypes.bool,
-  songs: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  token: PropTypes.string,
-  viewType: PropTypes.string,
 }
 
 export default SongList

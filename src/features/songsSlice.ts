@@ -82,16 +82,22 @@ const songsStoreSlice = createSlice({
       state.viewType = 'search'
     },
 
-    increaseSongTime: (state, action) => { state.timeElapsed = action.payload },
+    increaseSongTime: (state, action) => {
+      state.timeElapsed = action.payload
+    },
     playSong: (state, action) => {
       state.songPlaying = true
-      state.songDetails = action.song
-      state.songId = action.song.id
+      state.songDetails = action.payload
+      state.songId = action.payload.id
       state.timeElapsed = 0
-      state.songPaused = fals
+      state.songPaused = false
     },
-    pauseSong: (state, _action) => { state.songPaused = true },
-    resumeSong: (state, _action) =>  { state.songPaused = false },
+    pauseSong: (state) => {
+      state.songPaused = true
+    },
+    resumeSong: (state) => {
+      state.songPaused = false
+    },
     stopSong: (state, _action) => {
       state.songDetails = null
       state.songPlaying = false
@@ -99,7 +105,9 @@ const songsStoreSlice = createSlice({
       state.timeElapsed = 0
     },
 
-    updateViewType: (state, action) => { state.viewType = action.payload },
+    updateViewType: (state, action) => {
+      state.viewType = action.payload
+    },
   }
 })
 
@@ -220,6 +228,7 @@ export const {
   searchSongsPending,
   searchSongsSuccess,
   increaseSongTime,
+
   playSong,
   pauseSong,
   resumeSong,

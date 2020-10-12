@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 import PropTypes from 'prop-types'
