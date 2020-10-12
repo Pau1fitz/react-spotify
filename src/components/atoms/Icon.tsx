@@ -1,18 +1,37 @@
+// @ts-nocheck
 import React from 'react'
+import { createUseStyles, useTheme } from 'react-jss'
 import clsx from 'clsx'
 
 interface IconProps {
+  iconSet?: string,
   name: string,
   className?: string
 }
 
 const defaultProps: IconProps = {
-  name: 'bug'
+  iconSet: 'fas',
+  name: 'bug',
 }
 
-export const Icon: React.FC<IconProps> = ({ name, className }) => {
+const useStyles = createUseStyles((theme) => ({
+  Icon: {
+    fontSize: '12px',
+
+    '&.disabled': {
+      color: `${theme.palette.grey[3]} !important`,
+      cursor: 'not-allowed'
+    }
+  },
+}))
+
+export const Icon: React.FC<IconProps> = ({ iconSet, name, className }) => {
+  const theme = useTheme()
+  const classes = useStyles({ theme })
+
   const iconStyles = clsx(
-    'fa',
+    classes.Icon,
+    iconSet,
     `fa-${name}`,
     className && `${className}`
   )

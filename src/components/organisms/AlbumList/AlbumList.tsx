@@ -5,11 +5,11 @@ import key from 'weak-key'
 import { AlbumCard } from '../../atoms'
 import { ContentList } from '../../molecules'
 
-const AlbumList = ({ songs, audioControl }) => {
+const AlbumList = ({ albumSongs, audioControl }) => {
   return (
     <ContentList columns='6'>
       {
-        songs.map((song) => 
+        albumSongs.map((song) => 
           <AlbumCard song={song} audioControl={audioControl} key={key(song)} />
         )
       }

@@ -1,6 +1,6 @@
 # React-Spotify v.2 🎺🎸🎻🎤
 
-This is a fork of the Paul Fitzgerald `React-Spotify` project, upgraded to be themeable. Find the originl project here [here](http://pau1fitz.github.io/react-spotify).
+This is a fork of the Paul Fitzgerald `React-Spotify` project, upgraded to be themeable. Find the [originl project here](http://pau1fitz.github.io/react-spotify).
 
 ![alt text](https://github.com/ianhuet/react-spotify/blob/master/songs.png "Song")
 ![alt text](https://github.com/ianhuet/react-spotify/blob/master/browser.png "Browse")
@@ -19,19 +19,23 @@ visit http://localhost:3000
 
 ### Technology Stack
 - Bootstrapped with Create-React-App
-- State handled with Redux
+- State handled with Redux & Redux-Toolkit
 - Styled with JSS
 - HTMLAudioElement API for song playback
 
 
 ### Spotify Authentication
-Spotify uses OAuth2 for authentication and authorization. On initial setup [App Authorisation](https://developer.spotify.com/documentation/general/guides/authorization-guide/) will be initiated. This requests an authorisation token, on success it returns to /app, and includes the following scopes: playlist-read-private, playlist-read-collaborative, playlist-modify-public, user-read-recently-played, playlist-modify-private, ugc-image-upload, user-follow-modify, user-follow-read, user-library-read, user-library-modify, user-read-private, user-read-email, user-top-read, user-read-playback-state.
+Spotify uses OAuth2 for authentication and authorization. On initial setup [App Authorisation](https://developer.spotify.com/documentation/general/guides/authorization-guide/) will be initiated. This requests an authorisation token, on success it returns to /app, and includes the following scopes:
+- playlist-read-private, playlist-read-collaborative, playlist-modify-public, user-read-recently-played, playlist-modify-private, ugc-image-upload, user-follow-modify, user-follow-read, user-library-read, user-library-modify, user-read-private, user-read-email, user-top-read, user-read-playback-state.
 
 
 ## Development
 
+### Application Structure
+Components are organised under a loose interptretation of the [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) system.
+
 ### Deployment
-The application is automatically deployed into Vercel via a webhook on the Master branch.
+The application is automatically [deployed onto Vercel](https://react-spotify-2.ianhuet.vercel.app) courtesy of a webhook on the Master branch, and Vercels splendid, free tooling.
 
 ### Changelog
 All updates are tracked in the [Changelog](https://github.com/ianhuet/react-spotify/blob/master/CHANGELOG.md) under [Semantic Versioning](https://semver.org/).

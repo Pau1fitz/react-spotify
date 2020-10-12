@@ -7,7 +7,7 @@ const useStyles = createUseStyles((theme) => ({
     background: theme.palette.primary.main,
     border: '4px solid transparent',
     borderRadius: theme.borderRadius.large,
-    color: theme.palette.common.white.primary,
+    color: theme.palette.white.primary,
     cursor: 'pointer',
     fontSize: '10px',
     letterSpacing: '1px',

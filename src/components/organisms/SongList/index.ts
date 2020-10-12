@@ -2,23 +2,21 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import SongList from './SongList'
-import { fetchSongs } from '../../../actions/songActions'
+import { fetchSongs } from '../../../features/songsSlice'
 import { addSongToLibrary } from '../../../actions/userActions'
 
-const mapStateToProps = (state) => {
-  return {
-    token: state.tokenReducer.token ? state.tokenReducer.token : '',
-    songs: state.songsReducer.songs ? state.songsReducer.songs : '',
-    fetchSongsError: state.songsReducer.fetchSongsError,
-    fetchSongsPending: state.songsReducer.fetchSongsPending,
-    fetchPlaylistSongsPending: state.songsReducer.fetchPlaylistSongsPending,
-    songPlaying: state.songsReducer.songPlaying,
-    songPaused: state.songsReducer.songPaused,
-    songId: state.songsReducer.songId,
-    songAddedId: state.userReducer.songId || '',
-    viewType: state.songsReducer.viewType,
-  }
-}
+const mapStateToProps = (state) => ({
+  token: state.token.token ? state.token.token : '',
+  songs: state.songs.songs ? state.songs.songs : '',
+  fetchSongsError: state.songs.fetchSongsError,
+  fetchSongsPending: state.songs.fetchSongsPending,
+  fetchPlaylistSongsPending: state.songs.fetchPlaylistSongsPending,
+  songPlaying: state.songs.songPlaying,
+  songPaused: state.songs.songPaused,
+  songId: state.songs.songId,
+  songAddedId: state.userReducer.songId || '',
+  viewType: state.songs.viewType,
+})
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({

@@ -8,11 +8,11 @@ import {
 } from '../../../actions/playlistActions'
 import { updateHeaderTitle } from '../../../actions/uiActions'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ browseReducer, songs, token }) => {
   return {
-    view: state.browseReducer.view,
-    viewType: state.songsReducer.viewType,
-    token: state.tokenReducer.token
+    view: browseReducer.view,
+    viewType: songs.viewType,
+    token: token.token,
   }
 }
 

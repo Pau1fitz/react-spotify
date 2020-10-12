@@ -1,24 +1,26 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react'
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import { createUseStyles } from 'react-jss'
 import { ThemeProvider } from 'theming'
 import clsx from 'clsx'
 
-import { fetchUser } from './actions/userActions'
-import { setToken } from './actions/tokenActions'
+import { setToken } from '../../features/tokenSlice'
+import { fetchUser } from '../../features/userSlice'
+
 import {
   playSong,
   stopSong,
   pauseSong,
   resumeSong,
-} from './actions/songActions'
-import { Player, Utility } from './components/molecules'
-import { MainHeader, SideMenu } from './components/organisms'
-import { MainView } from './containers'
-import { SpotifyDark } from './theme'
+} from '../../features/songsSlice'
+
+import { Utility } from '../molecules'
+import { MainHeader, PlayerBar, SideMenu } from '../organisms'
+import { MainView } from '../../containers'
+import { SpotifyDark } from '../../theme'
 
 const cssBaseline = {
   backgroundColor: '#040404',
@@ -57,7 +59,6 @@ const useStyles = createUseStyles({
 const App = ({
   fetchUser,
   pauseSong,
-  playSong,
   resumeSong,
   setToken,
   stopSong,
@@ -65,6 +66,7 @@ const App = ({
   volume,
 }) => {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   const [htmlAudioObj, setHtmlAudioObj] = useState(undefined)
 
@@ -107,19 +109,19 @@ const App = ({
     if (!hashParams.access_token) {
       window.location.href = getAuthorisationUrl()
     } else {
-      setToken(hashParams.access_token)
+      dispatch(setToken(hashParams.access_token))
     }
   }, [])
 
   useEffect(() => {
-    Object.keys(cssBaseline).map((styleKey) => {
+    Object.keys(cssBaseline).map((styleKey) =>
       document.body.style[styleKey] = cssBaseline[styleKey]
-    })
+    )
   }, [])
 
   useEffect(() => {
     if (token) {
-      fetchUser(token)
+      dispatch(fetchUser(token))
     }
   }, [fetchUser, token])
 
@@ -168,6 +170,7 @@ const App = ({
     classes.mainViewSection,
     classes.scrollingPane,
   )
+
   return (
     <ThemeProvider theme={SpotifyDark}>
       <div className={classes.app}>
@@ -187,7 +190,7 @@ const App = ({
           />
         </div>
 
-        <Player
+        <PlayerBar
           audioControl={audioController}
           pauseSong={handlePauseSong}
           resumeSong={handleResumeSong}
@@ -201,7 +204,6 @@ const App = ({
 App.propTypes = {
   fetchUser: PropTypes.func,
   pauseSong: PropTypes.func,
-  playSong: PropTypes.func,
   resumeSong: PropTypes.func,
   setToken: PropTypes.func,
   stopSong: PropTypes.func,
@@ -209,19 +211,15 @@ App.propTypes = {
   volume: PropTypes.number,
 }
 
-const mapStateToProps = (state) => {
-  return {
-    token: state.tokenReducer.token,
-    volume: state.soundReducer.volume,
-  }
-}
+const mapStateToProps = (state) => ({
+  volume: state.sound.volume,
+})
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       fetchUser,
       pauseSong,
-      playSong,
       resumeSong,
       setToken,
       stopSong,

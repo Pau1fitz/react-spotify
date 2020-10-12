@@ -11,6 +11,15 @@ export const theme = {
       text: '#E3EDF8',
       background: '#3379CD',
     },
+    white: {
+      primary: '#FFFFFF',
+      secondary: '#B3B3B3',
+    },
+    black: {
+      primary: '#121212',
+      secondary: '#181818',
+      tertiary: '#282828',
+    },
     grey: {
       1: '#B2B2B2',
       2: '#CCCCCC',
@@ -20,16 +29,6 @@ export const theme = {
       6: '#181818',
       7: '#121212',
     },
-    common: {
-      white: {
-        primary: '#FFFFFF',
-        secondary: '#B3B3B3',
-      },
-      black: {
-        primary: '#121212',
-        secondary: '#181818',
-      }
-    }
   },
 
   typography: {

@@ -3,8 +3,8 @@ import UserDetails from './UserDetails'
 
 const mapStateToProps = (state) => {
 	return {
-		displayName: state.userReducer.user ? state.userReducer.user.display_name : '',
-		userImageUrl: state.userReducer.user && state.userReducer.user.images[0] ? state.userReducer.user.images[0].url : ''
+		displayName: state.user.user ? state.user.user.display_name : '',
+		userImageUrl: state.user.user && state.user.user.images[0] ? state.user.user.images[0].url : ''
 	}
 }
 

@@ -1,17 +1,13 @@
 import { AlbumCard } from './AlbumCard'
+import { Artwork } from './Artwork'
 import { Button } from './Button'
 import { Icon } from './Icon'
 import { Overline } from './Overline'
-import PlayControls from './PlayControls'
-import PlayInfo from './PlayInfo'
-import VolumeControls from './VolumeControls'
 
 export {
+  Artwork,
   AlbumCard,
   Button,
   Icon,
   Overline,
-  PlayControls,
-  PlayInfo,
-  VolumeControls,
 }

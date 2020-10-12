@@ -3,9 +3,9 @@ import uniqBy from 'lodash/uniqBy'
 
 import AlbumList from './AlbumList'
 
-const mapStateToProps = state => {
-  const albumSongs = state.songsReducer.songs
-    ? uniqBy(state.songsReducer.songs, item => item.track.album.name)
+const mapStateToProps = ({ songs }) => {
+  const albumSongs = songs.songs
+    ? uniqBy(songs.songs, item => item.track.album.name)
     : ''
 
   return {

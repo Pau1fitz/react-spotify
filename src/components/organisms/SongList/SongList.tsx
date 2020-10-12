@@ -6,6 +6,8 @@ import PropTypes from 'prop-types'
 import key from 'weak-key'
 import moment from 'moment'
 
+import { Icon } from '../../atoms'
+
 const useStyles = createUseStyles({
   songList: {
     '& .section-title': {
@@ -179,8 +181,8 @@ const SongList = ({
     return songs.map((song) => {
       const buttonClass =
         song.track.id === songId && !songPaused
-          ? 'fa-pause-circle-o'
-          : 'fa-play-circle-o'
+          ? 'pause-circle'
+          : 'play-circle'
 
       return (
         <li
@@ -200,7 +202,7 @@ const SongList = ({
             }}
             className='play-song'
           >
-            <i className={`fa ${buttonClass} play-btn`} aria-hidden='true' />
+            <Icon name={buttonClass} className='play-btn' />
           </div>
 
           {viewType !== 'songs' && (

@@ -7,7 +7,7 @@ import { updateHeaderTitle } from '../../../actions/uiActions'
 
 const mapStateToProps = state => {
   return {
-    token: state.tokenReducer.token ? state.tokenReducer.token : '',
+    token: state.token.token ? state.token.token : '',
     artists: state.artistsReducer.artistList
       ? state.artistsReducer.artistList.artists
       : ''

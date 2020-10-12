@@ -8,18 +8,18 @@ import {
   fetchFeatured
 } from '../../../actions/browseActions'
 import { updateHeaderTitle } from '../../../actions/uiActions'
-import { updateViewType } from '../../../actions/songActions'
+import { updateViewType } from '../../../features/songsSlice'
 
 const mapStateToProps = (state) => {
   return {
-    songPaused: state.songsReducer.songPaused,
+    songPaused: state.songs.songPaused,
     headerTitle: state.uiReducer.title,
-    viewType: state.songsReducer.viewType,
+    viewType: state.songs.viewType,
     playlists: state.playlistReducer.playlists,
     artists: state.artistsReducer.artistList
       ? state.artistsReducer.artistList.artists
       : [],
-    token: state.tokenReducer.token
+    token: state.token.token
   }
 }
 

@@ -2,18 +2,19 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import SideMenu from './SideMenu'
-import { fetchSongs, fetchRecentlyPlayed, updateViewType } from '../../../actions/songActions'
+import { fetchSongs, fetchRecentlyPlayed, updateViewType } from '../../../features/songsSlice'
+
 import { fetchAlbums } from '../../../actions/albumActions'
 import { fetchArtists } from '../../../actions/artistActions'
 import { fetchFeatured } from '../../../actions/browseActions'
 import { updateHeaderTitle } from '../../../actions/uiActions'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ artistsReducer, token, uiReducer, user }) => {
   return {
-    userId: state.userReducer.user ? state.userReducer.user.id : '',
-    token: state.tokenReducer.token ? state.tokenReducer.token : '',
-    artistIds: state.artistsReducer.artistIds,
-    title: state.uiReducer.title
+    artistIds: artistsReducer.artistIds,
+    token: token.token ? token.token : '',
+    title: uiReducer.title,
+    userId: user.user ? user.user.id : '',
   }
 }
 

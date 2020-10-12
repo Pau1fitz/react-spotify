@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -14,6 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-jss": "^10.4.0",
+    "react-range": "^1.8.0",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
@@ -24,6 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-slider": "^1.0.0",
     "clsx": "^1.1.1",
     "weak-key": "^1.0.2"
   }

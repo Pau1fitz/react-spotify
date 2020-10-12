@@ -16,8 +16,6 @@ const useStyles = createUseStyles(() => ({
 const ContentList = ({ columns, children }) => {
   const classes = useStyles(columns)
 
-  console.log('ContentList', columns)
-  
   return (
     <ul className={classes.contentList}>
       {children}
