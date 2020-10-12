@@ -1,14 +1,9 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect, useDispatch } from 'react-redux'
-import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles } from 'react-jss'
 import { ThemeProvider } from 'theming'
 import clsx from 'clsx'
-
-import { setToken } from '../../features/tokenSlice'
-import { fetchUser } from '../../features/userSlice'
 
 import {
   playSong,
@@ -16,10 +11,12 @@ import {
   pauseSong,
   resumeSong,
 } from '../../features/songsSlice'
+import { setToken } from '../../features/tokenSlice'
+import { fetchUser } from '../../features/userSlice'
 
+import { MainView } from '../../containers'
 import { Utility } from '../molecules'
 import { MainHeader, PlayerBar, SideMenu } from '../organisms'
-import { MainView } from '../../containers'
 import { SpotifyDark } from '../../theme'
 
 const cssBaseline = {
@@ -56,22 +53,17 @@ const useStyles = createUseStyles({
   },
 })
 
-const App = ({
-  fetchUser,
-  pauseSong,
-  resumeSong,
-  setToken,
-  stopSong,
-  token,
-  volume,
-}) => {
+const App = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
+
+  const token = useSelector(state => state.token.token)
+  const volume = useSelector(state => state.sound.volume)
 
   const [htmlAudioObj, setHtmlAudioObj] = useState(undefined)
 
   useEffect(() => {
-    function getAuthorisationUrl() {      
+    function getAuthorisationUrl() {
       const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4'
       const redirectUri = process.env.REACT_APP_REDIRECT_URI
       const scopes = [
@@ -201,31 +193,4 @@ const App = ({
   )
 }
 
-App.propTypes = {
-  fetchUser: PropTypes.func,
-  pauseSong: PropTypes.func,
-  resumeSong: PropTypes.func,
-  setToken: PropTypes.func,
-  stopSong: PropTypes.func,
-  token: PropTypes.string,
-  volume: PropTypes.number,
-}
-
-const mapStateToProps = (state) => ({
-  volume: state.sound.volume,
-})
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    {
-      fetchUser,
-      pauseSong,
-      resumeSong,
-      setToken,
-      stopSong,
-    },
-    dispatch
-  )
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App
