@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { createUseStyles, useTheme } from 'react-jss'
 import PropTypes from 'prop-types'
 
@@ -36,20 +37,21 @@ const useStyles = createUseStyles((theme) => ({
 const PlayerBar = ({
   audioControl,
   pauseSong,
-  songDetails,
   stopSong,
   resumeSong,
-  updateVolume,
-  volume,
 }) => {
   const theme = useTheme()
   const classes = useStyles({ theme })
-  
+
+  const trackDetails = useSelector(state =>
+    !!state.player.trackId ? state.player.trackDetails : false
+  )
+
   return (
     <div className={classes.player}>
       <PlayInfo
         className='playInfo'
-        songDetails={songDetails}
+        trackDetails={trackDetails}
       />
 
       <PlayControls
@@ -60,11 +62,7 @@ const PlayerBar = ({
         stopSong={stopSong}
       />
 
-      <VolumeControls
-        className='volumeControls'
-        updateVolume={updateVolume}
-        volume={volume}
-      />
+      <VolumeControls className='volumeControls' />
     </div>
   )
 }
@@ -75,8 +73,6 @@ PlayerBar.propTypes = {
   songDetails: PropTypes.object,
   stopSong: PropTypes.func,
   resumeSong: PropTypes.func,
-  updateVolume: PropTypes.func,
-  volume: PropTypes.number,
 }
 
 export default PlayerBar

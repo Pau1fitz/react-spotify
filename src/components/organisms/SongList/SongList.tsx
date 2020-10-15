@@ -8,6 +8,9 @@ import moment from 'moment'
 
 import { Icon } from '../../atoms'
 import { 
+  resetPlayback
+} from '../../../features/playerSlice'
+import { 
   // fetchPlaylistSongsPending,
   fetchSongs,
   fetchSongsError,
@@ -158,12 +161,11 @@ const SongList = ({ audioControl, resumeSong, pauseSong }) => {
   const dispatch = useDispatch()
 
   const songAddedId = useSelector(state => state.user.songId)
-  const songId = useSelector(state => state.songs.songId)
-  const songPaused = useSelector(state => state.songs.songPaused)
-  const songPlaying = useSelector(state => state.songs.songPlaying)
-  const songs = useSelector(state => state.songs.songs)
-  const token = useSelector(state => state.token.token)
   const viewType = useSelector(state => state.songs.viewType)
+  const token = useSelector(state => state.token.token)
+  const songs = useSelector(state => state.songs.songs)
+
+  const { trackId, trackPaused } = useSelector(state => state.player)
 
   useEffect(() => {
     if (
@@ -182,38 +184,41 @@ const SongList = ({ audioControl, resumeSong, pauseSong }) => {
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
   }
 
-  const handleSongControl = (song) => {
-    if (song.track.id !== songId) {
+  const handlePlaybackLink = (song) => {
+    if (song.track.id !== trackId) {
+      dispatch(resetPlayback())
       audioControl(song)
     }
-    else if (songPlaying && songPaused) {
+    else if (!!trackId && trackPaused) {
       resumeSong()
     }
-    else if (songPlaying && !songPaused) {
+    else if (!!trackId && !trackPaused) {
       pauseSong()
     }
   }
 
   const renderSongsTable = () => {
     return songs.map((song) => {
-      const buttonClass =
-        song.track.id === songId && !songPaused
+      const buttonIcon =
+        trackId === song.track.id && !trackPaused
           ? 'pause-circle'
           : 'play-circle'
 
+      const songRowStyles = clsx(
+        'song-row',
+        trackId === song.track.id && 'active'
+      )
+
       return (
         <li
-          className={clsx(
-            'song-row',
-            song.track.id === songId && 'active'
-          )}
+          className={songRowStyles}
           key={key(song)}
         >
           <div
-            onClick={() => handleSongControl(song)}
+            onClick={() => handlePlaybackLink(song)}
             className='play-song'
           >
-            <Icon name={buttonClass} className='play-btn' />
+            <Icon name={buttonIcon} className='play-btn' />
           </div>
 
           {viewType !== 'songs' && (

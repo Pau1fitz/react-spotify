@@ -1,10 +1,11 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles, useTheme } from 'react-jss'
 import { Range, getTrackBackground } from 'react-range'
-import PropTypes from 'prop-types'
 
 import { Icon } from '../../atoms'
+import { updateVolume } from './../../../features/playerSlice'
 
 const useStyles = createUseStyles((theme) => ({
   volumeControls: {
@@ -83,16 +84,16 @@ const useStyles = createUseStyles((theme) => ({
 
 // TODO: add Fullscreen toggle functionality
 // TODO: add Queue icon/link
+// TODO: review slider performance
 
-const VolumeControls = ({
-  updateVolume,
-  volume,
-}) => {
+const VolumeControls = () => {
+  const dispatch = useDispatch()
   const theme = useTheme()
   const classes = useStyles({ theme })
-  
+  const volume = useSelector(state => state.player.volume)
+
   const [volumeState, setVolumeState] = useState(0)
-  const [volumeEnabled, setVolumeEnabled] = useState(true)
+  const [volumeEnabled, setVolumeEnabled] = useState(volume > 0)
 
   const rangeStep = 1
   const rangeMin = 0
@@ -101,25 +102,28 @@ const VolumeControls = ({
 
   useEffect(() => {
     setVolumeState(volume)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    setVolumeEnabled(volume > 0)
+  }, [volume])
+
   const handleVolumeToggle = () => {
-    if (volumeEnabled) {
+    if (!volumeEnabled && volumeState > 0) {
+      setVolumeEnabled(true)
+      dispatch(updateVolume(volumeState))
+    } else {
       setVolumeEnabled(false)
       setVolumeState(volume)
-      updateVolume(0)
-    } else {
-      setVolumeEnabled(true)
-      updateVolume(volumeState)
+      dispatch(updateVolume(0))
     }
   }
   const handleVolumeChange = (value) => {
     setVolumeState(value[0])
-    updateVolume(value[0])
+    dispatch(updateVolume(value[0]))
   }
-  const handleFullscreenToggle = () => {
-    console.log('TODO: add fullscreen toggle function')
-  }
+  const handleFullscreenToggle = () => null
 
   return (
     <div className={classes.volumeControls}>
@@ -192,11 +196,6 @@ const VolumeControls = ({
       </div>
     </div>
   )
-}
-
-VolumeControls.propTypes = {
-  updateVolume: PropTypes.func,
-  volume: PropTypes.number,
 }
 
 export default VolumeControls

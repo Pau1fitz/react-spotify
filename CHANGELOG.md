@@ -6,12 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
-## [2.1.2.1] - 2020.10.xx
+## [2.1.2.1] - 2020.xx.xxx
+## Changed
+
+
+
+## [2.1.2.1] - 2020.10.15
 ## Changed
 - Migrate App, MainView, PlayerBar, PlayControls & SongList to Redux hooks
-- Resolve playback controls not working
+- Resolve playback controls not working issues
 - Start test coverage for PlayControls
-
+- Extract ProgressBar from PlayControls
+- Add playerSlice, migrate Volume from soundSlice
 
 ## [2.1.2] - 2020.10.12
 ## Changed
@@ -22,7 +28,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Install React-Range for VolumeControls
 - Update Font Awesome to v.5+
 - Refactor entry point
-
 
 ## [2.1.1] - 2020.10.09
 ## Added

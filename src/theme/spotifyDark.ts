@@ -12,7 +12,7 @@ export const theme = {
       background: '#3379CD',
     },
     white: {
-      primary: '#FFFFFF',
+      primary: '#FBFBFB',
       secondary: '#B3B3B3',
     },
     black: {
@@ -45,6 +45,7 @@ export const theme = {
   },
 
   borderRadius: {
+    tiny: '1px',
     small: '4px',
     large: '20px',
     round: '50%',

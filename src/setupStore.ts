@@ -1,13 +1,13 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 
-import { songs, sound, token, user } from './features'
+import { player, songs, token, user } from './features'
 import reducer from './reducers'
 
 export const setupStore = () => configureStore({
     reducer: {
       ...reducer,
+      player,
       songs,
-      sound,
       token,
       user,
     },

@@ -46,7 +46,7 @@ const renderComponent = (config = defaultConfig) => {
 }
 
 describe('PlayControls displays expected content', () => {
-  test.only('when inactive', async () => {
+  test('when inactive', async () => {
     renderComponent()
 
     expect(screen.queryByLabelText('Go to Previous track')).toBeInTheDocument()
@@ -61,9 +61,7 @@ describe('PlayControls displays expected content', () => {
     expect(screen.getByTestId('artist-name')).toHaveTextContent('Moderator')
 
     const artwork = screen.getByTestId('artwork')
-    screen.debug(artwork)
-
-    expect(screen.getByTestId('artwork')).toHaveAttribute('alt', 'Words Remain - Moderator')
-    expect(screen.getByTestId('artwork')).toHaveAttribute('src', 'https://i.scdn.co/image/ab67616d0000485131073ba528a43985280d4dc6')
+    expect(artwork).toHaveAttribute('alt', 'Words Remain - Moderator')
+    expect(artwork).toHaveAttribute('src', 'https://i.scdn.co/image/ab67616d0000485131073ba528a43985280d4dc6')
   })
 })

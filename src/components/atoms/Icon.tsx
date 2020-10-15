@@ -16,7 +16,7 @@ const defaultProps: IconProps = {
 
 const useStyles = createUseStyles((theme) => ({
   Icon: {
-    fontSize: '12px',
+    fontSize: '14px',
 
     '&.disabled': {
       color: `${theme.palette.grey[3]} !important`,

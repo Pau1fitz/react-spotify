@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React from 'react'
 import { createUseStyles, useTheme } from 'react-jss'
-import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
 import { Artwork } from '../../atoms'
@@ -54,49 +53,22 @@ const useStyles = createUseStyles((theme) => ({
 }))
 
 
-// .track {
-//   animation: marquee 4s linear;
-//   border: 1px solid red;
-//   position: absolute;
-//   white-space: nowrap;
-//   will-change: transform;
-// }
-
-// .content {
-//   display: inline-block;
-//   position: relative;
-// }
-// .content:after {
-//   content: 'Infinite Marquee done bigger';
-//   display: inline-block;
-//   margin-left: 40px;
-// }
-
-
-// @keyframes marquee {
-//   from { transform: translateX(0); }
-//   to { transform: translateX(-50%); }
-// }
-
-
 // TODO: add long name marquee
 // TODO: add Artwork magnifier UI
 // TODO: add Artwork link to currently playing main content
 // TODO: add favorite track heart button
 
-const PlayInfo = ({ className, songDetails }) => {
+const PlayInfo = ({ className, trackDetails }) => {
   const theme = useTheme()
   const classes = useStyles({ theme })
 
   let artistNameString, songName
-  const hasCurrentSong = !!songDetails
+  const hasCurrentSong = !!trackDetails
 
-  if (songDetails) {
-    songName = songDetails.name
-    artistNameString = songDetails.artists.reduce((accum, artist) => accum += `${artist.name}, `, '').slice(0, -2)
+  if (trackDetails) {
+    songName = trackDetails.name
+    artistNameString = trackDetails.artists.reduce((accum, artist) => accum += `${artist.name}, `, '').slice(0, -2)
   }
-
-  // const isOverflown = ({ element }) => element.scrollWidth > element.clientWidth
 
   const playInfoStyles = clsx(
     classes.playInfo,
@@ -111,7 +83,7 @@ const PlayInfo = ({ className, songDetails }) => {
           <div className='artwork'>
             <Artwork
               size={imageSizes.SMALL}
-              images={songDetails.album.images}
+              images={trackDetails.album.images}
               caption={`${songName} - ${artistNameString}`}
             />
           </div>
@@ -128,11 +100,6 @@ const PlayInfo = ({ className, songDetails }) => {
       }
     </div>
   )
-}
-
-PlayInfo.propTypes = {
-  className: PropTypes.string,
-  songDetails: PropTypes.object,
 }
 
 export default PlayInfo

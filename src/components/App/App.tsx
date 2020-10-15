@@ -1,16 +1,16 @@
 // @ts-nocheck
-import React, { useEffect, } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles } from 'react-jss'
 import { ThemeProvider } from 'theming'
 import clsx from 'clsx'
 
 import {
-  playSong,
-  stopSong,
-  pauseSong,
-  resumeSong,
-} from '../../features/songsSlice'
+  pausePlayback,
+  resetPlayback,
+  resumePlayback,
+  startPlayback,
+} from '../../features/playerSlice'
 import { setToken } from '../../features/tokenSlice'
 import { fetchUser } from '../../features/userSlice'
 
@@ -18,16 +18,17 @@ import { MainView } from '../../containers'
 import { Utility } from '../molecules'
 import { MainHeader, PlayerBar, SideMenu } from '../organisms'
 import { SpotifyDark } from '../../theme'
+import { theme } from '../../theme/spotifyDark'
 
 const cssBaseline = {
-  backgroundColor: '#040404',
-  color: '#FFFFFF',
-  fontFamily: '#000000',
+  backgroundColor: theme.palette.grey[4],
+  color: theme.palette.white.primary,
+  fontFamily: theme.typography.family.normal,
   margin: 0,
   padding: 0,
 }
 
-let htmlAudioObj
+let htmlAudio
 
 const useStyles = createUseStyles({
   app: {
@@ -60,11 +61,11 @@ const App = () => {
   const dispatch = useDispatch()
 
   const token = useSelector(state => state.token.token)
-  const volume = useSelector(state => state.sound.volume)
+  const volume = useSelector(state => state.player.volume)
 
   useEffect(() => {
     function getAuthorisationUrl() {
-      const clientId = '47e2c485aa3c47a6a39e71bb2fcf4da4'
+      const clientId = process.env.REACT_APP_CLIENT_ID
       const redirectUri = process.env.REACT_APP_REDIRECT_URI
       const scopes = [
         'playlist-read-private',
@@ -103,6 +104,7 @@ const App = () => {
     } else {
       dispatch(setToken(hashParams.access_token))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -115,48 +117,50 @@ const App = () => {
     if (token) {
       dispatch(fetchUser(token))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchUser, token])
 
   useEffect(() => {
-    if (htmlAudioObj) {
-      htmlAudioObj.play()
+    if (htmlAudio) {
+      htmlAudio.play()
     }
-  }, [htmlAudioObj])
+  }, [htmlAudio])
 
   useEffect(() => {
-    if (htmlAudioObj !== undefined) {
-      htmlAudioObj.volume = volume / 100
+    if (htmlAudio !== undefined) {
+      htmlAudio.volume = volume / 100
     }
-  }, [htmlAudioObj, volume])
+  }, [htmlAudio, volume])
 
   const handleStopSong = () => {
-    if (htmlAudioObj) {
-      dispatch(stopSong())
-      htmlAudioObj.pause()
+    if (htmlAudio) {
+      htmlAudio.pause()
+      dispatch(resetPlayback())
     }
   }
   const handlePauseSong = () => {
-    if (htmlAudioObj) {
-      dispatch(pauseSong())
-      htmlAudioObj.pause()
+    if (htmlAudio) {
+      htmlAudio.pause()
+      dispatch(pausePlayback())
     }
   }
   const handleResumeSong = () => {
-    if (htmlAudioObj) {
-      dispatch(resumeSong())
-      htmlAudioObj.play()
+    if (htmlAudio) {
+      htmlAudio.play()
+      dispatch(resumePlayback())
     }
   }
 
   const audioController = (song) => {
-    if (htmlAudioObj !== undefined) {
-      dispatch(stopSong())
-      htmlAudioObj.pause()
+    if (htmlAudio !== undefined) {
+      htmlAudio.pause()
+      dispatch(resetPlayback())
     }
 
-    htmlAudioObj = new Audio(song.track.preview_url)
-    htmlAudioObj.play()
-    dispatch(playSong(song.track))
+    htmlAudio = new Audio(song.track.preview_url)
+    htmlAudio.volume = volume / 100
+    htmlAudio.play()
+    dispatch(startPlayback(song.track))
   }
 
   const mainViewStyling = clsx(

@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles, useTheme } from 'react-jss'
 import clsx from 'clsx'
-import moment from 'moment'
 
 import { Icon } from '../../atoms'
-import { increaseSongTime } from '../../../features/songsSlice'
+import { resetPlayback } from '../../../features/playerSlice'
+import { ProgressBar } from '../'
 
 const useStyles = createUseStyles((theme) => ({
   playControls: {
@@ -20,7 +20,7 @@ const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     listStyleType: 'none',
     justifyContent: 'center',
-    marginBottom: '10px',
+    marginBottom: '6px',
 
     '& > *': {
       margin: '0 6px',
@@ -36,7 +36,7 @@ const useStyles = createUseStyles((theme) => ({
       },
 
       '&.small .fas': {
-        fontSize: '16px',
+        fontSize: '14px',
       },
       '&.large .far': {
         fontSize: '36px',
@@ -46,39 +46,6 @@ const useStyles = createUseStyles((theme) => ({
       }
     },
   },
-
-  progress: {
-    alignItems: 'center',
-    display: 'flex',
-    height: '14px',
-    justifyContent: 'center',
-    width: '100%',
-
-    '& .time': {
-      fontSize: '12px',
-
-      '&.inactive': {
-        display: 'none',
-      },
-    },
-
-    '& .track': {
-      background: theme.palette.grey[4],
-      borderRadius: theme.borderRadius.small,
-      height: '4px',
-      margin: '0 10px',
-      maxWidth: '500px',
-      minWidth: '200px',
-      width: '100%',
-    },
-    '& .progress': {
-      background: theme.palette.grey[2],
-      borderRadius: theme.borderRadius.small,
-      height: '4px',
-      margin: 0,
-      width: 0,
-    }
-  }
 }))
 
 // TODO: add random playback function
@@ -95,82 +62,37 @@ const PlayControls = ({
   const dispatch = useDispatch()
 
   const songs = useSelector(state => state.songs.song)
-  const songDetails = useSelector(state => state.songs.songDetails)
-  const songPaused = useSelector(state => state.songs.songPaused)
-  const songPlaying = useSelector(state => state.songs.songPlaying)
-  const timeElapsed = useSelector(state => state.songs.timeElapsed)
-
-  const [songTime, setSongTime] = useState(timeElapsed)
-  const [intervalId, setIntervalId] = useState(false)
+  const { trackId, trackDetails, trackPaused } = useSelector(state => state.player)
+  const [isTrackPlaybackComplete, setIsTrackPlaybackComplete] = useState(false)
 
   useEffect(() => {
-    const calculateTime = () => {
-      // const interval = setInterval(() => {
-      //   if (timeElapsed === 30) {
-      //     clearInterval(intervalId)
-      //     stopSong()
-      //   } else if (!songPaused) {
-      //     dispatch(increaseSongTime(timeElapsed + 1))
-      //   }
-      // }, 1000)
-
-      setIntervalId(
-        setInterval(() => {
-
-          // console.log('setTimeInterval')
-
-          if (timeElapsed === 30) {
-            clearInterval(intervalId)
-            stopSong()
-          } else if (!songPaused) {
-            dispatch(increaseSongTime(timeElapsed + 1))
-          }
-        }, 1000)
-      )
+    if (isTrackPlaybackComplete) {
+      dispatch(resetPlayback())
     }
-
-    // console.log('useEffect', songPlaying, timeElapsed)
-
-    if (!songPlaying) {
-      clearInterval(intervalId)
-    }
-
-    if (songPlaying && timeElapsed === 0) {
-      clearInterval(intervalId)
-      calculateTime()
-    }
-
-    setSongTime(timeElapsed)
-  }, [songPlaying, timeElapsed])
+  }, [isTrackPlaybackComplete])
 
   const getSongIndex = () =>
     songs.map((song, index) =>
-      (song.track === songDetails) ? index : undefined
+      (song.track === trackDetails) ? index : undefined
     )
     .filter(item => item !== undefined)[0]
 
-  const handleRandomPlayback = () => console.log('TODO: add random playback function')
+  const handleRandomPlayback = () => null
   const handleNextSong = () => {
     let currentIndex = getSongIndex()
     currentIndex === songs.length - 1 ? audioControl(songs[0]) : audioControl(songs[currentIndex + 1])
   }
-  const handlePlayPauseSong = () => !songPaused ? pauseSong() : resumeSong()
+  const handlePlayPauseSong = () => !trackPaused ? pauseSong() : resumeSong()
   const handlePrevSong = () => {
     let currentIndex = getSongIndex()
     currentIndex === 0 ? audioControl(songs[songs.length - 1]) : audioControl(songs[currentIndex - 1])
   }
-  const handleLoopPlayback = () => console.log('TODO: add loop playback function')
+  const handleLoopPlayback = () => null
 
-  const buttonPlayPauseIcon = songPaused ? 'play-circle' : 'pause-circle'
-  const formattedTime = (time) => moment().minutes(0).second(time).format('m:ss')
-
+  const playbackButtonIcon = trackPaused ? 'play-circle' : 'pause-circle'
   const playControlStyles = clsx(
     classes.playControls,
     className && `${className}`
-  )
-  const timeStyles = clsx(
-    'time',
-    songTime === 0 && 'inactive'
   )
 
   return (
@@ -183,7 +105,7 @@ const PlayControls = ({
           <Icon name='step-backward' />
         </li>
         <li onClick={handlePlayPauseSong} className='icon large' aria-label='Play/Pause playback'>
-          <Icon name={`${buttonPlayPauseIcon}`} iconSet='far' />
+          <Icon name={`${playbackButtonIcon}`} iconSet='far' />
         </li>
         <li onClick={handleNextSong} className='icon small' aria-label='Go to Next track'>
           <Icon name='step-forward' />
@@ -193,17 +115,11 @@ const PlayControls = ({
         </li>
       </ul>
 
-      <div className={classes.progress}>
-        <p className={timeStyles}>
-          {formattedTime(songTime)}
-        </p>
-        <div className='track'>
-          <div style={{ width: songTime * 16.5 }} className='progress' />
-        </div>
-        <p className={timeStyles}>
-          {formattedTime(30 - songTime)}
-        </p>
-      </div>
+      <ProgressBar
+        trackId={trackId}
+        isPaused={trackPaused}
+        trackLengthMs={30000}
+      />
     </div>
   )
 }
