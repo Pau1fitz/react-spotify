@@ -13,7 +13,9 @@ const useStyles = createUseStyles({
 const MainView = ({ audioControl, resumeSong, pauseSong }) => {
   const classes = useStyles()
 
-  const headerTitle = useSelector(state => state.uiReducer.title)
+  const headerTitle = useSelector(state => {
+    return state.ui.title
+  })
 
   return (
     <div className={classes.mainView}>

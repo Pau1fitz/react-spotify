@@ -1,7 +1,18 @@
 {
   "name": "react-spotify-2",
-  "version": "0.1.0",
+  "description": "a Spotify Web Player built w/ React & Redux-Toolkit",
+  "version": "2.1.2.2",
+  "author": "Ian Huet <ian@huet.info>",
+  "license": "MIT",
   "private": true,
+  "keywords": [
+    "react",
+    "redux-toolkit",
+    "spotify",
+    "music",
+    "player",
+    "web playback"
+  ],
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -23,11 +34,11 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "coverage": "react-scripts test --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"

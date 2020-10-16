@@ -7,13 +7,11 @@ import { fetchSongs, fetchRecentlyPlayed, updateViewType } from '../../../featur
 import { fetchAlbums } from '../../../actions/albumActions'
 import { fetchArtists } from '../../../actions/artistActions'
 import { fetchFeatured } from '../../../actions/browseActions'
-import { updateHeaderTitle } from '../../../actions/uiActions'
 
-const mapStateToProps = ({ artistsReducer, token, uiReducer, user }) => {
+const mapStateToProps = ({ artistsReducer, token, user }) => {
   return {
     artistIds: artistsReducer.artistIds,
     token: token.token ? token.token : '',
-    title: uiReducer.title,
     userId: user.user ? user.user.id : '',
   }
 }
@@ -26,7 +24,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchArtists,
     fetchFeatured,
     updateViewType,
-    updateHeaderTitle,
   }, dispatch)
 }
 

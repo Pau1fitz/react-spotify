@@ -7,19 +7,16 @@ import {
   fetchNewReleases,
   fetchFeatured
 } from '../../../actions/browseActions'
-import { updateHeaderTitle } from '../../../actions/uiActions'
 import { updateViewType } from '../../../features/songsSlice'
 
 const mapStateToProps = (state) => {
   return {
-    songPaused: state.songs.songPaused,
-    headerTitle: state.uiReducer.title,
-    viewType: state.songs.viewType,
-    playlists: state.playlistReducer.playlists,
     artists: state.artistsReducer.artistList
       ? state.artistsReducer.artistList.artists
       : [],
-    token: state.token.token
+    songPaused: state.songs.songPaused,
+    token: state.token.token,
+    viewType: state.songs.viewType,
   }
 }
 
@@ -27,10 +24,9 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       fetchCategories,
+      fetchFeatured,
       fetchNewReleases,
-      updateHeaderTitle,
       updateViewType,
-      fetchFeatured
     },
     dispatch
   )

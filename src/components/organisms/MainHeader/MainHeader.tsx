@@ -1,6 +1,9 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss'
+import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types';
+
+import { setHeaderTitle } from '../../../features/uiSlice'
 
 import { Button, Overline } from '../../atoms'
 import { PlaylistHeader } from '../../molecules'
@@ -64,31 +67,36 @@ const MainHeader = ({
   fetchCategories,
   fetchFeatured,
   fetchNewReleases,
-  headerTitle,
   pauseSong,
-  playlists,
   resumeSong,
   songPaused,
   token,
-  updateHeaderTitle,
   updateViewType,
   viewType,
 }) => {
+  const dispatch = useDispatch()
   const classes = useStyles()
 
-  let currentPlaylist;
-  let currentArtist;
+  const headerTitle = useSelector(state => {
+
+    console.log(state)
+
+    return state.ui.title
+  })
+  const playlists = useSelector(state => state.playlists.playlists)
+
+  let currentArtist, currentPlaylist
 
   if (viewType === 'playlist') {
-    currentPlaylist = playlists.filter(playlist => {
-      return playlist.name === headerTitle;
-    })[0];
+    currentPlaylist = playlists.filter(playlist =>
+      playlist.name === headerTitle
+    )[0];
   }
 
   if (viewType === 'Artist' && artists.length > 0) {
-    currentArtist = artists.filter(artist => {
-      return artist.name === headerTitle;
-    })[0];
+    currentArtist = artists.filter(artist =>
+      artist.name === headerTitle
+    )[0]
   }
 
   return (
@@ -112,9 +120,9 @@ const MainHeader = ({
         <>
           <h3 className={classes.sectionTitle}>{headerTitle}</h3>
           <div className={classes.browseHeaders}>
-            <p className={viewType === 'Genres' ? 'active' : ''} onClick={() => { fetchCategories(token); updateViewType('Genres'); updateHeaderTitle('Browse'); }}>Genres</p>
-            <p className={viewType === 'New Releases' ? 'active' : ''} onClick={() => { fetchNewReleases(token); updateViewType('New Releases'); updateHeaderTitle('Browse'); }}>New Releases</p>
-            <p className={viewType === 'Featured' ? 'active' : ''} onClick={() => { fetchFeatured(token); updateViewType('Featured'); updateHeaderTitle('Browse'); }}>Featured</p>
+            <p className={viewType === 'Genres' ? 'active' : ''} onClick={() => { fetchCategories(token); updateViewType('Genres'); dispatch(setHeaderTitle('Browse')); }}>Genres</p>
+            <p className={viewType === 'New Releases' ? 'active' : ''} onClick={() => { fetchNewReleases(token); updateViewType('New Releases'); dispatch(setHeaderTitle('Browse')); }}>New Releases</p>
+            <p className={viewType === 'Featured' ? 'active' : ''} onClick={() => { fetchFeatured(token); updateViewType('Featured'); dispatch(setHeaderTitle('Browse')); }}>Featured</p>
           </div>
         </>
       }
@@ -143,14 +151,12 @@ MainHeader.propTypes = {
   fetchCategories: PropTypes.func,
   fetchFeatured: PropTypes.func,
   fetchNewReleases: PropTypes.func,
-  headerTitle: PropTypes.string,
   pauseSong: PropTypes.func,
   playlistMenu: PropTypes.array,
   playlists: PropTypes.array,
   resumeSong: PropTypes.func,
   songPaused: PropTypes.bool,
   token: PropTypes.string,
-  updateHeaderTitle: PropTypes.func,
   updateViewType: PropTypes.func,
   viewType: PropTypes.string,
 }

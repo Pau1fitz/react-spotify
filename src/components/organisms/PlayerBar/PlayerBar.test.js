@@ -1,11 +1,10 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'theming'
 
-import VolumeControls from './'
+import PlayerBar from './'
 import { songDetails1 } from '../../../constants'
 import { SpotifyDark } from '../../../theme'
 
@@ -28,25 +27,16 @@ const renderComponent = (config = null) => {
   return render(
     <Provider store={config.store}>
       <ThemeProvider theme={SpotifyDark}>
-        <VolumeControls songDetails={config} />
+        <PlayerBar songDetails={config} />
       </ThemeProvider>
     </Provider>
   )
 }
 
-test('VolumeControls displays expected elements', async () => {
+test('PlayerBar displays expected elements', async () => {
   renderComponent(defaultConfig)
 
-  expect(screen.queryByLabelText(/Mute playback/i)).toBeInTheDocument()
-  expect(screen.queryByLabelText(/Adjust playback volume/i)).toBeInTheDocument()
-})
-
-test('VolumeControls mute toggle functions as expected', async () => {
-  renderComponent(defaultConfig)
-
-  userEvent.click(screen.queryByLabelText(/Mute playback/i))
-  await screen.findByLabelText(/Unmute playback/i)
-
-  userEvent.click(screen.queryByLabelText(/Unmute playback/i))
-  await screen.findByLabelText(/Mute playback/i)
+  expect(screen.queryByTestId(/play-info/i)).toBeInTheDocument()
+  expect(screen.queryByTestId(/play-controls/i)).toBeInTheDocument()
+  expect(screen.queryByTestId(/volume-controls/i)).toBeInTheDocument()
 })

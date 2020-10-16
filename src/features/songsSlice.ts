@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { createSlice } from '@reduxjs/toolkit'
 import uniqBy from 'lodash/uniqBy'
+
 import { setArtistIds } from '../actions/artistActions'
 
 const initialState = {
@@ -12,11 +13,11 @@ const songsStoreSlice = createSlice({
   name: 'songs',
   initialState,
   reducers: {
-    fetchArtistSongsError: (state, _action) => {
+    fetchArtistSongsError: (state) => {
       state.fetchArtistSongsError = true
       state.fetchArtistSongsPending = false
     },
-    fetchArtistSongsPending: (state, _action) => {
+    fetchArtistSongsPending: (state) => {
       state.fetchArtistSongsPending = true
     },
     fetchArtistSongsSuccess: (state, action) => {
@@ -25,11 +26,11 @@ const songsStoreSlice = createSlice({
       state.songs = action.payload
       state.viewType = 'Artist'
     },
-    fetchPlaylistSongsError: (state, _action) => {
+    fetchPlaylistSongsError: (state) => {
       state.fetchPlaylistSongsError = true
       state.fetchPlaylistSongsPending = false
     },
-    fetchPlaylistSongsPending: (state, _action) => {
+    fetchPlaylistSongsPending: (state) => {
       state.fetchPlaylistSongsPending = true
     },
     fetchPlaylistSongsSuccess: (state, action) => {
@@ -38,11 +39,11 @@ const songsStoreSlice = createSlice({
       state.songs = action.payload
       state.viewType = 'playlist'
     },
-    fetchRecentlyPlayedError: (state, _action) => {
+    fetchRecentlyPlayedError: (state) => {
       state.fetchSongsError = true
       state.fetchSongsPending = false
     },
-    fetchRecentlyPlayedPending: (state, _action) => {
+    fetchRecentlyPlayedPending: (state) => {
       state.fetchSongsPending = true
     },
     fetchRecentlyPlayedSuccess: (state, action) => {
@@ -51,11 +52,11 @@ const songsStoreSlice = createSlice({
       state.songs = action.payload
       state.viewType = 'Recently Played'
     },
-    fetchSongsError: (state, _action) => {
+    fetchSongsError: (state) => {
       state.fetchSongsError = true
       state.fetchSongsPending = false
     },
-    fetchSongsPending: (state, _action) => {
+    fetchSongsPending: (state) => {
       state.fetchSongsPending = true
     },
     fetchSongsSuccess: (state, action) => {
@@ -64,11 +65,11 @@ const songsStoreSlice = createSlice({
       state.fetchSongsPending = false
       state.viewType = 'songs'
     },
-    searchSongsError: (state, _action) => {
+    searchSongsError: (state) => {
       state.searchSongsError = true
       state.searchSongsPending = false
     },
-    searchSongsPending: (state, _action) => {
+    searchSongsPending: (state) => {
       state.searchSongsPending = true
     },
     searchSongsSuccess: (state, action) => {
@@ -83,11 +84,11 @@ const songsStoreSlice = createSlice({
   }
 })
 
-export const fetchArtists = (accessToken, artistIds) => {
+export const fetchArtists = (token, artistIds) => {
   return dispatch => {
     const request = new Request(`https://api.spotify.com/v1/artists?ids=${artistIds}`, {
       headers: new Headers({
-        'Authorization': 'Bearer ' + accessToken
+        'Authorization': 'Bearer ' + token
       })
     })
 
@@ -102,11 +103,11 @@ export const fetchArtists = (accessToken, artistIds) => {
     })
   }
 }
-export const fetchRecentlyPlayed = (accessToken) => {
+export const fetchRecentlyPlayed = (token) => {
   return dispatch => {
     const request = new Request(`https://api.spotify.com/v1/me/player/recently-played`, {
       headers: new Headers({
-        'Authorization': 'Bearer ' + accessToken
+        'Authorization': 'Bearer ' + token
       })
     })
 
@@ -125,11 +126,11 @@ export const fetchRecentlyPlayed = (accessToken) => {
     })
   }
 }
-export const fetchSongs = (accessToken) => {
+export const fetchSongs = (token) => {
   return dispatch => {
     const request = new Request(`https://api.spotify.com/v1/me/tracks?limit=50`, {
       headers: new Headers({
-        'Authorization': 'Bearer ' + accessToken
+        'Authorization': 'Bearer ' + token
       })
     })
 
@@ -154,11 +155,11 @@ export const fetchSongs = (accessToken) => {
     })
   }
 }
-export const searchSongs = (accessToken, searchTerm) => {
+export const searchSongs = (token, searchTerm) => {
   return dispatch => {
     const request = new Request(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       headers: new Headers({
-        'Authorization': 'Bearer ' + accessToken,
+        'Authorization': 'Bearer ' + token,
         'Accept': 'application/json'
       })
     })

@@ -1,7 +1,10 @@
 import React from 'react'
-import { createUseStyles } from 'react-jss'
+import { useDispatch } from 'react-redux'
+import { createUseStyles , useTheme } from 'react-jss'
 import PropTypes from 'prop-types'
 import key from 'weak-key'
+
+import { setHeaderTitle } from './../../../features/uiSlice'
 
 const useStyles = createUseStyles({
   artistList: {
@@ -44,15 +47,16 @@ const ArtistList = ({
   artists,
   fetchArtistSongs,
   token,
-  updateHeaderTitle
 }) => {
-  const classes = useStyles()
+  const dispatch = useDispatch()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
 
   const renderArtists = () =>
     artists.map((artist) => {
       const artistSongsAction = (artist, token) => {
         fetchArtistSongs(artist.id, token)
-        updateHeaderTitle(artist.name)
+        dispatch(setHeaderTitle(artist.name))
       }
 
       return (
@@ -85,7 +89,6 @@ ArtistList.propTypes = {
   artists: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   fetchArtistSongs: PropTypes.func,
   token: PropTypes.string,
-  updateHeaderTitle: PropTypes.func
 }
 
 export default ArtistList

@@ -5,7 +5,6 @@ import { createUseStyles, useTheme } from 'react-jss'
 import clsx from 'clsx'
 
 import { Icon } from '../../atoms'
-import { resetPlayback } from '../../../features/playerSlice'
 import { ProgressBar } from '../'
 
 const useStyles = createUseStyles((theme) => ({
@@ -50,6 +49,7 @@ const useStyles = createUseStyles((theme) => ({
 
 // TODO: add random playback function
 // TODO: add loop playback function
+// TODO: add full track playback
 
 const PlayControls = ({
   audioControl,
@@ -59,17 +59,9 @@ const PlayControls = ({
 }) => {
   const theme = useTheme()
   const classes = useStyles({ theme })
-  const dispatch = useDispatch()
 
   const songs = useSelector(state => state.songs.song)
   const { trackId, trackDetails, trackPaused } = useSelector(state => state.player)
-  const [isTrackPlaybackComplete, setIsTrackPlaybackComplete] = useState(false)
-
-  useEffect(() => {
-    if (isTrackPlaybackComplete) {
-      dispatch(resetPlayback())
-    }
-  }, [isTrackPlaybackComplete])
 
   const getSongIndex = () =>
     songs.map((song, index) =>
@@ -96,7 +88,7 @@ const PlayControls = ({
   )
 
   return (
-    <div className={playControlStyles}>
+    <div className={playControlStyles} data-testid='play-controls'>
       <ul className={classes.controls}>
         <li onClick={handleRandomPlayback} className='icon small'>
           <Icon name='random' className='disabled' />

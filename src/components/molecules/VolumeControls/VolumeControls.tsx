@@ -5,7 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss'
 import { Range, getTrackBackground } from 'react-range'
 
 import { Icon } from '../../atoms'
-import { updateVolume } from './../../../features/playerSlice'
+import { setVolume } from './../../../features/playerSlice'
 
 const useStyles = createUseStyles((theme) => ({
   volumeControls: {
@@ -112,21 +112,21 @@ const VolumeControls = () => {
   const handleVolumeToggle = () => {
     if (!volumeEnabled && volumeState > 0) {
       setVolumeEnabled(true)
-      dispatch(updateVolume(volumeState))
+      dispatch(setVolume(volumeState))
     } else {
       setVolumeEnabled(false)
       setVolumeState(volume)
-      dispatch(updateVolume(0))
+      dispatch(setVolume(0))
     }
   }
   const handleVolumeChange = (value) => {
     setVolumeState(value[0])
-    dispatch(updateVolume(value[0]))
+    dispatch(setVolume(value[0]))
   }
   const handleFullscreenToggle = () => null
 
   return (
-    <div className={classes.volumeControls}>
+    <div className={classes.volumeControls} data-testid='volume-controls'>
       <div
         className={classes.muteToggle}
         onClick={handleVolumeToggle}

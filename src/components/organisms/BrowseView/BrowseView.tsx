@@ -1,8 +1,12 @@
 // @ts-nocheck
 import React from 'react'
 import { createUseStyles } from 'react-jss'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import key from 'weak-key'
+
+import { addPlaylistItem, fetchPlaylistSongs } from './../../../features/playlistsSlice'
+import { setHeaderTitle } from './../../../features/uiSlice'
 
 const useStyles = createUseStyles({
   browseView: {
@@ -41,14 +45,14 @@ const useStyles = createUseStyles({
   }
 })
 
-
-const BrowseView = ({ view, viewType, token, fetchPlaylistSongs, updateHeaderTitle, addPlaylistItem }) => {
+const BrowseView = ({ view, viewType, token }) => {
+  const dispatch = useDispatch()
   const classes = useStyles()
 
   const getPlaylistSongs = (item) => {
-    addPlaylistItem(item)
-    fetchPlaylistSongs(item.owner.id, item.id, token)
-    updateHeaderTitle(item.name)
+    dispatch(addPlaylistItem(item))
+    dispatch(fetchPlaylistSongs(token, item.owner.id, item.id))
+    dispatch(setHeaderTitle(item.name))
   }
   const getClickHandler = (type, item) => type === 'Featured' ? getPlaylistSongs(item) : null
   const getImageUrl = (item) => item.icons ? item.icons[0].url : item.images[0].url
@@ -77,10 +81,7 @@ const BrowseView = ({ view, viewType, token, fetchPlaylistSongs, updateHeaderTit
 
 
 BrowseView.propTypes = {
-  addPlaylistItem: PropTypes.func,
-  fetchPlaylistSongs: PropTypes.func,
   token: PropTypes.string,
-  updateHeaderTitle: PropTypes.func,
   view: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array

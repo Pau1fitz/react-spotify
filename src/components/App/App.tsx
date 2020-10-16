@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createUseStyles } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 import { ThemeProvider } from 'theming'
 import clsx from 'clsx'
 
@@ -17,8 +17,7 @@ import { fetchUser } from '../../features/userSlice'
 import { MainView } from '../../containers'
 import { Utility } from '../molecules'
 import { MainHeader, PlayerBar, SideMenu } from '../organisms'
-import { SpotifyDark } from '../../theme'
-import { theme } from '../../theme/spotifyDark'
+import { SpotifyDark as theme } from '../../theme'
 
 const cssBaseline = {
   backgroundColor: theme.palette.grey[4],
@@ -38,13 +37,13 @@ const useStyles = createUseStyles({
     height: '100vh',
     width: '100vw',
 
-    background: '#040404',
-    color: '#FFFFFF',
-    fontFamily: '"Proxima Nova", sans-serif',
+    background: theme.palette.grey[8],
+    color: theme.palette.white.primary,
+    fontFamily: theme.typography.family.normal,
   },
 
   mainViewSection: {
-    background: 'linear-gradient(180deg, #404040 0%, #121212 10%)',
+    background: `linear-gradient(180deg, ${theme.palette.grey[4]} 0%, ${theme.palette.grey[8]} 10%)`,
     gridArea: 'topRow2 / mainCol / baseRow / mainCol',
     overflow: 'hidden',
     padding: '0 20px',
@@ -169,7 +168,7 @@ const App = () => {
   )
 
   return (
-    <ThemeProvider theme={SpotifyDark}>
+    <ThemeProvider theme={theme}>
       <div className={classes.app}>
         <SideMenu />
 

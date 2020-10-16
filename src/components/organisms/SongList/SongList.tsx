@@ -1,12 +1,11 @@
 // @ts-nocheck
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createUseStyles } from 'react-jss'
+import { createUseStyles, useTheme } from 'react-jss'
 import clsx from 'clsx'
-import key from 'weak-key'
 import moment from 'moment'
+import key from 'weak-key'
 
-import { Icon } from '../../atoms'
 import { 
   resetPlayback
 } from '../../../features/playerSlice'
@@ -18,154 +17,133 @@ import {
 } from '../../../features/songsSlice'
 import { addSongToLibrary } from '../../../features/userSlice'
 
-const useStyles = createUseStyles({
-  songList: {
-    '& .section-title': {
-      fontFamily: '"Proxima Bold", Georgia, sans-serif',
-      fontSize: '34px',
-      fontWeight: '800',
-      padding: '0 0 20px 0',
-    },
+import { Icon } from '../../atoms'
 
-    '& .main-pause-play-btn': {
-      background: '#1DB954',
-      border: 'none',
-      borderRadius: '20px',
-      color: '#FFFFFF',
-      cursor: 'pointer',
-      fontSize: '14px',
-      fontFamily: '"Proxima Nova", Georgia, sans-serif',
-      letterSpacing: '1px',
-      outline: 'none',
-      padding: '10px',
-      width: '100px',
-    },
+const useStyles = createUseStyles((theme) => ({
+  flatList: {
+    display: 'flex',
+    flexFlow: 'column',
+    fontSize: '13px',
+    listStyleType: 'none',
 
-    '& .song-title-col': {
-      width: '300px',
-    },
-    '& .song-album-col': {
-      width: '250px',
-    },
-    '& .song-artist-col': {
-      width: '200px',
-    },
-    '& .song-added-col': {
-      width: '80px',
-    },
-    '& .song-length-col': {
-      width: '60px',
-    },
-
-    '& .song-header': {
-      borderBottom: '1px solid #666666',
-      display: 'flex',
-      marginTop: '20px',
-      paddingBottom: '6px',
-
-      '& p': {
-        color: '#CCCCCC',
-        fontFamily: '"Proxima Thin", Georgia, sans-serif',
-        fontSize: '12px',
-        padding: '0 8px',
-        textTransform: 'uppercase',
-      },
-
-      '& .song-title-header': {
-        marginLeft: '60px',
-      },
-      '& .song-length-header .fa-clock-o': {
-        color: '#CCCCCC',
-        fontSize: '17px',
-      },
-      '& .song-added-header': {
-        color: '#CCCCCC',
-        width: '80px',
-      },
-    },
-
-    '& .song-row': {
-      borderBottom: '1px solid #666',
-      cursor: 'pointer',
-      display: 'flex',
-      fontSize: '14px',
-      lineHeight: '40px',
-      listStyleType: 'none',
-
-      '&.active': {
-        color: '#1DB954',
-        background: '#333333',
-      },
+    '& .listRow': {
+      display: 'grid',
+      gridTemplateColumns: '70px 5fr 3fr',
 
       '&:hover': {
-        background: '#333333',
+        background: theme.palette.grey[6],
 
-        '& > .play-song': {
-          opacity: 1,
-        },  
-      },
-
-      '& .play-song': {
-        opacity: 0,
-        textAlign: 'center',
-        width: '40px',
-
-        '& .fa': {
-          color: '#CCCCCC',
-          cursor: 'pointer',
-          fontSize: '30px',
-          position: 'relative',
-          top: '5px',
-          '-webkit-text-stroke': '2px #181818',
-
-          '&:hover': {
-            color: '#FFFFFF',
-          },
+        '& .playbackIcon': {
+          color: theme.palette.white.secondary,
+          display: 'block',
         },
       },
 
-      '& p': {
-        lineHeight: '42px',
+      '& li': {
+        borderBottom: `1px solid ${theme.palette.grey[6]}`,
+        listStyleType: 'none',
         overflow: 'hidden',
-        padding: '0 8px',
+        padding: '14px 8px',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       },
-    },
 
-    '& .play-btn': {
-      color: '#FFFFFF',
-      cursor: 'pointer',
-      fontSize: '20px',
-    },
-    '& .add-song': {
-      color: '#FFFFFF',
-      cursor: 'pointer',
-      fontSize: '20px',
-      width: '20px',
-      zIndex: '1',
+      '& .actions': {
+        position: 'relative',
+        textAlign: 'right',
 
-      '& .fa': {
-        '-webkit-text-stroke': '3px #181818',
+        '& .playbackIcon': {
+          display: 'none',
+          fontSize: '30px',
+          left: '6px',
+          position: 'absolute',
+          top: '5px',
 
-        '&:hover': {
-          '-webkit-text-stroke': '2px #181818',
-        },  
+          '&:hover': {
+            color: theme.palette.white.primary,
+          }
+        }
+      },
+
+      '& .time': {
+        paddingRight: '8px',
+        textAlign: 'right',
       },
     },
+
+    '& .listHeader': {
+      color: theme.palette.grey[1],
+      fontSize: '10px',
+      letterSpacing: '2px',
+      textTransform: 'uppercase',
+
+      '&.listRow': {
+        '&:hover': {
+          background: 'none',
+        },
+
+        '& li': {
+          alignSelf: 'center',
+          lineHeight: '16px',
+          padding: '8px',
+        },
+      },
+    },
+
+    '& .album': {
+      display: 'none',
+    },
+    '& .calendar': {
+      display: 'none',
+    },
+    '& .time': {
+      display: 'none',
+    },
+  },
+
+  '@media (min-width: 840px)': {
+    flatList: {
+      '& .listRow': {
+        gridTemplateColumns: '70px 5fr 3fr 2fr',
+      },
+      '& .calendar': {
+        display: 'block',
+      }
+    }
+  },
+  '@media (min-width: 980px)': {
+    flatList: {
+      '& .listRow': {
+        gridTemplateColumns: '70px 5fr 3fr 3fr 2fr',
+      },
+      '& .album': {
+        display: 'block',
+      }
+    }
+  },
+  '@media (min-width: 1100px)': {
+    flatList: {
+      '& .listRow': {
+        gridTemplateColumns: '70px 5fr 3fr 3fr 1fr 1fr',
+      },
+      '& .time': {
+        display: 'block',
+      }
+    }
   }
-})
+}))
 
 const SongList = ({ audioControl, resumeSong, pauseSong }) => {
-  const classes = useStyles()
   const dispatch = useDispatch()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
 
   const songAddedId = useSelector(state => state.user.songId)
   const viewType = useSelector(state => state.songs.viewType)
   const token = useSelector(state => state.token.token)
   const songs = useSelector(state => state.songs.songs)
 
-  const { trackId, trackPaused } = useSelector(state => state.player)
+  const { trackId: currentTrackId, trackPaused } = useSelector(state => state.player)
 
   useEffect(() => {
     if (
@@ -184,114 +162,84 @@ const SongList = ({ audioControl, resumeSong, pauseSong }) => {
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
   }
 
-  const handlePlaybackLink = (song) => {
-    if (song.track.id !== trackId) {
+  const handlePlaybackButton = (song) => {
+    if (song.track.id !== currentTrackId) {
       dispatch(resetPlayback())
       audioControl(song)
     }
-    else if (!!trackId && trackPaused) {
+    else if (!!currentTrackId && trackPaused) {
       resumeSong()
     }
-    else if (!!trackId && !trackPaused) {
+    else if (!!currentTrackId && !trackPaused) {
       pauseSong()
     }
   }
 
-  const renderSongsTable = () => {
-    return songs.map((song) => {
-      const buttonIcon =
-        trackId === song.track.id && !trackPaused
-          ? 'pause-circle'
-          : 'play-circle'
-
-      const songRowStyles = clsx(
-        'song-row',
-        trackId === song.track.id && 'active'
-      )
-
-      return (
-        <li
-          className={songRowStyles}
-          key={key(song)}
-        >
-          <div
-            onClick={() => handlePlaybackLink(song)}
-            className='play-song'
-          >
-            <Icon name={buttonIcon} className='play-btn' />
-          </div>
-
-          {viewType !== 'songs' && (
-            <p
-              className='add-song'
-              onClick={() => {
-                dispatch(addSongToLibrary(token, song.track.id))
-              }}
-            >
-              {songAddedId === song.track.id ? (
-                <i className='fa fa-check add-song' aria-hidden='true' />
-              ) : (
-                  <i className='fa fa-plus add-song' aria-hidden='true' />
-                )}
-            </p>
-          )}
-
-          {viewType === 'songs' && (
-            <p className='add-song'>
-              <i className='fa fa-check' aria-hidden='true' />
-            </p>
-          )}
-
-          <div className='song-title-col'>
-            <p>{song.track.name}</p>
-          </div>
-
-          <div className='song-artist-col'>
-            <p>{song.track.artists[0].name}</p>
-          </div>
-
-          <div className='song-album-col'>
-            <p>{song.track.album.name}</p>
-          </div>
-
-          <div className='song-added-col'>
-            <p>{moment(song.added_at).format('YYYY-MM-DD')}</p>
-          </div>
-
-          <div className='song-length-col'>
-            <p>{msToMinutesAndSeconds(song.track.duration_ms)}</p>
-          </div>
-        </li>
-      )
-    })
-  }
+  const listHeaderStyles = clsx('listRow', 'listHeader')
+  const listBodyRowStyles = (trackId) => clsx(
+    'listRow',
+    currentTrackId === trackId && 'active'
+  )
+  const playbackButtonIcon = (trackId) => currentTrackId === trackId && !trackPaused
+    ? 'pause-circle'
+    : 'play-circle'
+  const addSongToLibraryButton = (songAddedId, trackId) => (
+    <div
+      className='add-song'
+      onClick={() => {
+        dispatch(addSongToLibrary(trackId))
+      }}
+    >
+      <Icon name={songAddedId === trackId ? 'check' : 'plus'} />
+    </div>
+  )
+  const addCheckIcon = () => (
+    <div className='add-song'>
+      <Icon name='check' className='icon' />
+    </div>
+  )
 
   return (
     <div className={classes.songList}>
-      <div className='song-header'>
-        <div className='song-title-col song-title-header'>
-          <p>Title</p>
-        </div>
-        <div className='song-artist-col song-artist-header'>
-          <p>Artist</p>
-        </div>
-        <div className='song-album-col song-album-header'>
-          <p>Album</p>
-        </div>
-        <div className='song-added-col song-added-header'>
-          <i className='fa fa-calendar-plus-o' aria-hidden='true' />
-        </div>
-        <div className='song-length-col song-length-header'>
-          <p>
-            <i className='fa fa-clock-o' aria-hidden='true' />
-          </p>
-        </div>
-      </div>
+      <div class={classes.flatList}>
+        <ul className={listHeaderStyles}>
+          <li>&nbsp;</li>
+          <li>Title</li>
+          <li>Artist</li>
+          <li className='album'>Album</li>
+          <li className='calendar'>
+            <Icon name='calendar-alt' className='icon' />
+          </li>
+          <li className='time'><Icon iconSet='far' name='clock' className='icon' /></li>
+        </ul>
 
-      {
-        (songs) && // !fetchSongsPending && !fetchPlaylistSongsPending) &&
-        renderSongsTable()
-      }
+        {
+          songs && // !fetchSongsPending && !fetchPlaylistSongsPending) &&
+          songs.map((song) => (
+            <ul
+              className={listBodyRowStyles(song.track.id)}
+              key={key(song)}
+            >
+              <li className='actions'>
+                <div onClick={() => handlePlaybackButton(song)}>
+                  <Icon iconSet='far' name={playbackButtonIcon(song.track.id)} className='icon playbackIcon' />
+                </div>
+
+                {
+                  viewType !== 'songs'
+                    ? addSongToLibraryButton(songAddedId, song.track.id)
+                    : addCheckIcon()
+                }
+              </li>
+              <li>{song.track.name}</li>
+              <li>{song.track.artists[0].name}</li>
+              <li className='album'>{song.track.album.name}</li>
+              <li className='calendar'>{moment(song.added_at).format('YYYY-MM-DD')}</li>
+              <li className='time'>{msToMinutesAndSeconds(song.track.duration_ms)}</li>
+            </ul>
+          ))
+        }
+      </div>
     </div>
   )
 }

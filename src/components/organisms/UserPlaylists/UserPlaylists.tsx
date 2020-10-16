@@ -1,11 +1,14 @@
 // @ts-nocheck
 import React, { useEffect } from 'react'
-import { createUseStyles } from 'react-jss'
-import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
+import { createUseStyles, useTheme } from 'react-jss'
+
+import { fetchPlaylistsMenu, fetchPlaylistSongs } from '../../../features/playlistsSlice'
+import { setHeaderTitle } from './../../../features/uiSlice'
 
 import { Overline } from '../../atoms'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   userPlaylists: {
     color: '#B3B3B3',
     padding: '20px',
@@ -47,32 +50,35 @@ const useStyles = createUseStyles({
       }
     }
   },
-})
+}))
 
-const UserPlaylists = ({
-  fetchPlaylistsMenu,
-  fetchPlaylistSongs,
-  playlistMenu,
-  title,
-  token,
-  updateHeaderTitle,
-  userId,
-}) => {
-  const classes = useStyles()
+const UserPlaylists = () => {
+  const dispatch = useDispatch()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
+
+  const playlistMenu = useSelector(state => {
+    console.log(state)
+
+    return state.playlists.menu
+  })
+  const title = useSelector(state => state.ui.title)
+  const token = useSelector(state => state.token.token)
+  const userId = useSelector(state => state.user.userId)
 
   useEffect(() => {
     if (userId !== '' && token !== '') {
-      fetchPlaylistsMenu(userId, token)
+      fetchPlaylistsMenu(token, userId)
     }
-  }, [fetchPlaylistsMenu, userId, token])
+  }, [token, userId])
 
   const getPlaylistSongs = (playlist) => {
     fetchPlaylistSongs(
+      token,
       playlist.owner.id,
       playlist.id,
-      token
     )
-    updateHeaderTitle(playlist.name)
+    dispatch(setHeaderTitle(playlist.name))
   }
 
   const renderPlaylists = () => {
@@ -98,22 +104,12 @@ const UserPlaylists = ({
 
       {
         playlistMenu &&
-        <ul className={classes.menu}>
-          {renderPlaylists()}
-        </ul>
+          <ul className={classes.menu}>
+            {renderPlaylists()}
+          </ul>
       }
     </div>
   )
-}
-
-UserPlaylists.propTypes = {
-  fetchPlaylistsMenu: PropTypes.func,
-  fetchPlaylistSongs: PropTypes.func,
-  playlistMenu: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  title: PropTypes.string,
-  token: PropTypes.string,
-  updateHeaderTitle: PropTypes.func,
-  userId: PropTypes.string,
 }
 
 export default UserPlaylists

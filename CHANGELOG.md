@@ -6,9 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
-## [2.1.2.1] - 2020.xx.xxx
+## [2.1.2.2] - 2020.10.xxx
 ## Changed
-
+- Refactor SongList
+- Migrate UserPlaylists to Redux hooks
+- Migrate Playlist, Ui Actions & Reducers to Features
 
 
 ## [2.1.2.1] - 2020.10.15
@@ -28,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Install React-Range for VolumeControls
 - Update Font Awesome to v.5+
 - Refactor entry point
+- Migrate (Song, Sound, Token, User) Actions&Reducers to Slices
 
 ## [2.1.1] - 2020.10.09
 ## Added

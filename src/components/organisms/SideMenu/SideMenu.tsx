@@ -1,11 +1,13 @@
 // @ts-nocheck
 import React from 'react'
 import { createUseStyles } from 'react-jss'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
 import { Overline } from '../../atoms'
 import { UserPlaylists } from '../.'
+import { setHeaderTitle } from './../../../features/uiSlice'
 
 const useStyles = createUseStyles({
   sideMenu: {
@@ -79,17 +81,17 @@ const SideMenu = ({
   fetchSongs,
   title,
   token,
-  updateHeaderTitle,
   updateViewType,
 }) => {
+  const dispatch = useDispatch()
   const classes = useStyles()
 
   const handleLibraryClick = (name) => {
-    updateHeaderTitle(name)
+    dispatch(setHeaderTitle(name))
     updateViewType(name)
   }
   const handleBrowseClick = () => {
-    updateHeaderTitle('Browse')
+    dispatch(setHeaderTitle('Browse'))
     updateViewType('Feature')
     fetchFeatured(token)
   }
@@ -101,7 +103,7 @@ const SideMenu = ({
         action: fetchRecentlyPlayed
       },
       {
-        name: "Songs",
+        name: "Liked Songs",
         action: fetchSongs
       },
       {
@@ -176,7 +178,6 @@ SideMenu.propTypes = {
   fetchSongs: PropTypes.func,
   title: PropTypes.string,
   token: PropTypes.string,
-  updateHeaderTitle: PropTypes.func,
   updateViewType: PropTypes.func,
 }
 

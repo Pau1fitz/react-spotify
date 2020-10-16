@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux'
 
 import ArtistList from './ArtistList'
 import { fetchArtistSongs } from '../../../actions/artistActions'
-import { updateHeaderTitle } from '../../../actions/uiActions'
 
 const mapStateToProps = state => {
   return {
@@ -18,7 +17,6 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       fetchArtistSongs,
-      updateHeaderTitle
     },
     dispatch
   )

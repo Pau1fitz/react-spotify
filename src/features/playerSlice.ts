@@ -20,8 +20,8 @@ const playerStoreSlice = createSlice({
       state.trackPaused = false
     },
     startPlayback: (state, action) => {
-      state.trackId = action.payload.id
       state.trackDetails = action.payload
+      state.trackId = action.payload.id
       state.trackPaused = false
     },
     resetPlayback: (state) => {
@@ -29,10 +29,7 @@ const playerStoreSlice = createSlice({
         ...initialState,
       }
     },
-    tickPlaybackTime: (state, action) => {
-      state.playbackTime = action.payload
-    },
-    updateVolume(state, action) {
+    setVolume(state, action) {
       state.volume = action.payload
     },
   }
@@ -43,8 +40,7 @@ export const {
   resetPlayback,
   resumePlayback,
   startPlayback,
-  tickPlaybackTime,
-  updateVolume,
+  setVolume,
 } = playerStoreSlice.actions
 
 export default playerStoreSlice.reducer
