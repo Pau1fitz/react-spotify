@@ -1,15 +1,13 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import configureStore from 'redux-mock-store'
-import { render, screen, waitFor } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { ThemeProvider } from 'theming'
 
 import VolumeControls from './'
 import { songDetails1 } from '../../../constants'
-import { SpotifyDark } from '../../../theme'
+import { setVolume } from '../../../features/playerSlice'
+import { testRender, makeDispatchStore } from '../../../utilities/test'
 
-const initialState = {
+const defaultInitialState = {
   player: {
     trackId: '6MhR8bYMatTqRoFdFnyqr0',
     trackDetails: songDetails1,
@@ -19,34 +17,53 @@ const initialState = {
     song: songDetails1,
   }
 }
-const middlewares = []
-const mockStore = configureStore(middlewares)
-const store = mockStore(initialState)
-const defaultConfig = { store }
-
-const renderComponent = (config = null) => {
-  return render(
-    <Provider store={config.store}>
-      <ThemeProvider theme={SpotifyDark}>
-        <VolumeControls songDetails={config} />
-      </ThemeProvider>
-    </Provider>
-  )
+const setupTestStore = (initialState = defaultInitialState) => {
+  const store = makeDispatchStore(initialState)
+  store.dispatch(setVolume(initialState.player.volume))
+  return store
 }
 
 test('VolumeControls displays expected elements', async () => {
-  renderComponent(defaultConfig)
+  const store = setupTestStore()
+  testRender(
+    <VolumeControls />,
+    { store }
+  )
 
   expect(screen.queryByLabelText(/Mute playback/i)).toBeInTheDocument()
   expect(screen.queryByLabelText(/Adjust playback volume/i)).toBeInTheDocument()
 })
 
 test('VolumeControls mute toggle functions as expected', async () => {
-  renderComponent(defaultConfig)
+  const store = setupTestStore()
+  testRender(
+    <VolumeControls />,
+    { store }
+  )
 
   userEvent.click(screen.queryByLabelText(/Mute playback/i))
   await screen.findByLabelText(/Unmute playback/i)
+  expect(store.dispatch).toHaveBeenCalledWith(setVolume(0))
 
   userEvent.click(screen.queryByLabelText(/Unmute playback/i))
   await screen.findByLabelText(/Mute playback/i)
+  expect(store.dispatch).toHaveBeenCalledWith(setVolume(50))
+})
+
+test('VolumeControls unmute toggle doesnt toggle if volume is 0', async () => {
+  const customState = {
+    ...defaultInitialState,
+    player: {
+      volume: 0,
+    },
+  }
+  const store = setupTestStore(customState)
+  testRender(
+    <VolumeControls />,
+    { store }
+  )
+
+  store.dispatch.mockReset()
+  userEvent.click(screen.queryByLabelText(/Unmute playback/i))
+  expect(store.dispatch).not.toHaveBeenCalledWith(setVolume(0))
 })

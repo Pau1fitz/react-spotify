@@ -6,12 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
-## [2.1.2.2] - 2020.10.xxx
+## [2.2] - 2020.xx.xx
+
+
+## [2.1.3] - 2020.10.18
 ## Changed
 - Refactor SongList
-- Migrate UserPlaylists to Redux hooks
+- Migrate App, PlayerBar, SongList, UserPlaylists to Redux hooks
 - Migrate Playlist, Ui Actions & Reducers to Features
-
+- Add cueNextTrack to PlayControls, only currently works with 'liked songs'
 
 ## [2.1.2.1] - 2020.10.15
 ## Changed

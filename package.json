@@ -1,7 +1,7 @@
 {
   "name": "react-spotify-2",
   "description": "a Spotify Web Player built w/ React & Redux-Toolkit",
-  "version": "2.1.2.2",
+  "version": "2.1.3",
   "author": "Ian Huet <ian@huet.info>",
   "license": "MIT",
   "private": true,

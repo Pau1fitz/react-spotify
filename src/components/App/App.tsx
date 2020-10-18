@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles, useTheme } from 'react-jss'
-import { ThemeProvider } from 'theming'
 import clsx from 'clsx'
 
 import {
@@ -17,29 +16,24 @@ import { fetchUser } from '../../features/userSlice'
 import { MainView } from '../../containers'
 import { Utility } from '../molecules'
 import { MainHeader, PlayerBar, SideMenu } from '../organisms'
-import { SpotifyDark as theme } from '../../theme'
 
 const cssBaseline = {
-  backgroundColor: theme.palette.grey[4],
-  color: theme.palette.white.primary,
-  fontFamily: theme.typography.family.normal,
   margin: 0,
   padding: 0,
 }
 
 let htmlAudio
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   app: {
+    background: theme.palette.grey[8],
+    color: theme.palette.white.primary,
     display: 'grid',
+    fontFamily: theme.typography.family.normal,
     gridTemplateColumns: '[secondaryCol] minmax(200px, 1fr) [mainCol] 5fr',
     gridTemplateRows: '[topRow1] 50px [topRow2] 60px [mainRow] 1fr [baseRow] 80px',
     height: '100vh',
     width: '100vw',
-
-    background: theme.palette.grey[8],
-    color: theme.palette.white.primary,
-    fontFamily: theme.typography.family.normal,
   },
 
   mainViewSection: {
@@ -53,10 +47,11 @@ const useStyles = createUseStyles({
     overflowY: 'auto',
     marginBottom: '60px',
   },
-})
+}))
 
 const App = () => {
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles({ theme })
   const dispatch = useDispatch()
 
   const token = useSelector(state => state.token.token)
@@ -120,16 +115,17 @@ const App = () => {
   }, [fetchUser, token])
 
   useEffect(() => {
-    if (htmlAudio) {
+    if (!!htmlAudio) {
       htmlAudio.play()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [htmlAudio])
 
   useEffect(() => {
     if (htmlAudio !== undefined) {
       htmlAudio.volume = volume / 100
     }
-  }, [htmlAudio, volume])
+  }, [volume])
 
   const handleStopSong = () => {
     if (htmlAudio) {
@@ -168,32 +164,30 @@ const App = () => {
   )
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.app}>
-        <SideMenu />
+    <div className={classes.app}>
+      <SideMenu />
 
-        <Utility />
+      <Utility />
 
-        <div className={mainViewStyling}>
-          <MainHeader
-            pauseSong={handlePauseSong}
-            resumeSong={handleResumeSong}
-          />
-          <MainView
-            audioControl={audioController}
-            pauseSong={handlePauseSong}
-            resumeSong={handleResumeSong}
-          />
-        </div>
-
-        <PlayerBar
+      <div className={mainViewStyling}>
+        <MainHeader
+          pauseSong={handlePauseSong}
+          resumeSong={handleResumeSong}
+        />
+        <MainView
           audioControl={audioController}
           pauseSong={handlePauseSong}
           resumeSong={handleResumeSong}
-          stopSong={handleStopSong}
         />
       </div>
-    </ThemeProvider>
+
+      <PlayerBar
+        audioControl={audioController}
+        pauseSong={handlePauseSong}
+        resumeSong={handleResumeSong}
+        stopSong={handleStopSong}
+      />
+    </div>
   )
 }
 

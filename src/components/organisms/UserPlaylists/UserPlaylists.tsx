@@ -57,11 +57,7 @@ const UserPlaylists = () => {
   const theme = useTheme()
   const classes = useStyles({ theme })
 
-  const playlistMenu = useSelector(state => {
-    console.log(state)
-
-    return state.playlists.menu
-  })
+  const playlistMenu = useSelector(state => state.playlists.menu)
   const title = useSelector(state => state.ui.title)
   const token = useSelector(state => state.token.token)
   const userId = useSelector(state => state.user.userId)

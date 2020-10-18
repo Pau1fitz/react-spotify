@@ -154,7 +154,8 @@ const SongList = ({ audioControl, resumeSong, pauseSong }) => {
     ) {
       fetchSongs(token)
     }
-  }, [fetchSongs, fetchSongsError, fetchSongsPending, token, viewType])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchSongsError, fetchSongsPending, token, viewType])
 
   const msToMinutesAndSeconds = (ms) => {
     const minutes = Math.floor(ms / 60000)
@@ -201,7 +202,7 @@ const SongList = ({ audioControl, resumeSong, pauseSong }) => {
 
   return (
     <div className={classes.songList}>
-      <div class={classes.flatList}>
+      <div className={classes.flatList}>
         <ul className={listHeaderStyles}>
           <li>&nbsp;</li>
           <li>Title</li>

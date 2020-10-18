@@ -1,8 +1,10 @@
 // @ts-nocheck
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createUseStyles, useTheme } from 'react-jss'
 import clsx from 'clsx'
+
+import { startPlayback } from '../../../features/playerSlice'
 
 import { Icon } from '../../atoms'
 import { ProgressBar } from '../'
@@ -59,11 +61,12 @@ const PlayControls = ({
 }) => {
   const theme = useTheme()
   const classes = useStyles({ theme })
+  const dispatch = useDispatch()
 
-  const songs = useSelector(state => state.songs.song)
+  const songs = useSelector(state => state.songs.songs)
   const { trackId, trackDetails, trackPaused } = useSelector(state => state.player)
 
-  const getSongIndex = () =>
+  const getCurrentSongIndex = () =>
     songs.map((song, index) =>
       (song.track === trackDetails) ? index : undefined
     )
@@ -71,15 +74,22 @@ const PlayControls = ({
 
   const handleRandomPlayback = () => null
   const handleNextSong = () => {
-    let currentIndex = getSongIndex()
+    let currentIndex = getCurrentSongIndex()
     currentIndex === songs.length - 1 ? audioControl(songs[0]) : audioControl(songs[currentIndex + 1])
   }
   const handlePlayPauseSong = () => !trackPaused ? pauseSong() : resumeSong()
   const handlePrevSong = () => {
-    let currentIndex = getSongIndex()
+    let currentIndex = getCurrentSongIndex()
     currentIndex === 0 ? audioControl(songs[songs.length - 1]) : audioControl(songs[currentIndex - 1])
   }
   const handleLoopPlayback = () => null
+
+  const cueNextTrack = () => {
+    if (getCurrentSongIndex() < songs.length - 1) {
+      dispatch(startPlayback(songs[currentIndex + 1]))
+      audioControl(songs[currentIndex + 1])
+    }
+  }
 
   const playbackButtonIcon = trackPaused ? 'play-circle' : 'pause-circle'
   const playControlStyles = clsx(
@@ -108,8 +118,9 @@ const PlayControls = ({
       </ul>
 
       <ProgressBar
-        trackId={trackId}
+        cueNextTrack={cueNextTrack}
         isPaused={trackPaused}
+        trackId={trackId}
         trackLengthMs={30000}
       />
     </div>

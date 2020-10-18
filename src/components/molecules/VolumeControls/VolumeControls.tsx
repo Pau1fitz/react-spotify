@@ -110,6 +110,10 @@ const VolumeControls = () => {
   }, [volume])
 
   const handleVolumeToggle = () => {
+    if (!volumeEnabled && volumeState === 0) {
+      return null
+    }
+
     if (!volumeEnabled && volumeState > 0) {
       setVolumeEnabled(true)
       dispatch(setVolume(volumeState))

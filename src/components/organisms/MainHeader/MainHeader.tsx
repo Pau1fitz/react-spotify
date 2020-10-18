@@ -77,12 +77,7 @@ const MainHeader = ({
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const headerTitle = useSelector(state => {
-
-    console.log(state)
-
-    return state.ui.title
-  })
+  const headerTitle = useSelector(state => state.ui.title)
   const playlists = useSelector(state => state.playlists.playlists)
 
   let currentArtist, currentPlaylist

@@ -58,7 +58,7 @@ const useStyles = createUseStyles((theme) => ({
   }
 }))
 
-export const ProgressBar = ({ trackId, isPaused, trackLengthMs }) => {
+export const ProgressBar = ({ cueNextTrack, isPaused, trackId, trackLengthMs }) => {
   const theme = useTheme()
   const classes = useStyles({ theme })
 
@@ -103,7 +103,15 @@ export const ProgressBar = ({ trackId, isPaused, trackLengthMs }) => {
       clearExistingTimer()
       setTrackTimer(setInterval(tick, 100))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTrackId, isPaused, trackId])
+
+  useEffect(() => {
+    if (trackElapsedTimeMs >= trackLengthMs) {
+      cueNextTrack()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trackElapsedTimeMs, trackLengthMs])
 
   useEffect(() => {
     const isNewTrack = !!trackId && currentTrackId !== trackId
@@ -111,6 +119,7 @@ export const ProgressBar = ({ trackId, isPaused, trackLengthMs }) => {
       clearExistingTimer()
       setTrackTimer(setInterval(tick, 100))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTrackId, trackId])
 
   const formattedTime = (ms) => moment().minutes(0).seconds(ms/1000).format('m:ss')
