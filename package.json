@@ -4,7 +4,7 @@
   "private": true,
   "main": "build/main.js",
   "dependencies": {
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
