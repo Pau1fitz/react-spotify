@@ -25,4 +25,4 @@ Please note that the Spotify API only provides 30 second audio snippets. It may 
 
 Released under the MIT License. 
 
-Check [LICENSE.md](https://github.com/Pau1fitz/react-spotify/blob/master/LICENSE) for more info.
+Check [LICENSE.md](https://github.com/Pau1fitz/react-spotify/blob/master/LICENSE) for more info
