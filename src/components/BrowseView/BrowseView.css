@@ -1,0 +1,39 @@
+.browse-view-container {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.category-item {
+  padding: 10px;
+  list-style-type: none;
+  line-height: 28px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  width: 200px;
+  cursor: pointer;
+}
+
+.category-image {
+  position: relative;
+}
+
+.category-image img {
+  width: 100%;
+}
+
+.category-item img:hover {
+  opacity: 0.3;
+}
+
+.category-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  font-size: 18px;
+}

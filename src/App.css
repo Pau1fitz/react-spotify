@@ -1,0 +1,72 @@
+body,
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0)
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg)
+  }
+  40%,
+  80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
+}
+
+body {
+    font-family: 'Proxima Nova', Georgia, sans-serif;
+    background: rgb(24, 24, 24);
+    color: #fff;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.app-container {
+  display: flex;
+  position: relative;
+}
+
+.left-side-section {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  width: 180px;
+  overflow-y: auto;
+}
+
+.main-section {
+  width: 900px;
+  position: relative;
+  left: 200px;
+  padding: 0 10px;
+}
+
+.main-section-container {
+  position: relative;
+  top: 50px;
+  padding-bottom: 100px;
+}

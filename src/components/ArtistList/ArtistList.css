@@ -1,0 +1,39 @@
+.artist-view-container {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.artist-item {
+  padding: 10px 20px 20px 0;
+  list-style-type: none;
+  line-height: 28px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  width: 180px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.artist-item a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.artist-item img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.artist-image img {
+  opacity: 1;
+}
+
+.artist-image img:hover {
+  opacity: 0.4;
+}
