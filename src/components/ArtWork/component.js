@@ -3,14 +3,20 @@ import PropTypes from 'prop-types';
 import './ArtWork.css';
 
 const ArtWork = (albumArtwork) => (
-  <div className='album-artwork-container'>
-    <img alt="artwork" className='album-artwork' src={albumArtwork.albumImage} />
+  <div className="album-artwork-container">
+    {albumArtwork.albumImage ? (
+      <img
+        alt="artwork"
+        className="album-artwork"
+        src={albumArtwork.albumImage}
+      />
+    ) : 
+    null}
   </div>
 );
 
-
 ArtWork.propTypes = {
-  albumArtwork: PropTypes.string
+  albumArtwork: PropTypes.string,
 };
 
 export default ArtWork;
