@@ -10,16 +10,13 @@ const ArtWork = (albumArtwork) => (
         className="album-artwork"
         src={albumArtwork.albumImage}
       />
-    ) : (
-      //basically display nothing
-      <h1></h1>
-    )}
+    ) : //basically display nothing
+    null}
   </div>
 );
 
-
 ArtWork.propTypes = {
-  albumArtwork: PropTypes.string
+  albumArtwork: PropTypes.string,
 };
 
 export default ArtWork;
