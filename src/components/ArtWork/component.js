@@ -10,7 +10,7 @@ const ArtWork = (albumArtwork) => (
         className="album-artwork"
         src={albumArtwork.albumImage}
       />
-    ) : //basically display nothing
+    ) : 
     null}
   </div>
 );
