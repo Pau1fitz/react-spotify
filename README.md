@@ -2,9 +2,11 @@
 
 This is `React-Spotify`, a React front end client that communicates with the Spotify API.
 
-See it in action [here](http://pau1fitz.github.io/react-spotify).
+See it in action [here](http://pau1fitz.github.io/react-spotify)
 
 ![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/songs.png "Song")
+
+
 ![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/browser.png "Browse")
 
 If you wish to run the code locally run the following.
