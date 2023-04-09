@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./UserPlaylists.css";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './UserPlaylists.css';
 
 class UserPlaylists extends Component {
   componentWillReceiveProps(nextProps) {
-    if (nextProps.userId !== "" && nextProps.token !== "") {
+    if (nextProps.userId !== '' && nextProps.token !== '') {
       this.props.fetchPlaylistsMenu(nextProps.userId, nextProps.token);
     }
   }
 
   renderPlaylists() {
-    return this.props.playlistMenu.map(playlist => {
+    return this.props.playlistMenu.map((playlist) => {
       const getPlaylistSongs = () => {
         this.props.fetchPlaylistSongs(
           playlist.owner.id,
@@ -25,8 +25,8 @@ class UserPlaylists extends Component {
           onClick={getPlaylistSongs}
           className={
             this.props.title === playlist.name
-              ? "active side-menu-item"
-              : "side-menu-item"
+              ? 'active side-menu-item'
+              : 'side-menu-item'
           }
           key={playlist.id}
         >
@@ -53,7 +53,7 @@ UserPlaylists.propTypes = {
   playlistMenu: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   fetchPlaylistsMenu: PropTypes.func,
   fetchPlaylistSongs: PropTypes.func,
-  updateHeaderTitle: PropTypes.func
+  updateHeaderTitle: PropTypes.func,
 };
 
 export default UserPlaylists;

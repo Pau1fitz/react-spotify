@@ -3,14 +3,21 @@ import PropTypes from 'prop-types';
 import './ArtWork.css';
 
 const ArtWork = (albumArtwork) => (
-  <div className='album-artwork-container'>
-    <img alt="artwork" className='album-artwork' src={albumArtwork.albumImage} />
+  <div className="album-artwork-container">
+    <img
+      alt="artwork"
+      className="album-artwork"
+      src={
+        albumArtwork.albumImage
+          ? albumArtwork.albumImage
+          : 'https://via.placeholder.com/500/000000/FFFFFF?text=Not+Playing'
+      }
+    />
   </div>
 );
 
-
 ArtWork.propTypes = {
-  albumArtwork: PropTypes.string
+  albumArtwork: PropTypes.string,
 };
 
 export default ArtWork;
